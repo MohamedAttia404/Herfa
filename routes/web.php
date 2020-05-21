@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/data', function () {
-//     return view('data.index');
-// });
-
-// Route::prefix('/modelName')->middleware(['auth',])->group(function(){
-        // ALLRoutesForThisModel
-// });
-
 Auth::routes();
-Route::get('/users', 'UserController@index')->name('users.index');
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', function () {
+    return view('home.index');
+});
+Route::get('home', function () {
+    return view('home.index');
+});
+
+// Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware(['auth',])->group(function(){
+        Route::get('users', 'UserController@index')->name('users.index');
+        Route::get('home', 'HomeController@index')->name('home');
+});
+

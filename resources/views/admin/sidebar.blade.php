@@ -1,9 +1,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{asset('control')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+
+        <img src="{{asset('control')}}/media/img/logo/logo2.png" alt="erfa Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">erfa</span>
     </a>
 
     <!-- Sidebar -->
@@ -11,112 +12,146 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('control')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                    alt="User Image">
+                
+                {{-- <img src="/storage/{{ Auth::user()->profile_pic ? Auth::user()->profile_pic : 'control/dist/img/user2-160x160.jpg'}}"
+                    class="img-circle elevation-2" alt="User Image"> --}}
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+
+                <a href="#" class="d-block">{{Auth::user()->name }}</a>
+
+
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-notes-medical"></i>
                         <p>
-                            Dashboard
+                            Pharmacies
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{url('pharmacies')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>pharmacy</p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
+                                <p>ban</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                <li class="nav-item ">
+                    <a href="{{url('doctors')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user-md"></i>
                         <p>
-                            Widgets
-                            <span class="right badge badge-danger">New</span>
+                            Doctors
+
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('orders')}}" class="nav-link">
+
+                        <i class="nav-icon fas fa-receipt"></i>
+                        <p>
+                            Order
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('medicines')}}" class="nav-link">
+                        <i class="nav-icon fas fa-capsules"></i>
+                        <p>
+                            Medicines,
+                        </p>
+                    </a>
+                </li>
+                @auth
+                <li class="nav-item ">
+                    <a href="{{url('admin/users')}}" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            Users
+
+                        </p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('areas')}}" class="nav-link">
+                        <i class="nav-icon fas fa-map-marker-alt"></i>
+                        <p>
+                            Areas
+                        </p>
+                    </a>
+                </li>
+                @endauth
+                <li class="nav-item">
+                    <a href="{{url('address')}}" class="nav-link">
+                        <i class="nav-icon fas fa-street-view"></i>
+                        <p>
+                            User Addresses
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-donate"></i>
+                        <p>
+                            Revenue
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="{{url('statistics')}}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>
+                            Statistics
                         </p>
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fab fa-cc-stripe"></i>
                         <p>
-                            Charts
+                            ​ Stripe_Payments
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="{{url('payment/create')}}" class="nav-link">
+
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ChartJS</p>
+                                <p>payment</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{url('payment')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Flot</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/inline.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inline</p>
+                                <p>All_Transactions</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-header">EXAMPLES</li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
-                        <p>
-                            Calendar
-                            <span class="badge badge-info right">2</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url('users')}}" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
-                
-                        <p>
-                            Users
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-header">LOGOUT</li>
-                <li class="nav-item">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                        class="nav-link" >
-                       
-                        <i class="img-circle elevation-2 nav-icon "></i>
-                        <!-- <i class="fal fa-portal-exit nav-icon "></i> -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex"></div>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                        class="nav-link">
+                        <!-- <i class="nav-icon fas fa-portal-exit"></i> -->
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>{{ __('Logout') }}</p>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
