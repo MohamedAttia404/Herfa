@@ -25,7 +25,16 @@ Route::get('home', function () {
 
 // Route::prefix('/admin')->group(function(){
 Route::prefix('/admin')->middleware(['auth',])->group(function(){
-        Route::get('users', 'UserController@index')->name('users.index');
+    // Routes For User
+    Route::prefix('/users')->middleware(['auth',])->group(function(){
+        Route::get('', 'UserController@index')->name('users.index');
+        Route::get('/create', 'UserController@create')->name("users.create");
+        Route::post('', 'UserController@store')->name("users.store");
+        Route::get('/{user}', 'UserController@show')->name("users.show");
+        Route::get('/{user}/edit', 'UserController@edit')->name("users.edit");
+        Route::put('/{user}', 'UserController@update')->name("users.update");
+        Route::delete('/{user}', 'UserController@destroy')->name("users.destroy");
+    });
         Route::get('home', 'HomeController@index')->name('home');
 });
 

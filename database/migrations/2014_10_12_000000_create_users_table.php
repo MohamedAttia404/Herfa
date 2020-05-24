@@ -20,10 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('mobile');
-            $table->string('profile_pic')->nullable();
-            $table->unsignedInteger('national_id');
-            $table->boolean('is_investor')->default(0);
+            $table->string('mobile')->nullable();
+            $table->string('avatar')->default('http://127.0.0.1:8000/control/media/img/logo/avatar.png');
+            $table->unsignedInteger('national_id')->nullable();
+            $table->boolean('role')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

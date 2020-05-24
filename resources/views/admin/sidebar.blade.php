@@ -13,21 +13,18 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 
-                {{-- <img src="/storage/{{ Auth::user()->profile_pic ? Auth::user()->profile_pic : 'control/dist/img/user2-160x160.jpg'}}"
-                    class="img-circle elevation-2" alt="User Image"> --}}
+                <img src="/storage/{{ Auth::user()->avatar ? Auth::user()->avatar : 'control/dist/img/user2-160x160.jpg'}}"
+                    class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-
-                <a href="#" class="d-block">{{Auth::user()->name }}</a>
-
-
+                <a href="/admin/users/{{Auth::id()}}/edit" class="d-block">{{Auth::user()->first_name }}{{Auth::user()->last_name }}</a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item has-treeview">
+                {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-notes-medical"></i>
                         <p>
@@ -75,7 +72,7 @@
                             Medicines,
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 @auth
                 <li class="nav-item ">
                     <a href="{{url('admin/users')}}" class="nav-link">
@@ -87,16 +84,16 @@
                     </a>
 
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{url('areas')}}" class="nav-link">
                         <i class="nav-icon fas fa-map-marker-alt"></i>
                         <p>
                             Areas
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 @endauth
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{url('address')}}" class="nav-link">
                         <i class="nav-icon fas fa-street-view"></i>
                         <p>
@@ -144,7 +141,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex"></div>
                     <a href="{{ route('logout') }}"
