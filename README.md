@@ -14,3 +14,5 @@
 # pakages
     1-Storage
         -php artisan storage:link
+    2-Sanctum
+        -composer require laravel/sanctum

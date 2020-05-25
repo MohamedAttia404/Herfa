@@ -23,15 +23,15 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => 'string|max:255',
+            'last_name' => 'string|max:255',
             // 'email' => "required|email|max:255|unique:users,email,$this->id,id",
             'email' => "email|max:255",
             'profile'=>'image|mimes:jpeg,png',
-            'mobile'=>'numeric',
-            'national_id'=>'numeric',
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role'=>'required|between:0,2'
+            'mobile'=>'string|max:14',
+            'national_id'=>'string|max:14',
+            'password' => 'string|min:8|confirmed',
+            'role'=>'between:0,2'
         ];
     }
 }

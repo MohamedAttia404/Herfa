@@ -58,25 +58,31 @@
                             <div class="form-group">
                                 Role
                                 <select class="custom-select" name="role">
-                                    <option value="0">user</option>
-                                    <option value="1">investor</option>
+                                    <option value="0" {{ $user->role=='0' ? 'selected' : '' }}> User </option>
+                                    <option value="1" {{ $user->role=='1' ? 'selected' : '' }}> Investor </option>
+                                    <option value="2" {{ $user->role=='2' ? 'selected' : '' }}> Admin </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputaddress">Mobile</label>
+                                <label for="exampleInputMobile">Mobile</label>
                                 <input type="text" name="mobile" value="{{$user->mobile}}" class="form-control"
                                     id="exampleInputMobile" placeholder="Enter Mobile">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputaddress">National ID</label>
+                                <label for="exampleInputnational">National ID</label>
                                 <input type="text" name="national_id" value="{{$user->national_id}}"
                                     class="form-control" id="exampleInputnational" placeholder="Enter National_ID">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputaddress">Password</label>
+                                <label for="exampleInputpassword">Password</label>
                                 <input type="password" name="password" value="{{$user->password}}" class="form-control"
                                     id="exampleInputpassword" placeholder="Enter password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputpassword_confirmation">password_confirmation</label>
+                                <input type="password" name="password_confirmation" value="{{$user->password}}" class="form-control"
+                                    id="exampleInputpassword_confirmation" placeholder="Confirm Password">
                             </div>
 
                         </div>

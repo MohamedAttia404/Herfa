@@ -12,7 +12,7 @@ use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
-    //
+    
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -54,41 +54,50 @@ class UserController extends Controller
         return view('users.index');
     }
 
+    
     public function create() {
         return view('users.create');
-        }   
+    }   
 
+    
     public function store(StoreUserRequest $request) {
+
         $request['avatar']=Storage::disk('public')->put('images',$request->profile);
         $request['password']=Hash::make($request->password);
         $user=User::create($request->all());
+        $user->createToken($request->email)->plainTextToken;
         return redirect()->route('users.index');
     
     }   
         
+    
     public function edit(string $id) {
         $user=User::findOrFail($id);
         return view('users.edit', compact('user'));
     }
 
-        public function update(UpdateUserRequest $request, $id) {
-dd("sss");
-            if($request->profile){
-                Storage::disk('public')->delete($request->oldimg);
-                $request['avatar']=Storage::disk('public')->put('images',$request->profile);
-            }else{
-                $request['avatar']=$request->oldimg;
-            }
-            $userUpdate = User::findOrFail($id);
-            $userUpdate->update($request->all());
-            $userUpdate->fresh();
-            return redirect()->route('users.index');
+    public function update(UpdateUserRequest $request, $id) {
+
+        if($request->profile){
+            Storage::disk('public')->delete($request->oldimg);
+            $request['avatar']=Storage::disk('public')->put('images',$request->profile);
+        }else{
+            $request['avatar']=$request->oldimg;
         }
 
-        public function destroy($id) {
-            $users=User::find($id);
-            Storage::disk('public')->delete($users->avatar);
-            $users->delete();
-            return redirect()->back();
-        }
+        $userUpdate = User::findOrFail($id);
+        $userUpdate->update($request->all());
+        $userUpdate->fresh();
+        return redirect()->route('users.index');
+    }
+
+    public function destroy($id) {
+        $users=User::find($id);
+        Storage::disk('public')->delete($users->avatar);
+        $users->delete();
+        return redirect()->back();
+    }
+
+
+
 }
