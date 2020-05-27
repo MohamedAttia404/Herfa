@@ -11,7 +11,7 @@ class Post extends Model
         'title',
         'content',
         'user_id',
-        
+        'image'
     ];
 
 

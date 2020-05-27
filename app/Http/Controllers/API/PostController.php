@@ -13,6 +13,7 @@ class PostController extends Controller
     //|TODO                                         |
     //| #make requests fro update and store         |
     //| # see collection for show                   |
+    //| # add image in update and destroy           |
     //| # auth                                      |
 //---------------------------------------------------
 
@@ -28,22 +29,19 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-        // $request['image']=Storage::disk('public')->put('post_image',$request->image);
+        $request['image']=Storage::disk('public')->put('im',$request->profile);
         $request['user_id'] =1; //untill i have a user
         $post=Post::create($request->all());
         return response()->json($post, 201);
     }
 
-
     public function update(Request $request, $id){
-        $request['user_id'] =1;
+        $request['user_id'] =1;//untill i have a user
         $updated_post=Post::find($id);
         $updated_post->update($request->all());
         $updated_post->fresh(); #fresh return new instance of the model
         return response()->json($updated_post, 200);
     }
-
-
 
     public function destroy(Request $request, $id){
         $request['user_id'] =1;
