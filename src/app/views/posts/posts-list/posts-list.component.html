@@ -1,0 +1,23 @@
+<p>posts-list works!</p>
+<div style="padding: 13px;">
+    
+
+    <div *ngFor="let post of posts" style="margin-top:10px;">
+        <header>
+            <h2>{{post.title}}</h2>
+        </header>
+        <div>
+            <p>
+                {{post.content}}
+            </p>
+            <!-- <img style="height:100%; width: 100%;" src="{{ post.image }}" /> -->
+        </div>
+        <!-- <div >
+            <a class="btn btn-primary float-right" [routerLink]="['/posts', 'new']">New Course</a>
+          </div> -->
+        <div >
+            <router-outlet></router-outlet>
+          </div>
+        <button class="btn btn-danger">Delete</button>
+    </div>
+</div>

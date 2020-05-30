@@ -29,7 +29,13 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    component: UserLayoutComponent
+    component: UserLayoutComponent,
+    children:[
+      {
+        path: 'posts',
+        loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
+      }
+    ]
   },
 
 ];

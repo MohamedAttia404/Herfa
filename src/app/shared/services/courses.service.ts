@@ -16,7 +16,7 @@ export class CoursesService {
   // get all courses
   public getAll(){
     console.log("getAll");
-    
+
     return this.http.get(`${ environment.apiUrl }/api/courses`);
     // return this.http.get(this._courseApi);
   }
