@@ -14,6 +14,7 @@ export class PostsService {
   last: string="";
 
   constructor(private _httpClient: HttpClient) { }
+//=============================================================================
 
   parseLink(links){
     this.first=links.first;
@@ -21,10 +22,16 @@ export class PostsService {
     this.next=links.next;
     this.last=links.last
   }
+//==========================================================================
 
   public getPosts(){
     console.log("get posts service");
     return this._httpClient.get(`${ environment.apiUrl }/api/posts`);
+  }
+//=============================================================================
+
+  public addPost(post){
+    return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post);
   }
 
 
