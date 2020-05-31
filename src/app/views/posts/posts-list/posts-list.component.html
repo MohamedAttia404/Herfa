@@ -1,7 +1,7 @@
 <!-- <p>posts-list works!</p> -->
 <form #newPostForm="ngForm" (ngSubmit)="onSubmit(newPostForm)">
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-ms-6">
         <label for="title">Title</label>
         <input type="text" class="form-control" [(ngModel)]="post.title" id="title" name="title" required
           #titleRef="ngModel" [(ngModel)]="emptyValue1">
@@ -9,7 +9,7 @@
           Title is required
         </div> -->
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-ms-6">
         <label for="content">Content</label>
         <input type="text" class="form-control" [(ngModel)]="post.content" id="content" name="content" required
           #contentRef="ngModel" [(ngModel)]="emptyValue2">
@@ -19,18 +19,17 @@
     <button type="submit" class="btn btn-primary" [disabled]="newPostForm.invalid">Post</button>
   </form>
 <!-- =============================================================================== -->
-<div style="padding: 13px;">
-    
-
-    <div *ngFor="let post of posts" style="margin-top:10px;">
+<div class="row">
+    <div class="col-md-6" *ngFor="let post of posts" style="margin-top:10px;">
         <header>
-            <h2>{{post.title}}</h2>
+            <h4>{{post.title}}</h4>
         </header>
         <div>
             <p>
                 {{post.content}}
             </p>
-            <!-- <img style="height:100%; width: 100%;" src="{{ post.image }}" /> -->
+            <p>{{post.created_at}}</p>
+            <p><img style="height:100%; width: 100%;" src="{{ post.image }}" /></p>
         </div>
         <!-- <div >
             <a class="btn btn-primary float-right" [routerLink]="['/posts', 'new']">New Course</a>
@@ -39,10 +38,12 @@
             <router-outlet></router-outlet>
           </div>
         <button class="btn btn-danger">Delete</button>
+        <hr>
     </div>
 </div>
 <!-- =========================================================================== -->
-<div>
+
+<div class="row justify-content-center" id ="btn">
     <button (click) ="firstPage()" > First</button>
     <button (click) ="previousPage()"> Previous</button>
     <button (click) ="nextPage()" > Next</button>
