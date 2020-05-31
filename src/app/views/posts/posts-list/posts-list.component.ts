@@ -42,7 +42,7 @@ public firstPage() {
 
 public previousPage() {
 
-  if (this._postsService.prev !== undefined && this._postsService.prev !== '') {
+  if (this._postsService.prev !== undefined && this._postsService.prev !== null) {
     this.posts = [];
     this._postsService.sendGetRequestToUrl(this._postsService.prev).subscribe((res:any) => {
       console.log(res);
@@ -54,7 +54,7 @@ public previousPage() {
 // //=============================================================================
 
 public nextPage() {
-  if (this._postsService.next !== undefined && this._postsService.next !== '') {
+  if (this._postsService.next !== undefined && this._postsService.next !== null) {
     this.posts = [];
     this._postsService.sendGetRequestToUrl(this._postsService.next).subscribe((res:any) => {
       console.log(res);

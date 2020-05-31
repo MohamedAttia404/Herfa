@@ -37,9 +37,7 @@ export class PostsService {
 //=============================================================================
 public sendGetRequestToUrl(url: string){
   return this._httpClient.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
-    // console.log(res.headers.get('Links'));
     console.log(res);
-    // this.parseLinkHeader(res.headers.get('Links'));
     this.parseLinks(res.body.links);
 
   }));
