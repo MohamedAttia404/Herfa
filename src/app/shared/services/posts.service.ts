@@ -16,7 +16,7 @@ export class PostsService {
   constructor(private _httpClient: HttpClient) { }
 //=============================================================================
 
-  parseLink(links){
+  parseLinks(links){
     this.first=links.first;
     this.prev=links.prev;
     this.next=links.next;
@@ -26,8 +26,24 @@ export class PostsService {
 
   public getPosts(){
     console.log("get posts service");
-    return this._httpClient.get(`${ environment.apiUrl }/api/posts`);
+    // return this._httpClient.get(`${ environment.apiUrl }/api/posts`);
+    return this._httpClient.get(`${ environment.apiUrl }/api/posts`, {  params: new HttpParams({fromString: "_page=1&_limit=20"}), observe: "response"}).pipe(retry(3), tap((res: any) => {
+      console.log(res.body.data);
+      this.parseLinks(res.body.links);
+    }));
+  
   }
+
+//=============================================================================
+public sendGetRequestToUrl(url: string){
+  return this._httpClient.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
+    // console.log(res.headers.get('Links'));
+    console.log(res);
+    // this.parseLinkHeader(res.headers.get('Links'));
+    this.parseLinks(res.body.links);
+
+  }));
+}
 //=============================================================================
 
   public addPost(post){

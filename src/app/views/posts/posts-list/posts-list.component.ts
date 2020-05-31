@@ -24,10 +24,54 @@ export class PostsListComponent implements OnInit {
     console.log("get posts Component");
    
     this._postsService.getPosts().subscribe((res: any) =>{
-     console.log(res.links);
-    this.posts = res.data;
+     console.log(res.body.links);
+    this.posts = res.body.data;
     });
   }
+//===============================================================================
+
+public firstPage() {
+  this.posts = [];
+  this._postsService.sendGetRequestToUrl(this._postsService.first).subscribe((res: any) => {
+    console.log(res);
+    this.posts = res.body.data;
+  })
+}
+
+// //===============================================================
+
+public previousPage() {
+
+  if (this._postsService.prev !== undefined && this._postsService.prev !== '') {
+    this.posts = [];
+    this._postsService.sendGetRequestToUrl(this._postsService.prev).subscribe((res:any) => {
+      console.log(res);
+      this.posts = res.body.data;
+    })
+  }
+
+}
+// //=============================================================================
+
+public nextPage() {
+  if (this._postsService.next !== undefined && this._postsService.next !== '') {
+    this.posts = [];
+    this._postsService.sendGetRequestToUrl(this._postsService.next).subscribe((res:any) => {
+      console.log(res);
+      this.posts = res.body.data;
+    })
+  }
+}
+
+// //====================================================================================
+
+public lastPage() {
+  this.posts = [];
+  this._postsService.sendGetRequestToUrl(this._postsService.last).subscribe((res: any) => {
+    console.log(res);
+    this.posts = res.body.data;
+  })
+}
 //================================================================================
 onSubmit(form: NgForm){
   console.log(form);
