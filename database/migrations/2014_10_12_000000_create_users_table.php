@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('mobile')->nullable();
             $table->string('avatar')->default('http://127.0.0.1:8000/control/media/img/logo/avatar.png');
-            $table->unsignedInteger('national_id')->nullable();
+            $table->string('national_id')->nullable();
             $table->boolean('role')->default(0);
             $table->rememberToken();
             $table->timestamps();
