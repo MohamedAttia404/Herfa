@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,11 @@ public sendGetRequestToUrl(url: string){
   public addPost(post){
     return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post);
   }
+
+//================================================================================
+deletePost(id){
+  return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`);
+}
 
 
 }

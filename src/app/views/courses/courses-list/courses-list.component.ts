@@ -37,8 +37,8 @@ export class CoursesListComponent implements OnInit {
   }
 
   // Delete Course
-  deleteItem(model:NgbModal, id){
-    this.modelService.open(model).result.then(result => {
+  deleteItem( id){
+    // this.modelService.open(model).result.then(result => {
       this.coursesService.delete(id).subscribe(res => {
         this.toastr.success('Course deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         console.log(res);
@@ -52,10 +52,10 @@ export class CoursesListComponent implements OnInit {
       
     //   }
      );
-    },
-    reason => {
-      console.log(reason);
-    });
+    // },
+    // reason => {
+    //   console.log(reason);
+    // });
   }
 
   // add

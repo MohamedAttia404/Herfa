@@ -7,6 +7,8 @@ import { CourseShowComponent } from './course-show/course-show.component';
 import { CourseEditComponent } from './course-edit/course-edit.component';
 import { CourseAddComponent } from './course-add/course-add.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+// import {  FormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [CoursesListComponent, CourseShowComponent, CourseEditComponent, CourseAddComponent],
