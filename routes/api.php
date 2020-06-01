@@ -14,8 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::post('/users', 'API\UserController@store')->name("users.store");
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@store');
+
+// Route::prefix('/users')->group(function(){
+Route::prefix('/users')->middleware(['auth:api',])->group(function(){
+    Route::get('', 'API\UserController@index')->name('users.index');
+    // Route::post('', 'API\UserController@store')->name("users.store");
+    Route::get('/{user}', 'API\UserController@show')->name("users.show");
+    Route::put('/{user}', 'API\UserController@update')->name("users.update");
+    Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
 
 Route::get('/posts', 'API\PostController@index');
@@ -23,3 +36,5 @@ Route::get('/posts/{id}', 'API\PostController@show');
 Route::post('/posts', 'API\PostController@store');
 Route::put('/posts/{id}', 'API\PostController@update');
 Route::delete('posts/{id}', 'API\PostController@destroy');
+// to Generate Token 
+// Route::post('/token', 'API\UserController@generateToken');

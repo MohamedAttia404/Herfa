@@ -11,28 +11,33 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     //|TODO                                         |
-    //| #make requests fro update and store         |
+    //| #make requests for update and store         |
     //| # see collection for show                   |
     //| # add image in update and destroy           |
     //| # auth                                      |
+    //| # ->sortByDesc('created_at') index response |
+
+    //Done
+    //   # full crud 
 //---------------------------------------------------
 
 
     public function index(){
-        // return PostResource::collection(Post::with('user')->paginate(2));
-        return Post::all();
+        return PostResource::collection(Post::orderBy('created_at','desc')->with('user')->paginate(4));
     }
 
     public function show($id){
-        // return PostResource::collection(Post::find($id));
-        return Post::find($id);
+        return new PostResource(Post::find($id));
+        // return Post::find($id);
     }
 
     public function store(Request $request){
-        $request['image']=Storage::disk('public')->put('im',$request->profile);
+        if ($request->profile){
+            $request['image']=Storage::disk('public')->put('img',$request->profile);
+        }
         $request['user_id'] =1; //untill i have a user
         $post=Post::create($request->all());
-        return response()->json($post, 201);
+        return response()->json($post,201);
     }
 
     public function update(Request $request, $id){
@@ -46,9 +51,15 @@ class PostController extends Controller
     public function destroy(Request $request, $id){
         $request['user_id'] =1;
         $deleted_post=Post::find($id);
-        $deleted_post->delete();
-        $success["message"] = "Post Deleted Successfully";
-        return $success["message"];
+        $del=$deleted_post->delete();
+        if ($del==1){
+            // $success["message"] = "Post Deleted Successfully";
+            return response()->json($deleted_post);
+        }else{
+            return "error";
+        }
+        // $success["message"] = "Post Deleted Successfully";
+        // return $success["message"];
     }
 
 
