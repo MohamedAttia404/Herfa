@@ -66,6 +66,7 @@ export class CourseEditComponent implements OnInit {
     }
     this.courseService.update(this.editForm.value, this.courseId).subscribe(
       res => {
+        // this.courseDetails = res;
         this.toastr.success('Course Add successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         this.router.navigate(['../admin/courses']);
       },

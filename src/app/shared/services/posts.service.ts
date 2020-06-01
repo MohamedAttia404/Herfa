@@ -53,6 +53,17 @@ public sendGetRequestToUrl(url: string){
 deletePost(id){
   return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`);
 }
+//================================================================================
+getPostById(id){
+  console.log("id: "+ id);
+  
+  console.log('get id service');
+  
+  return this._httpClient.get(`${ environment.apiUrl }/api/posts/${id}`);
+}
+//================================================================================
 
-
+updatePost(data, id){
+  return this._httpClient.put(`${ environment.apiUrl }/api/posts/${id}`,data);
+}
 }

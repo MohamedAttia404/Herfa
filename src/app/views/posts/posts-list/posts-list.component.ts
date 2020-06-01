@@ -68,7 +68,7 @@ public lastPage() {
   })
 }
 //================================================================================
-deleteItem(id){
+deleteItem(id:number){
   console.log("delete");
   
     this._postsService.deletePost(id).subscribe((res:any )=> {
@@ -78,9 +78,7 @@ deleteItem(id){
       console.log("delete res: "+res);
       
       this.getPosts();
-  },
-
-  );
+  });
 }
 
 //================================================================================

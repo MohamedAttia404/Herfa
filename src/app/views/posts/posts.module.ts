@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 
 @NgModule({
-  declarations: [PostsListComponent, AddPostComponent],
+  declarations: [PostsListComponent, AddPostComponent, EditPostComponent],
   imports: [
     CommonModule,
     PostsRoutingModule,

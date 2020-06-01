@@ -13,6 +13,7 @@
         <div>
             <p>
                 {{post.content}}
+                {{post.id}}
             </p>
             <!-- <p>{{post.created_at}}</p> -->
             <!-- <p><img style="height:100%; width: 100%;" src="{{ post.image }}" /></p> -->
@@ -21,6 +22,7 @@
             <router-outlet></router-outlet>
           </div>
         <button class="btn btn-danger" (click)="deleteItem(post.id)">Delete</button>
+        <button class="btn btn-success" [routerLink]="['../edit',post.id]">Update</button>
         <hr>
     </div>
 </div>
