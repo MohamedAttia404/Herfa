@@ -12,6 +12,7 @@
                 <form [formGroup]="editForm" (submit)="onSubmit()">
                     <div class="form-group">
                         <label for="courseName">Name</label>
+                        <!--  [(ngModel)]="courseDetails.name" -->
                         <input formControlName="name" id="courseName" name="courseName" class="form-control" 
                         placeholder="Name" 
                         [ngClass]="{' is-invalid': submitted && f.name.errors}">

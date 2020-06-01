@@ -71,6 +71,7 @@ export class CourseEditComponent implements OnInit {
         console.log(this.courseDetails);
         
         
+        // this.courseDetails = res;
         this.toastr.success('Course Add successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         this.router.navigate(['../admin/courses']);
       },
