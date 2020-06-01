@@ -16,7 +16,8 @@ export class CourseEditComponent implements OnInit {
   editForm: FormGroup;
   submitted: boolean;
   courseId;
-  courseDetails = {};
+  // courseDetails:Array<object> = [];
+  courseDetails= {};
 
   constructor(
     private route: ActivatedRoute,
@@ -32,9 +33,9 @@ export class CourseEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.courseId = params.id;
       this.courseService.getCourse(params.id).subscribe((res:any) => {
-        console.log(res.name);
+        // console.log("res"+res.data.name);
         this.courseDetails = res;
-        // console.log(this.courseDetails.name);
+        // console.log("details"+this.courseDetails);
       });
       
     });
@@ -66,6 +67,10 @@ export class CourseEditComponent implements OnInit {
     }
     this.courseService.update(this.editForm.value, this.courseId).subscribe(
       res => {
+        console.log(res);
+        console.log(this.courseDetails);
+        
+        
         this.toastr.success('Course Add successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         this.router.navigate(['../admin/courses']);
       },
