@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditPostComponent implements OnInit {
   post: Post = new Post();
-  postId: number
+  // postId: number;
   
   constructor(private _postsService: PostsService, private _router: Router, private _route: ActivatedRoute) { }
 
