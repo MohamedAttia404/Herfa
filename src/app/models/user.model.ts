@@ -1,6 +1,6 @@
 export class user{
     constructor(
-        public profile:any,
+        // public profile:string='',
         public first_name:string='',
         public last_name:string='',
         public mobile:string='',
