@@ -37,7 +37,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   // Delete Course
-  deleteItem( id){
+  deleteItem(id){
     // this.modelService.open(model).result.then(result => {
       this.coursesService.delete(id).subscribe(res => {
         this.toastr.success('Course deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
@@ -45,12 +45,12 @@ export class CoursesListComponent implements OnInit {
         
         this.getAll();
     },
-    // err => {
-    //   this.toastr.error(err.statusText, 'Error!', {timeOut:3000, closeButton: true, progressBar: true});
-    //   console.log(err);
+    err => {
+      this.toastr.error(err.statusText, 'Error!', {timeOut:3000, closeButton: true, progressBar: true});
+      console.log(err);
       
       
-    //   }
+      }
      );
     // },
     // reason => {
@@ -58,7 +58,7 @@ export class CoursesListComponent implements OnInit {
     // });
   }
 
-  // add
+  
 
 
 }
