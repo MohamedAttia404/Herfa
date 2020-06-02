@@ -27,10 +27,10 @@ const routes: Routes = [
         path: 'courses',
         loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
       },
-      {
-        path: 'users',
-        loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule )
-      },
+      // {
+      //   path: 'users',
+      //   loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule )
+      // },
     ]
   },
   {
