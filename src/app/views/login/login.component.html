@@ -1,0 +1,27 @@
+
+      <div class="card-header">
+        <h3 class="card-title">LogIn</h3>
+      </div>
+      <form (ngSubmit)="onSubmit()" class="my-4">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleInputaddress">Email</label>
+            <input type="text" name="email" [(ngModel)]="user.email" class="form-control" id="exampleInputemail"
+              placeholder="Enter email">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputaddress">Password</label>
+            <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
+              id="exampleInputpassword" placeholder="Enter password">
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+
+      <p class="mb-0">
+        <a [routerLink]="['/register']" class="text-center">Sign Up</a>
+    </p>

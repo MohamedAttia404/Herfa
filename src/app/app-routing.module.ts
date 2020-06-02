@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminLayoutComponent} from './shared/components/layouts/admin-layout/admin-layout.component';
 import {UserLayoutComponent} from './shared/components/layouts/user-layout/user-layout.component';
 import {BlankLayoutComponent} from './shared/components/layouts/blank-layout/blank-layout.component';
+import { RegisterComponent } from './views/register/register.component';
+import { LoginComponent } from './views/login/login.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,11 @@ const routes: Routes = [
       {
         path: 'courses',
         loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
-      }
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule )
+      },
     ]
   },
   {
@@ -37,6 +43,14 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 
 ];
 

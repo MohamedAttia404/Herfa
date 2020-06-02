@@ -9,7 +9,7 @@ import { HeaderComponent } from '../header/header.component';
 
 
 @NgModule({
-  declarations: [PostsListComponent, AddPostComponent, EditPostComponent, HeaderComponent],
+  declarations: [PostsListComponent, AddPostComponent, EditPostComponent ],//HeaderComponent],
   imports: [
     CommonModule,
     PostsRoutingModule,
