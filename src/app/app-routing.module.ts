@@ -5,6 +5,7 @@ import {UserLayoutComponent} from './shared/components/layouts/user-layout/user-
 import {BlankLayoutComponent} from './shared/components/layouts/blank-layout/blank-layout.component';
 import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
+import { UserProfileComponent } from './views/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'posts',
         loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
+      },
+      {
+        path:':id',
+        component: UserProfileComponent,
       }
     ]
   },

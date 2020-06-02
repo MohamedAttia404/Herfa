@@ -21,9 +21,9 @@ import {
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users;
-  pages: any[];
-  currentPage: number = 1;
+ 
+  users: any[];
+
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
@@ -37,9 +37,11 @@ export class UserListComponent implements OnInit {
 
   }
   Allusers() {
-    this.users = this.userService.getUsers().subscribe((res: any) => {
+    this.userService.getUsers().subscribe((res: any) => {
 
       this.users = res.data;
+     
+      
 
 
     });
