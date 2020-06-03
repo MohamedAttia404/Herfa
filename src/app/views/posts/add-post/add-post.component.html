@@ -2,18 +2,19 @@
 <div class="container">
     <form #newPostForm="ngForm" (ngSubmit)="onSubmit(newPostForm)">
         <div class="form-row">
-          <div class="form-group col-ms-6">
+          <div class="form-group col-md-6">
             <label for="title">Title</label>
+            <!-- <textarea class="form-control" [(ngModel)]="post.title" id="title" name="title" [(ngModel)]="emptyValue1"></textarea> -->
             <input type="text" class="form-control" [(ngModel)]="post.title" id="title" name="title" required
               #titleRef="ngModel" [(ngModel)]="emptyValue1">
             <!-- <div *ngIf="titleRef.touched && titleRef.hasError('required')" class="alert alert-danger">
               Title is required
             </div> -->
           </div>
-          <div class="form-group col-ms-6">
+          <div class="form-group col-md-6">
             <label for="content">Content</label>
-            <input type="text" class="form-control" [(ngModel)]="post.content" id="content" name="content" required
-              #contentRef="ngModel" [(ngModel)]="emptyValue2">
+            <textarea type="text" class="form-control" [(ngModel)]="post.content" id="content" name="content" required
+              #contentRef="ngModel" [(ngModel)]="emptyValue2"></textarea>
           </div>
         </div>
       
