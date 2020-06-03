@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: 'courses',
         loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('./views/categories/categories.module').then(m => m.CategoriesModule )
       }
     ]
   },
@@ -32,8 +36,8 @@ const routes: Routes = [
     component: UserLayoutComponent,
     children:[
       {
-        path: 'posts',
-        loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
+        path: 'courses',
+        loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
       }
     ]
   },

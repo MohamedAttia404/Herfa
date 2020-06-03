@@ -45,7 +45,7 @@
             <a href="#" class="btn btn-default text-success" [routerLink]="['../edit',item.id]">
               <i class="fa fa-edit"></i>
               </a>
-              <a href="javascript:;" class="btn btn-default text-danger" (click)="deleteItem(item.id)">
+              <a href="javascript:;" class="btn btn-default text-danger" (click)="deleteItem(deleteModel,item.id)">
                 <i class="fa fa-trash"></i>
                 </a>
           </td>
