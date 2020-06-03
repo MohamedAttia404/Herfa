@@ -15,20 +15,38 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['api/*',
+    'login',
+    'logout',
+    // 'sanctum/csrf-cookie'
+],
+    
 
     'allowed_methods' => ['*'],
+    // 'allow_credentials' => true,
+
 
     'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
+    // 'stateful' => [
+    //     'http://localhost:4200',
+    // ],
 
-    'exposed_headers' => [],
+    'exposed_headers' => [
+        // 'Cache-Control',
+        // 'Content-Language',
+        // 'Content-Type',
+        // 'Expires',
+        // 'Last-Modified',
+        // 'Pragma',
+        // 'Set-Cookie'
+    ],
 
-    'max_age' => 0,
-
-    'supports_credentials' => false,
+    'max_age' => 60*60*24,
+    
+    'supports_credentials' => true,
 
 ];

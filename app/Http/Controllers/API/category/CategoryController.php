@@ -12,6 +12,8 @@ class CategoryController extends Controller
 {
     public function index(){
         return Category::all();
+        // return CategoryResource::collection(Category::paginate(1));
+        
     }
 
     public function show($id){
@@ -26,7 +28,7 @@ class CategoryController extends Controller
 
 
     public function update(Request $request, $id){
-        $category = Course::find($id);
+        $category = Category::find($id);
         $category->update($request->all());
         $category->fresh();
         return response()->json($category, 200);
