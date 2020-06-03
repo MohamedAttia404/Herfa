@@ -24,7 +24,15 @@ const routes: Routes = [
       {
         path: 'courses',
         loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
-      }
+      },
+      {
+        path: 'products',
+        loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule )
+      },
+      {
+        path: 'events',
+        loadChildren: () => import('./views/events/events.module').then(m => m.EventsModule )
+      },
     ]
   },
   {
