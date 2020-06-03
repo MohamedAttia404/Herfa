@@ -24,7 +24,6 @@ class UserResource extends JsonResource
             "avatar"=>$this->avatar,
             "national_id"=>$this->national_id,
             "role"=>$this->role,
-            "access_token"=> $this->tokens[0]->token
         ];
         
     }

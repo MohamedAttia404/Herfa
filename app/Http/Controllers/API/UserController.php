@@ -11,13 +11,17 @@ use App\User;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use  App\Http\Controllers\API\BaseController ;
 
-class UserController extends Controller
+
+class UserController extends BaseController
 {
     public function index() {
+
         return UserResource::collection(
             User::all()
-         //    User::paginate(5)
+         // User::paginate(5)
          );
     }
     public function show($id) {
@@ -25,17 +29,20 @@ class UserController extends Controller
             User::find($id)
         );
     }
+
+    
  
     public function store(StoreUserRequest $request) {
-
-       
-        $request['avatar']=Storage::disk('public')->put('images',$request->profile);
+        
+        // $request['avatar']=Storage::disk('public')->put('images',$request->profile);
         $request['password']=Hash::make($request->password);
-        $request['password_confirmation']=Hash::make($request->password_confirmation);
-
+        // $request['password_confirmation']=Hash::make($request->password_confirmation);
         $user=User::create($request->all());
-        $user->createToken($request->email)->plainTextToken;
-        return $user;
+        $success['token']=$user->createToken('MyApp')->accessToken;
+        $success['id']=$user->id;
+        // $user->createToken($request->email)->plainTextToken;
+        // return $user;
+        return $success;
     }
  
     public function update(UpdateUserRequest $request, $id) {
@@ -65,19 +72,33 @@ class UserController extends Controller
         }
          
     } 
-    public function generateToken(Request $request) {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-        $user = User::where('email', $request->email)->first();
-    
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
-        }
-        return $user->createToken($request->email)->plainTextToken;
+
+    public function login(Request $request)
+    {
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+            $user = Auth::user(); 
+            $success['token'] = $user->createToken('MyApp')->accessToken; 
+            $success['id']=$user->id;
+   
+            return $this->sendResponse($success, 'User login successfully.');
+        } 
+        else{ 
+            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+        } 
     }
+    // public function generateToken(Request $request) {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
+    //     $user = User::where('email', $request->email)->first();
+    
+    //     if (! $user || ! Hash::check($request->password, $user->password)) {
+    //         throw ValidationException::withMessages([
+    //             'email' => ['The provided credentials are incorrect.'],
+    //         ]);
+    //     }
+    //     return $user->createToken($request->email)->plainTextToken;
+    // }
      
 }
