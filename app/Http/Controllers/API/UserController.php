@@ -32,6 +32,7 @@ class UserController extends BaseController
 
     
  
+    // public function store(StoreUserRequest $request) {                    
     public function store(StoreUserRequest $request) {                    
         $request['avatar']=Storage::disk('public')->put('images',$request->profile);
         $request['password']=Hash::make($request->password);
