@@ -37,7 +37,7 @@ const routes: Routes = [
     children:[
       {
         path: 'courses',
-        loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
+        loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
       }
     ]
   },
