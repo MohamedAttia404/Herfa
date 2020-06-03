@@ -29,7 +29,7 @@ export class AddPostComponent implements OnInit {
     if(form.valid){
       const post = {...this.post};
       this._postsService.addPost(post).subscribe((res: any)=>{
-        console.log(res);
+        console.log("hell " +res);
         this.emptyValue1 = '';
         this.emptyValue2 = '';
         this._router.navigate(['/user/posts']);
