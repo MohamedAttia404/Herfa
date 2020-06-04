@@ -15,13 +15,21 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        $image='';
+        if( strpos( $this->avatar, 'images' ) !== false) {
+            $image="http://".$_SERVER['HTTP_HOST']."/storage/".$this->avatar;
+        }
+        else{
+            $image=$this->avatar;
+        }
+
         return[
             "id"=>$this->id,
             "first_name"=>$this->first_name,
             "last_name"=>$this->last_name,
             "email"=>$this->email,
             "mobile"=>$this->mobile,
-            "avatar"=>$this->avatar,
+            "avatar"=>$image,
             "national_id"=>$this->national_id,
             "role"=>$this->role,
         ];
