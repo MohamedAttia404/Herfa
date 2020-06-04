@@ -55,7 +55,6 @@ Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
 
-<<<<<<< HEAD
 Route::prefix('/posts')->middleware(['auth:api',])->group(function(){
 //     Route::get('', 'API\PostController@index');
 // Route::get('/{id}', 'API\PostController@show');
@@ -69,7 +68,8 @@ Route::get('/posts/{id}', 'API\PostController@show');
 // Route::post('/posts', 'API\PostController@store');
 // Route::put('/posts/{id}', 'API\PostController@update');
 // Route::delete('posts/{id}', 'API\PostController@destroy');
-=======
+
+
 Route::prefix('/products')->group(function(){
     Route::get('', 'API\product\ProductController@index')->name('products.index');
     Route::get('/create', 'API\product\ProductController@create')->name("products.create");
@@ -91,6 +91,8 @@ Route::prefix('/events')->group(function(){
 
 });
 
->>>>>>> 2c0efa36065e70848b88d4b4dfc13f936f689e5b
+
+Route::post('/categories','API\CategorySubscription@store')->middleware('auth:api');
+
 // to Generate Token 
 // Route::post('/token', 'API\UserController@generateToken');
