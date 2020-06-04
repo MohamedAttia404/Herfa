@@ -20,6 +20,11 @@ export class AddPostComponent implements OnInit {
 
   //==============================================================
   ngOnInit(): void {
+    if(localStorage.getItem("USER_ID")==null){
+      console.log("login");
+      // alert("login please");
+      this._router.navigate(['/login']);
+    }
   }
 
   //===============================================================
@@ -28,8 +33,18 @@ export class AddPostComponent implements OnInit {
     console.log(form);
     if(form.valid){
       const post = {...this.post};
+      this.post.user_id = Number(localStorage.getItem("USER_ID"));
+      console.log(this.post);
+      
       this._postsService.addPost(post).subscribe((res: any)=>{
-        console.log("hell " +res);
+      // let user=localStorage.getItem("USER_ID");
+      // // console.log(user);
+      // res.user_id=user;
+      console.log(res);
+      
+      
+        
+        console.log("hell " +res.user_id);
         this.emptyValue1 = '';
         this.emptyValue2 = '';
         this._router.navigate(['/user/posts']);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -23,6 +23,13 @@ export class PostsService {
     this.next=links.next;
     this.last=links.last
   }
+//=============================================================================
+
+  private headers = new HttpHeaders({
+    'Content-Type':'application/json',
+    'Authorization':localStorage.getItem("ACCESS_TOKEN"),
+    
+  });
 //==========================================================================
 
   public getPosts(){
@@ -46,24 +53,34 @@ public sendGetRequestToUrl(url: string){
 //=============================================================================
 
   public addPost(post){
-    return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post);
+    return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post, {
+      headers: this.headers,
+      });
   }
 
 //================================================================================
   deletePost(id){
-    return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`);
+    return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`, {
+      headers: this.headers,
+      });
   }
 //================================================================================
   getPostById(id){
     console.log("id: "+ id);
     
     console.log('get id service');
-    
-    return this._httpClient.get(`${ environment.apiUrl }/api/posts/${id}`);
+    // return this.http.get(`${this.apiUrl}/users/${id}`,  {
+    //   headers: this.headers,
+    //   });
+    return this._httpClient.get(`${ environment.apiUrl }/api/posts/${id}`,  {
+      headers: this.headers,
+      });
   }
 //================================================================================
 
   updatePost(data, id){
-    return this._httpClient.put(`${ environment.apiUrl }/api/posts/${id}`,data);
+    return this._httpClient.put(`${ environment.apiUrl }/api/posts/${id}`,data, {
+      headers: this.headers,
+      });
   }
 }
