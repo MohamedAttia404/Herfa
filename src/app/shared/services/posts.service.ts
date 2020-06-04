@@ -22,7 +22,8 @@ export class PostsService {
     this.prev=links.prev;
     this.next=links.next;
     this.last=links.last
-  }
+  }        // return CategoryResource::collection(Category::paginate(1));
+
 //==========================================================================
 
   public getPosts(){
@@ -43,6 +44,7 @@ public sendGetRequestToUrl(url: string){
 
   }));
 }
+//////
 //=============================================================================
 
   public addPost(post){

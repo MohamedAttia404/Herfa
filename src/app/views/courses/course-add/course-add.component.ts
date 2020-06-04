@@ -4,6 +4,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-course-add',
@@ -14,6 +15,8 @@ export class CourseAddComponent implements OnInit {
 
   addForm: FormGroup;
   submitted: boolean;
+  // course:Course=new Course() ;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -30,7 +33,11 @@ export class CourseAddComponent implements OnInit {
     if(this.addForm.invalid){
       return;
     }
+    // const course = {...this.course}; 
+    // this.course.user_id = Number(localStorage.getItem("USER_ID")); 
     this.courseService.add(this.addForm.value).subscribe(
+      // this.courseService.add(course).subscribe(
+
       res => {
         this.toastr.success('Course Add successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         this.router.navigate(['../admin/courses']);
