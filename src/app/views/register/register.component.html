@@ -1,72 +1,73 @@
-<div class="card-header">
-    <h3 class="card-title">Regiester</h3>
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in">
+    <label for="tab-1" class="tab"><a [routerLink]="['/login']">Sign In</a></label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign Up</label>
+    <div class="login-form">
+      <div class="sign-up-htm">
+        <form (ngSubmit)="onSubmit()">
+            
+            <div class="row">
+                <div class="col-md-6  group">
+                    <label for="user" class="label">First Name</label>
+                    <input type="text" class=" input" id="first_name"  autofocus
+                        placeholder="First Name" [(ngModel)]="user.first_name" name="first_name">
+                </div>
+                <div class="col-md-6  group">
+                    <label for="user" class="label">Last Name</label>
+                    <input type="text" class="input" [(ngModel)]="user.last_name" id="last_name" type="text" 
+                        autofocus placeholder="Last Name" name="last_name">
+                </div>
+            </div>
+          <div class="group">
+            <label for="user" class="label">Email</label>
+            <input type="text" name="email" [(ngModel)]="user.email" class="input" id="exampleInputemail"
+            placeholder="Enter email">
+          </div>
+          
+          <div class="group">
+            <label for="pass" class="label">Role</label>
+                <select class="input" [(ngModel)]="user.role" name="role">
+                    <option value="0" class="input" >user</option>
+                    <option value="1" class="input" >investor</option>
+                </select>
+          </div>
+
+          <div class="group">
+            <label for="pass" class="label">Mobile</label>
+            <input type="text" name="mobile" [(ngModel)]="user.mobile" class="input" id="exampleInputMobile"
+            placeholder="Enter Mobile">
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Mobile</label>
+            <input type="text" name="national_id" [(ngModel)]="user.national_id" class="input" id="exampleInputnational"
+            placeholder="Enter National_ID">
+          </div>
+
+          <div class="group">
+            <label for="pass" class="label">Password</label>
+          
+            <input type="password" name="password"  [(ngModel)]="user.password" class="input" data-type="password" id="exampleInputpassword"
+            placeholder="Enter password">
+
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Repeat Password</label>
+            <input type="password" name="password_confirmation"  [(ngModel)]="user.password_confirmation" class="input" data-type="password" id="exampleInputpassword"
+            placeholder="Enter password">
+          </div>
+         
+
+          <div class="group">
+            <input type="submit" class="button" value="Sign Up">
+          </div>
+          <div class="hr">
+            <div class="foot-lnk">
+              <label for="tab-1">Already Member?</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-<form  (ngSubmit)="onSubmit()"  class="my-4"> 
-
-
-    <div class="card-body">
-        <!-- <div class="form-group">
-            <label for="exampleInputaddress">Image</label>
-            <input type="file" name="profile" [(ngModel)]="user.profile" class="form-control" id="exampleInputarea"
-                placeholder="Enter Image" >
-        </div> -->
-        <div class="row mb-3">
-            <div class="col input-group">
-                <input type="text" class="form-control" id="first_name"  autofocus
-                    placeholder="First Name" [(ngModel)]="user.first_name" name="first_name">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col input-group">
-                <input type="text" class="form-control" [(ngModel)]="user.last_name" id="last_name" type="text" 
-                    autofocus placeholder="Last Name" name="last_name">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputaddress">Email</label>
-            <input type="text" name="email" [(ngModel)]="user.email" class="form-control" id="exampleInputemail"
-                placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            Role
-            <select class="custom-select" [(ngModel)]="user.role" name="role">
-                <option value="0">user</option>
-                <option value="1">investor</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputaddress">Mobile</label>
-            <input type="text" name="mobile" [(ngModel)]="user.mobile" class="form-control" id="exampleInputMobile"
-                placeholder="Enter Mobile">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputaddress">National ID</label>
-            <input type="text" name="national_id" [(ngModel)]="user.national_id" class="form-control" id="exampleInputnational"
-                placeholder="Enter National_ID">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputaddress">Password</label>
-            <input type="password" name="password"  [(ngModel)]="user.password" class="form-control" id="exampleInputpassword"
-                placeholder="Enter password">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputaddress">Password</label>
-            <input type="password" name="password_confirmation"  [(ngModel)]="user.password_confirmation" class="form-control" id="exampleInputpassword"
-                placeholder="Enter password">
-        </div>
-    </div>
-    <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-</form>
-<p class="mb-0">
-    <a [routerLink]="['/login']" class="text-center">Sign In</a>
-</p>
