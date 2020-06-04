@@ -52,12 +52,12 @@ class CourseController extends Controller
         $request['category_id']=1;
         $course = Course::find($id);
         $del=$course->delete();
-        if($del==1){
-            // $success["message"] = "Deleted Successfully";
-            // return $success["message"];
-            return response()->json($course);
+        if ($del==1){
+            $success["message"] = "Course Deleted Successfully";
+            return response()->json($success);
         }else{
-            return "error";
+            $error["message"] =" Cannot Delete This Course";
+            return response()->json($error);
         }
         
     }

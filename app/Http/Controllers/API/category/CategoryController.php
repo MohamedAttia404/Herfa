@@ -37,12 +37,12 @@ class CategoryController extends Controller
     public function destroy(Request $request, $id){
         $category = Category::find($id);
         $del=$category->delete();
-        if($del==1){
-            // $success["message"] = "Deleted Successfully";
-            // return $success["message"];
-            return response()->json($category);
+        if ($del==1){
+            $success["message"] = "Category Deleted Successfully";
+            return response()->json($success);
         }else{
-            return "error";
+            $error["message"] =" Cannot Delete This Category";
+            return response()->json($error);
         }
         
     }

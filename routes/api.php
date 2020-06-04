@@ -55,10 +55,18 @@ Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
 
+Route::prefix('/posts')->middleware(['auth:api',])->group(function(){
+//     Route::get('', 'API\PostController@index');
+// Route::get('/{id}', 'API\PostController@show');
+Route::post('', 'API\PostController@store');
+Route::put('/{id}', 'API\PostController@update');
+Route::delete('/{id}', 'API\PostController@destroy');
+});
+
 Route::get('/posts', 'API\PostController@index');
 Route::get('/posts/{id}', 'API\PostController@show');
-Route::post('/posts', 'API\PostController@store');
-Route::put('/posts/{id}', 'API\PostController@update');
-Route::delete('posts/{id}', 'API\PostController@destroy');
+// Route::post('/posts', 'API\PostController@store');
+// Route::put('/posts/{id}', 'API\PostController@update');
+// Route::delete('posts/{id}', 'API\PostController@destroy');
 // to Generate Token 
 // Route::post('/token', 'API\UserController@generateToken');
