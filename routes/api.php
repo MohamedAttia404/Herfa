@@ -22,13 +22,19 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@store');
 
-// Route::prefix('/users')->group(function(){
+
 Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::get('', 'API\UserController@index')->name('users.index');
     // Route::post('', 'API\UserController@store')->name("users.store");
     Route::get('/{user}', 'API\UserController@show')->name("users.show");
     Route::put('/{user}', 'API\UserController@update')->name("users.update");
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
+    
+    // toStorePlace
+    // Route::post('/{id}/places', 'API\PlaceController@store')->name("users.places.store");
+});
+Route::prefix('/places')->middleware(['auth:api',])->group(function(){
+    Route::get('', 'API\PlaceController@index')->name('users.index');
 });
 
 // to Generate Token 

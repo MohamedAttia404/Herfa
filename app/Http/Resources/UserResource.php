@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PlaceResource;
 
 class UserResource extends JsonResource
 {
@@ -32,6 +33,7 @@ class UserResource extends JsonResource
             "avatar"=>$image,
             "national_id"=>$this->national_id,
             "role"=>$this->role,
+            "address"=> new PlaceResource($this->place),
         ];
         
     }

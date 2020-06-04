@@ -38,6 +38,7 @@ class UserController extends BaseController
         $request['password']=Hash::make($request->password);
         // $request['password_confirmation']=Hash::make($request->password_confirmation);
         $user=User::create($request->all());
+        $user->place()->create($request->all());
         $success['token']=$user->createToken('MyApp')->accessToken;
         $success['id']=$user->id;
         // $user->createToken($request->email)->plainTextToken;

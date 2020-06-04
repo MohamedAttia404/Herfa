@@ -15,4 +15,10 @@ class Course extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    
+    //Place polymorphic 
+    public function place()
+    {
+        return $this->morphOne('App\Place', 'placeable');
+    }
 }
