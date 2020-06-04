@@ -16,12 +16,13 @@ class PostController extends Controller
     //| #make requests for update and store         |
     //| # see collection for show                   |
     //| # add image in update and destroy           |
-    //| # auth                                      |
+    
     
 
     //Done
     //   # full crud
     //| # ->sortByDesc('created_at') index response | 
+    //| # auth                                      |
 //---------------------------------------------------
 
 
