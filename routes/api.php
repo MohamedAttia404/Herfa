@@ -55,6 +55,7 @@ Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
 
+<<<<<<< HEAD
 Route::prefix('/posts')->middleware(['auth:api',])->group(function(){
 //     Route::get('', 'API\PostController@index');
 // Route::get('/{id}', 'API\PostController@show');
@@ -68,5 +69,28 @@ Route::get('/posts/{id}', 'API\PostController@show');
 // Route::post('/posts', 'API\PostController@store');
 // Route::put('/posts/{id}', 'API\PostController@update');
 // Route::delete('posts/{id}', 'API\PostController@destroy');
+=======
+Route::prefix('/products')->group(function(){
+    Route::get('', 'API\product\ProductController@index')->name('products.index');
+    Route::get('/create', 'API\product\ProductController@create')->name("products.create");
+    Route::post('', 'API\product\ProductController@store')->name("products.store");
+    Route::get('/{product}', 'API\product\ProductController@show')->name("products.show");
+    Route::get('/{product}/edit', 'API\product\ProductController@edit')->name("products.edit");
+    Route::put('/{product}', 'API\product\ProductController@update')->name("products.update");
+    Route::delete('/{prdouct}', 'API\product\ProductController@destroy')->name("products.destroy");
+
+});
+Route::prefix('/events')->group(function(){
+    Route::get('', 'API\event\EventController@index')->name('events.index');
+    Route::get('/create', 'API\event\EventController@create')->name("events.create");
+    Route::post('', 'API\event\EventController@store')->name("events.store");
+    Route::get('/{event}', 'API\event\EventController@show')->name("events.show");
+    Route::get('/{event}/edit', 'API\event\EventController@edit')->name("events.edit");
+    Route::put('/{event}', 'API\event\EventController@update')->name("events.update");
+    Route::delete('/{event}', 'API\event\EventController@destroy')->name("events.destroy");
+
+});
+
+>>>>>>> 2c0efa36065e70848b88d4b4dfc13f936f689e5b
 // to Generate Token 
 // Route::post('/token', 'API\UserController@generateToken');
