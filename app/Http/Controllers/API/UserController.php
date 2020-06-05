@@ -61,8 +61,8 @@ class UserController extends BaseController
 
                 $user->update($request->all());
                 $user->place()->update($request->place);
-                // return $user->fresh();
-                return json_encode(array("ERROR"=>$user));
+                return $user->fresh();
+               
             }
             return json_encode(array("ERROR"=>"ID $id NOT EXSIST"));
     }
