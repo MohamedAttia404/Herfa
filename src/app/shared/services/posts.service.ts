@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -24,48 +24,66 @@ export class PostsService {
     this.last=links.last
   }        // return CategoryResource::collection(Category::paginate(1));
 
+  }
+//=============================================================================
+
+  // private headers = new HttpHeaders({
+  //   'Content-Type':'application/json',
+  //   'Authorization':localStorage.getItem("ACCESS_TOKEN"),
+    
+  // });
 //==========================================================================
 
-  public getPosts(){
-    console.log("get posts service");
-    // return this._httpClient.get(`${ environment.apiUrl }/api/posts`);
-    return this._httpClient.get(`${ environment.apiUrl }/api/posts`, {  params: new HttpParams({fromString: "_page=1&_limit=20"}), observe: "response"}).pipe(retry(3), tap((res: any) => {
-      console.log(res.body.data);
-      this.parseLinks(res.body.links);
-    }));
+  // public getPosts(){
+  //   console.log("get posts service");
+  //   // return this._httpClient.get(`${ environment.apiUrl }/api/posts`);
+  //   return this._httpClient.get(`${ environment.apiUrl }/api/posts`, {  params: new HttpParams({fromString: "_page=1&_limit=20"}), observe: "response"}).pipe(retry(3), tap((res: any) => {
+  //     console.log(res.body.data);
+  //     this.parseLinks(res.body.links);
+  //   }));
   
-  }
+  // }
 
 //=============================================================================
-public sendGetRequestToUrl(url: string){
-  return this._httpClient.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
-    console.log(res);
-    this.parseLinks(res.body.links);
+// public sendGetRequestToUrl(url: string){
+//   return this._httpClient.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
+//     console.log(res);
+//     this.parseLinks(res.body.links);
 
-  }));
-}
+//   }));
+// }
 //////
 //=============================================================================
 
-  public addPost(post){
-    return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post);
-  }
+  // public addPost(post){
+  //   return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post, {
+  //     headers: this.headers,
+  //     });
+  // }
 
 //================================================================================
-  deletePost(id){
-    return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`);
-  }
+  // deletePost(id){
+  //   return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`, {
+  //     headers: this.headers,
+  //     });
+  // }
 //================================================================================
-  getPostById(id){
-    console.log("id: "+ id);
+  // getPostById(id){
+  //   console.log("id: "+ id);
     
-    console.log('get id service');
-    
-    return this._httpClient.get(`${ environment.apiUrl }/api/posts/${id}`);
-  }
+  //   console.log('get id service');
+  //   // return this.http.get(`${this.apiUrl}/users/${id}`,  {
+  //   //   headers: this.headers,
+  //   //   });
+  //   return this._httpClient.get(`${ environment.apiUrl }/api/posts/${id}`,  {
+  //     headers: this.headers,
+  //     });
+  // }
 //================================================================================
 
-  updatePost(data, id){
-    return this._httpClient.put(`${ environment.apiUrl }/api/posts/${id}`,data);
-  }
-}
+//   updatePost(data, id){
+//     return this._httpClient.put(`${ environment.apiUrl }/api/posts/${id}`,data, {
+//       headers: this.headers,
+//       });
+//   }
+// }
