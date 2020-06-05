@@ -14,8 +14,8 @@ export class UserService {
   private userSubject= new BehaviorSubject(false);
   
   private headers = new HttpHeaders({
-    'Content-Type':'multipart/form-data',
-    'Accept':'application/json',
+    'Content-Type':'application/json',
+    // 'Accept':'application/json',
     // 'Authorization':this.token,
     'Authorization':localStorage.getItem("ACCESS_TOKEN"),
     

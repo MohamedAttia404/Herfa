@@ -12,6 +12,8 @@ import {user} from './../../../models/user.model';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+
+
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
@@ -20,7 +22,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class UserCreateComponent implements OnInit {
 
   image;
-  user=new user();
+  // user=new user();
   uploadForm: FormGroup;  
 
 
@@ -40,6 +42,9 @@ export class UserCreateComponent implements OnInit {
      national_id: [''],
      role: [''],
      email: [''],
+     latitude: [''],
+     longitude: [''],
+     address: [''],
      password: [''],
      password_confirmation: ['']
    
@@ -68,10 +73,14 @@ export class UserCreateComponent implements OnInit {
     formData.append("national_id", this.uploadForm.get('national_id').value);
     formData.append("role", this.uploadForm.get('role').value);
     formData.append("email", this.uploadForm.get('email').value);
+    formData.append("latitude", this.uploadForm.get('latitude').value);
+    formData.append("longitude", this.uploadForm.get('longitude').value);
+    formData.append("address", this.uploadForm.get('address').value);
     formData.append("password", this.uploadForm.get('password').value);
     formData.append("password_confirmation", this.uploadForm.get('password_confirmation').value); 
 
   
+   
     
     this.userService.addUser(formData).subscribe((res: any) => {
       this.toastr.success('User Add successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});

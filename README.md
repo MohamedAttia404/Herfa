@@ -31,3 +31,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ngx-toastr for allet
 bootstrap for styling
 @fortawesome/fontawesome-free for Awesome font logos
+
+ng add @angular/material
+-import {MatTabsModule} from '@angular/material/tabs';
