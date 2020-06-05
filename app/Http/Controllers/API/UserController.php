@@ -33,8 +33,11 @@ class UserController extends BaseController
     
  
     // public function store(StoreUserRequest $request) {                    
-    public function store(StoreUserRequest $request) {                    
-        $request['avatar']=Storage::disk('public')->put('images',$request->profile);
+    public function store(StoreUserRequest $request) {   
+        if($request->profile){
+
+            $request['avatar']=Storage::disk('public')->put('images',$request->profile);
+        }                 
         $request['password']=Hash::make($request->password);
         // $request['password_confirmation']=Hash::make($request->password_confirmation);
         $user=User::create($request->all());
@@ -46,16 +49,20 @@ class UserController extends BaseController
         return $success;
     }
  
-    public function update(UpdateUserRequest $request, $id) {
+    public function update(Request $request, $id) {
         // User Info Before Update
             $user=User::where('id',$id)->first();
             if($user) {
+
                 if(array_key_exists('profile',$request->all())){
                     Storage::disk('public')->delete($user->avatar);
-                    $request['avatar']=Storage::disk('public')->put($this->path,$request['profile']);
+                    $request['avatar']=Storage::disk('public')->put('images',$request['profile']);
                 }
+
                 $user->update($request->all());
-                return $user->fresh();
+                $user->place()->update($request->place);
+                // return $user->fresh();
+                return json_encode(array("ERROR"=>$user));
             }
             return json_encode(array("ERROR"=>"ID $id NOT EXSIST"));
     }

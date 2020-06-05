@@ -16,13 +16,16 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-        $image='';
-        if( strpos( $this->avatar, 'images' ) !== false) {
-            $image="http://".$_SERVER['HTTP_HOST']."/storage/".$this->avatar;
+        // $image='';
+        if( strpos( $this->avatar, 'http://' ) !== false) {
+            $image=$this->avatar;
+            
         }
         else{
-            $image=$this->avatar;
-        }
+            $image="http://".$_SERVER['HTTP_HOST']."/storage/".$this->avatar;
+            
+            }
+
 
         return[
             "id"=>$this->id,
@@ -33,7 +36,7 @@ class UserResource extends JsonResource
             "avatar"=>$image,
             "national_id"=>$this->national_id,
             "role"=>$this->role,
-            "address"=> new PlaceResource($this->place),
+            "place"=> new PlaceResource($this->place),
         ];
         
     }
