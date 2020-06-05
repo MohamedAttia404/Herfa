@@ -33,11 +33,17 @@ Route::post('register', 'API\UserController@store');
 
 Route::prefix('/courses')->group(function(){
     Route::get('', 'API\course\CourseController@index')->name('courses.index');
-    Route::post('', 'API\course\CourseController@store')->name("courses.store");
+    // Route::post('', 'API\course\CourseController@store')->name("courses.store");
     Route::get('/{course}', 'API\course\CourseController@show')->name("courses.show");
     Route::put('/{id}', 'API\course\CourseController@update')->name("courses.update");
     Route::delete('/{id}', 'API\course\CourseController@destroy')->name("courses.destroy");
 });
+
+Route::prefix('/courses')->middleware(['auth:api',])->group(function(){
+    Route::post('', 'API\course\CourseController@store')->name("courses.store");
+
+});
+
 
 Route::prefix('/categories')->group(function(){
     Route::get('', 'API\category\CategoryController@index')->name('categories.index');
@@ -54,7 +60,13 @@ Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::put('/{user}', 'API\UserController@update')->name("users.update");
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
-
+Route::prefix('/users')->middleware(['auth:api',])->group(function(){
+    Route::get('', 'API\UserController@index')->name('users.index');
+    // Route::post('', 'API\UserController@store')->name("users.store");
+    Route::get('/{user}', 'API\UserController@show')->name("users.show");
+    Route::put('/{user}', 'API\UserController@update')->name("users.update");
+    Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
+});
 Route::prefix('/products')->group(function(){
     Route::get('', 'API\product\ProductController@index')->name('products.index');
     Route::get('/create', 'API\product\ProductController@create')->name("products.create");

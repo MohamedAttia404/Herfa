@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Course;
 use App\Http\Resources\CourseResource;
+use Illuminate\Support\Facades\Auth; 
 
 class CourseController extends Controller
 {
     public function index(){
-        return Course::all();
+        // return Course::all();
+        return CourseResource::collection(Course::paginate(3));
+
     }
 
     public function show($id){
@@ -19,7 +22,9 @@ class CourseController extends Controller
     }
 
     public function store (Request $request){
-        $request['user_id']=1;
+        // $request['user_id']=1;
+        $user=Auth::user();
+        $request['user_id']=$user->id;
         $request['category_id']=1;
         $course=Course::create($request->all());
         // $course=Course::create([
