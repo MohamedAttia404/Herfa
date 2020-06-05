@@ -29,7 +29,7 @@ export class CourseViewComponent implements OnInit {
     
     this.courseviewService.getAll().subscribe(res =>{
      console.log(res);
-    this.items = res.data;
+    this.items = res.body.data;
 
     // this.coursesService.getAll().subscribe((courses: any[])=>{
     //   console.log(courses);

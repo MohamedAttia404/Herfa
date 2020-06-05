@@ -15,6 +15,8 @@ import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
 import { UserProfileComponent } from './views/user-profile/user-profile.component';
 
+import { httpInterceptorProviders } from './shared/interceptors';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { UserProfileComponent } from './views/user-profile/user-profile.componen
     SharedModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
