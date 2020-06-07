@@ -17,8 +17,8 @@ class CreatePlacesTable extends Migration
             $table->id();
             $table->integer('placeable_id');
             $table->string("placeable_type");
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
+            $table->decimal('latitude',10,7)->nullable();
+            $table->decimal('longitude',18,15)->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
         });
