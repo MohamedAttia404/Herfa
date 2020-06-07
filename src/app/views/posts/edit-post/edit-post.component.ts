@@ -16,6 +16,11 @@ export class EditPostComponent implements OnInit {
   constructor(private _postsService: PostsService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("USER_ID")==null){
+      console.log("login");
+      // alert("login please");
+      this._router.navigate(['/login']);
+    }else{
     this._route.params.subscribe(params => {
       console.log("prms: "+ params.id);
       
@@ -25,9 +30,10 @@ export class EditPostComponent implements OnInit {
       this._postsService.getPostById(params.id).subscribe((res:any) => {
         console.log(res.data.title);
         this.post = res.data;
-        // console.log(this.courseDetails.name);
+
       });
     });
+  }
   }
 
     //===============================================================

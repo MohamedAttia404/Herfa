@@ -34,7 +34,19 @@ const routes: Routes = [
         loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule )
       },
       {
-        path: 'users',
+        path: 'categories',
+        loadChildren: () => import('./views/categories/categories.module').then(m => m.CategoriesModule )
+      },
+      {
+        path: 'products',
+        loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule )
+      },
+      {
+        path: 'events',
+        loadChildren: () => import('./views/events/events.module').then(m => m.EventsModule )
+      },
+      {
+          path: 'users',
         loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule )
       },
     ]
@@ -44,11 +56,15 @@ const routes: Routes = [
     component: UserLayoutComponent,
     children:[
       {
-        path: 'posts',
+        path: 'courses',
+        loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule ),
+      },
+      {
+        path:'posts',
         loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
       },
       {
-        path:':id',
+        path:'profile/:id',
         component: UserProfileComponent,
       }
     ]

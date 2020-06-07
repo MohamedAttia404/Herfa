@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
 
       this.userService.addUser(user).subscribe((res: any)=>{
       this.userService.setToken(res);
-      this.router.navigate(['../home',]);
+      this.router.navigate(['/',]);
     
     });
     
