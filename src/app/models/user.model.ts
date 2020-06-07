@@ -9,7 +9,7 @@ export class user{
         public email:string='',
         public latitude:string='',
         public longitude:string='',
-        public address:string='',
+        // public address:string='',
         public password:string='',
         public password_confirmation:string='',
     ){}
