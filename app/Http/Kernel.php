@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
     \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
         ],
 
+        
         'api' => [
             // EnsureFrontendRequestsAreStateful::class,
             'throttle:60,1',
