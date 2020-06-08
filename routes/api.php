@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Course;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,9 @@ Route::prefix('/courses')->middleware(['auth:api',])->group(function(){
 
 });
 
+// search functionn
+Route::get('/search/{data}','API\course\CourseController@search')->name("courses.search");
+
 
 Route::prefix('/categories')->group(function(){
     Route::get('', 'API\category\CategoryController@index')->name('categories.index');
@@ -60,6 +65,7 @@ Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::put('/{user}', 'API\UserController@update')->name("users.update");
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
+
 Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::get('', 'API\UserController@index')->name('users.index');
     // Route::post('', 'API\UserController@store')->name("users.store");
@@ -67,6 +73,21 @@ Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::put('/{user}', 'API\UserController@update')->name("users.update");
     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
 });
+
+
+Route::prefix('/posts')->middleware(['auth:api',])->group(function(){
+//     Route::get('', 'API\PostController@index');
+// Route::get('/{id}', 'API\PostController@show');
+Route::post('', 'API\PostController@store');
+Route::put('/{id}', 'API\PostController@update');
+Route::delete('/{id}', 'API\PostController@destroy');
+});
+
+Route::get('/posts', 'API\PostController@index');
+Route::get('/posts/{id}', 'API\PostController@show');
+// Route::post('/posts', 'API\PostController@store');
+// Route::put('/posts/{id}', 'API\PostController@update');
+// Route::delete('posts/{id}', 'API\PostController@destroy');
 Route::prefix('/products')->group(function(){
     Route::get('', 'API\product\ProductController@index')->name('products.index');
     Route::get('/create', 'API\product\ProductController@create')->name("products.create");
@@ -87,6 +108,17 @@ Route::prefix('/events')->group(function(){
     Route::delete('/{event}', 'API\event\EventController@destroy')->name("events.destroy");
 
 });
+
+// Route::post('/search', function(){
+//     $q = Input::get('q');
+//     if($q != ""){
+//         $course = Course::where('name', 'LIKE', '%', $q , '%')
+//                             ->orwhere('duration' , 'LIKE' , '%' , $q , '%')
+//                             ->get();
+        
+//     }
+// });
+
 
 // to Generate Token 
 // Route::post('/token', 'API\UserController@generateToken');

@@ -11,8 +11,10 @@ use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
     public function index(){
-        return Category::all();
+        // return Category::all();
         // return CategoryResource::collection(Category::paginate(1));
+        return CategoryResource::collection(Category::paginate(3));
+
         
     }
 
@@ -37,12 +39,12 @@ class CategoryController extends Controller
     public function destroy(Request $request, $id){
         $category = Category::find($id);
         $del=$category->delete();
-        if($del==1){
-            // $success["message"] = "Deleted Successfully";
-            // return $success["message"];
-            return response()->json($category);
+        if ($del==1){
+            $success["message"] = "Category Deleted Successfully";
+            return response()->json($success);
         }else{
-            return "error";
+            $error["message"] =" Cannot Delete This Category";
+            return response()->json($error);
         }
         
     }

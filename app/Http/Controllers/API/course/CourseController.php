@@ -10,8 +10,21 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         // return Course::all();
+        // $params = $request->all();              
+        // dd(Course::all());
+        // $course = Course::where('available', $params['available']);
+        // !empty($params['name'])? $course->where('name', '=', $params['name']): null;
+
+        // if(!empty($request->course)){
+        //     $query->where('name', '=', $request->course);
+        // }
+        // $course = Course::where('available', $params['available']);
+        // if(!empty($params['name'])){
+        //     $query->where('name', 'LIKE', "%{$params['name']}%");
+        // }
+
         return CourseResource::collection(Course::paginate(3));
 
     }
@@ -52,17 +65,25 @@ class CourseController extends Controller
         return response()->json($course, 200);
     }
 
+    public function search($data)
+    {
+        // dd($request);
+        // $search = $request->search;
+        $course = Course::where('name', 'like', '%'.$data.'%')->paginate(5);
+        return response()->json($course,200);
+    }
+
     public function destroy(Request $request, $id){
         $request['user_id'] = 1;
         $request['category_id']=1;
         $course = Course::find($id);
         $del=$course->delete();
-        if($del==1){
-            // $success["message"] = "Deleted Successfully";
-            // return $success["message"];
-            return response()->json($course);
+        if ($del==1){
+            $success["message"] = "Course Deleted Successfully";
+            return response()->json($success);
         }else{
-            return "error";
+            $error["message"] =" Cannot Delete This Course";
+            return response()->json($error);
         }
         
     }

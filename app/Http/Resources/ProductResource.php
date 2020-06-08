@@ -15,16 +15,25 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+
+        $image='';
+        if( strpos( $this->image, 'images' ) !== false) {
+            $image="http://".$_SERVER['HTTP_HOST']."/storage/".$this->image;
+        }
+        else{
+            $image=$this->image;
+        }
+
         return[
             "id"=>$this->id,
             "name"=>$this->name,
             "description"=>$this->description,
-            "image"=>$this->image,
+            "image"=>$image,
             "price"=>$this->price,
             "quantity"=>$this->quantity,
             "is_new"=>$this->is_new,
-            "user_id"=>$this->user_id,
-            "category_id"=> $this->category_id
+            // "user_id"=>$this->user_id,
+            // "category_id"=> $this->category_id
         ];
     }
 }
