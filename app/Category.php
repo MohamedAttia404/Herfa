@@ -29,11 +29,13 @@ class Category extends Model
         return $this;
     }
 
-    public function unsubscribe($userId= null)
+    public function unsubscribe($id=null)
     {
         # code...
-        $this->subscriptions()
-        ->where('user_id', $userId?: auth()->id())
-        ->delete();
+        // $this->subscriptions()
+        // ->where('user_id', $userId?: auth()->id())
+        // ->delete();
+        Interest::find($id)->delete();
+        // Interest::whereUser_idAndCategory_id('$user_id', 'category_id')->first()->delete();
     }
 }

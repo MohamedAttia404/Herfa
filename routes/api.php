@@ -92,7 +92,10 @@ Route::prefix('/events')->group(function(){
 });
 
 
-Route::post('/categories','API\CategorySubscription@store')->middleware('auth:api');
+Route::post('/categories/interests/{id}','API\CategorySubscription@store')->middleware('auth:api');//id of category
+Route::delete('/categories/interests/{id}','API\CategorySubscription@destroy')->middleware('auth:api');//id of interest
+Route::post('{post}/comments', 'API\CommentController@store')->middleware('auth:api');
+Route::put('{post}/comments/{id}', 'API\CommentController@update')->middleware('auth:api');
 
 // to Generate Token 
 // Route::post('/token', 'API\UserController@generateToken');
