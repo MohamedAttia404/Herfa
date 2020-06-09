@@ -36,5 +36,19 @@ class CommentController extends Controller
         return response()->json($updated_comment);
 
     }
+
+    public function destroy(Request $request, $post,$id){
+        // dd(Comment::find(5));
+        $post= Post::find($post);
+        // dd($post);
+        // $updated_comment= $post->comments()->where('id',$id)->update([
+        //     'content'=>$request->content
+        // ]);
+        $deleted_comment= $post->comments()->where('id',$id)->delete();
+        // dd($updated_comment);
+        // $updated_comment->fresh(); #fresh return new instance of the model
+        return response()->json($deleted_comment);
+
+    }
     
 }

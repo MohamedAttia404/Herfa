@@ -96,6 +96,8 @@ Route::post('/categories/interests/{id}','API\CategorySubscription@store')->midd
 Route::delete('/categories/interests/{id}','API\CategorySubscription@destroy')->middleware('auth:api');//id of interest
 Route::post('{post}/comments', 'API\CommentController@store')->middleware('auth:api');
 Route::put('{post}/comments/{id}', 'API\CommentController@update')->middleware('auth:api');
+Route::delete('{post}/comments/{id}', 'API\CommentController@destroy')->middleware('auth:api');
+
 
 // to Generate Token 
 // Route::post('/token', 'API\UserController@generateToken');
