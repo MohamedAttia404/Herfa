@@ -68,7 +68,7 @@ const routes: Routes = [
         loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule)
       },
       {
-        path:':id',
+        path:'profile/:id',
         component: UserProfileComponent,
       }
     ]

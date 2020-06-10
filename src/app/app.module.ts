@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+gitfimport { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,7 @@ import { UserProfileComponent } from './views/user-profile/user-profile.componen
 
 import { httpInterceptorProviders } from './shared/interceptors';
 import { from } from 'rxjs';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,9 @@ import { from } from 'rxjs';
     ToastrModule.forRoot(), // ToastrModule added
     SharedModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBhvcX3mAnbsJYflpvXfhbcl3GadsdRBSI'
+    })
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

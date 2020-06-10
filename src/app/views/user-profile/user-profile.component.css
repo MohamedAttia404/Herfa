@@ -1,4 +1,6 @@
-
+agm-map {
+    height: 300px;
+  }
 body{margin-top:20px;}
 
 .align-center, .center {

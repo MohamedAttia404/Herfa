@@ -30,7 +30,9 @@ export class UserEditComponent implements OnInit {
               if(paramMap.has('id')){
                 const id=paramMap.get('id');
                 this.user=this.userService.getUsersById(id).subscribe((res:any)=>{
-                      this.user=res.data;            
+                      this.user=res.data;
+                      // console.log(res.data);
+                                  
                   });
                 }
                 });
@@ -40,10 +42,11 @@ export class UserEditComponent implements OnInit {
   
     onSubmit(){ 
 
-      const userInfo={...this.user};
+      const  userInfo={...this.user};
 
-  
   this.userService.updateUser(userInfo).subscribe((res: any)=>{
+   
+    
     this.toastr.success('User UPdated successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
     this.router.navigate(['../admin/users']);
       });
