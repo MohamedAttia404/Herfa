@@ -15,6 +15,8 @@ import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
 import { UserProfileComponent } from './views/user-profile/user-profile.component';
 
+import { httpInterceptorProviders } from './shared/interceptors';
+import { from } from 'rxjs';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -39,7 +41,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyBhvcX3mAnbsJYflpvXfhbcl3GadsdRBSI'
     })
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

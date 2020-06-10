@@ -26,15 +26,45 @@ export class CoursesListComponent implements OnInit {
   getAll(){
     console.log("getAllComponent");
     
-    this.coursesService.getAll().subscribe(res =>{
-     console.log(res);
-    this.items = res;
+    this.coursesService.getAll().subscribe((res: any) =>{
+    //  console.log(res);
+    this.items = res.body.data;
 
     // this.coursesService.getAll().subscribe((courses: any[])=>{
     //   console.log(courses);
     //   this.courses_arr = courses;
     });
   }
+
+
+ 
+  // //===============================================================
+  
+  public previousPage() {
+  
+    if (this.coursesService.prev !== undefined && this.coursesService.prev !== null) {
+      this.items = [];
+      this.coursesService.sendGetRequestToUrl(this.coursesService.prev).subscribe((res:any) => {
+        console.log(res);
+        this.items = res.body.data;
+      })
+    }
+  
+  }
+
+/// =========================================
+
+public nextPage() {
+  if (this.coursesService.next !== undefined && this.coursesService.next !== null) {
+    this.items = [];
+    this.coursesService.sendGetRequestToUrl(this.coursesService.next).subscribe((res:any) => {
+      console.log(res);
+      this.items = res.body.data;
+    })
+  }
+}
+//=====================================
+
 
   // Delete Course
   deleteItem(model, id){
