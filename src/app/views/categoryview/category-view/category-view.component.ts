@@ -89,4 +89,16 @@ public nextPage() {
   }
 
 
+  //================================ interest/ subscribe ======================
+  interest(id: number){
+    console.log(id);
+    this.categoryviewService.interest(id).subscribe((res: any)=>{
+      console.log(res);
+      
+    });
+    
+
+  }
+
+
 }

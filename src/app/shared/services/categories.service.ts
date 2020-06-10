@@ -37,4 +37,6 @@ export class CategoriesService {
     return this.http.put(`${ environment.apiUrl }/api/categories/${id}`,data);
   }
 
+  
+
 }

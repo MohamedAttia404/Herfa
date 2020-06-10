@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
-import { HttpClient  , HttpParams} from '@angular/common/http';
+import { HttpClient  , HttpParams, HttpHeaders} from '@angular/common/http';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,11 @@ export class CategoryviewService {
 
   constructor(private http: HttpClient) { }
 
+  private headers = new HttpHeaders({
+    'Content-Type':'application/json',
+    'Authorization':localStorage.getItem("ACCESS_TOKEN"),
+    
+  });
 
   parseLinks(links){
     this.prev=links.prev;
@@ -59,5 +64,15 @@ export class CategoryviewService {
   }
 
 
+  //==============================interest request ======================
+ public interest(id){
+  return this.http.post(`${ environment.apiUrl }/api/categories/interests/${id}`,id,
+  {
+    headers: this.headers,
+  });
+
+
+  
+}
 
 }
