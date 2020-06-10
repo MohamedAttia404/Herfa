@@ -56,17 +56,16 @@ const routes: Routes = [
     component: UserLayoutComponent,
     children:[
       {
-<<<<<<< HEAD
         path: 'courses',
         loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
-=======
+      },
+      {
         path: 'posts',
         loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
       },
       {
         path:':id',
         component: UserProfileComponent,
->>>>>>> 6c1abb4a9b3cd0decd63a23031b9403bf807b3e0
       }
     ]
   },

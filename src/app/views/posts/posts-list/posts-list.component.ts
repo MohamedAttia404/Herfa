@@ -19,19 +19,19 @@ export class PostsListComponent implements OnInit {
     console.log("get posts Component");
    
     this._postsService.getPosts().subscribe((res: any) =>{
-     console.log(res.body.links);
+     console.log(res.body.data);
     this.posts = res.body.data;
     });
   }
 //===============================================================================
 
-public firstPage() {
-  this.posts = [];
-  this._postsService.sendGetRequestToUrl(this._postsService.first).subscribe((res: any) => {
-    console.log(res);
-    this.posts = res.body.data;
-  })
-}
+// public firstPage() {
+//   this.posts = [];
+//   this._postsService.sendGetRequestToUrl(this._postsService.first).subscribe((res: any) => {
+//     console.log(res);
+//     this.posts = res.body.data;
+//   })
+// }
 
 // //===============================================================
 
@@ -60,13 +60,13 @@ public nextPage() {
 
 // //====================================================================================
 
-public lastPage() {
-  this.posts = [];
-  this._postsService.sendGetRequestToUrl(this._postsService.last).subscribe((res: any) => {
-    console.log(res);
-    this.posts = res.body.data;
-  })
-}
+// public lastPage() {
+//   this.posts = [];
+//   this._postsService.sendGetRequestToUrl(this._postsService.last).subscribe((res: any) => {
+//     console.log(res);
+//     this.posts = res.body.data;
+//   })
+// }
 //================================================================================
 deleteItem(id:number){
   console.log("delete");

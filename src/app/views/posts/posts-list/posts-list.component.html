@@ -11,10 +11,23 @@
             <h4>{{post.title}}</h4>
         </header>
         <div>
-            <p>
-                {{post.content}}
-                {{post.id}}
-            </p>
+            <p>{{post.content}}</p> 
+                
+                <p *ngFor="let comment of post.comments" style="padding: 5px;">
+                    {{comment.content}}
+                </p>
+                <!-- {{post.id}} -->
+               
+            
+             <!-- <div *ngFor="let comment of {{post.comments}}">
+                <p>
+                    {{comment}}
+                </p>
+            </div> -->
+            <!-- <p>
+                {{post.comments}}
+            <!-- </p> -->
+
             <!-- <p>{{post.created_at}}</p> -->
             <!-- <p><img style="height:100%; width: 100%;" src="{{ post.image }}" /></p> -->
         </div>
@@ -30,9 +43,9 @@
 <!-- =========================================================================== -->
 <div class="container">
 <div class="row justify-content-center" id ="btn">
-    <button (click) ="firstPage()" > First</button>
+    <!-- <button (click) ="firstPage()" > First</button> -->
     <button (click) ="previousPage()"> Previous</button>
     <button (click) ="nextPage()" > Next</button>
-    <button (click) ="lastPage()" > Last</button>
+    <!-- <button (click) ="lastPage()" > Last</button> -->
 </div>
 </div>
