@@ -15,6 +15,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
 import { UserProfileComponent } from './views/user-profile/user-profile.component';
 
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,9 @@ import { UserProfileComponent } from './views/user-profile/user-profile.componen
     ToastrModule.forRoot(), // ToastrModule added
     SharedModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBhvcX3mAnbsJYflpvXfhbcl3GadsdRBSI'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

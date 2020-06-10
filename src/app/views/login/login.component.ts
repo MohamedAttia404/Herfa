@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       // console.log(res);
       if (res.success) {
         this.userService.setToken(res.data);
-        this.router.navigate(['/user/posts']);
+        this.router.navigate(['/']);
       
       }else{
           console.log("untrusgh user");

@@ -7,15 +7,19 @@ import { UserCreateComponent } from './user-create/user-create.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 
 import { FormsModule ,ReactiveFormsModule}   from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
-  declarations: [UserListComponent, UserCreateComponent, UserEditComponent],
+  declarations: [UserListComponent, UserCreateComponent, UserEditComponent,],
   imports: [
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBhvcX3mAnbsJYflpvXfhbcl3GadsdRBSI'
+    })
   ]
 })
 export class UsersModule { }

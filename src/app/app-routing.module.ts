@@ -59,12 +59,16 @@ const routes: Routes = [
         path: 'courses',
         loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
       },
+      // {
+      //   path: 'posts',
+      //   loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule ),
+      // },
       {
-        path: 'posts',
+        path:'posts',
         loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
       },
       {
-        path:':id',
+        path:'profile/:id',
         component: UserProfileComponent,
       }
     ]
