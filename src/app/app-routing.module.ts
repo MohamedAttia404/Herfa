@@ -60,8 +60,12 @@ const routes: Routes = [
         loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
       },
       {
+        path: 'categoryview',
+        loadChildren: () => import('./views/categoryview/categoryview.module').then(m => m.CategoryviewModule )
+      },
+      {
         path: 'posts',
-        loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
+        loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule)
       },
       {
         path:':id',

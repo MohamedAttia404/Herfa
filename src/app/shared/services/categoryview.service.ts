@@ -20,14 +20,15 @@ export class CategoryviewService {
     this.next=links.next;
   } 
 
-  // get all courses
   public getAll(){
     console.log("getAll");
 
-    return this.http.get(`${ environment.apiUrl }/api/categories`);
+    return this.http.get(`${ environment.apiUrl }/api/categories`, {  params: new HttpParams({fromString: "_page=1&_limit=20"}), observe: "response"}).pipe(retry(3), tap((res: any) => {
+      console.log(res.body.links);
+      this.parseLinks(res.body.links);
+    }));
     // return this.http.get(this._courseApi);
   }
-
 
   public sendGetRequestToUrl(url: string){
     return this.http.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {

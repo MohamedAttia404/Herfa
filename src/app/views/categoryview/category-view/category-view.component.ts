@@ -1,54 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseviewService } from "./../../../shared/services/courseview.service";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { CategoryviewService } from 'src/app/shared/services/categoryview.service';
 
 
 @Component({
-  selector: 'app-course-view',
-  templateUrl: './course-view.component.html',
-  styleUrls: ['./course-view.component.css']
+  selector: 'app-category-view',
+  templateUrl: './category-view.component.html',
+  styleUrls: ['./category-view.component.css']
 })
-export class CourseViewComponent implements OnInit {
+export class CategoryViewComponent implements OnInit {
 
-  searchForm: FormGroup;
   items: any = [];
-  flag: boolean = false;
- 
 
   constructor(
-    private courseviewService: CourseviewService,
+    private categoryviewService: CategoryviewService,
      private modelService: NgbModal,
      private toastr: ToastrService,
      private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.getAll();
-  }
+     ngOnInit(): void {
+      this.getAll();
+    }
 
-// search function
-search(event){
-  console.log(event.target.form[1].value);
-  let search=event.target.form[1].value;
-  console.log(search);
-  
-  this.courseviewService.search(search).subscribe((res:any) =>{
-    console.log(res);
-    this.flag=true;
-  //  this.items = res.body.data;
-  
-});
-}
-
-
-  //get all courses
+      //get all courses
   getAll(){
     console.log("getAllComponent");
     
-    this.courseviewService.getAll().subscribe(res =>{
-     console.log(res);
+    this.categoryviewService.getAll().subscribe((res:any) =>{
+     console.log(res.body.data);
     this.items = res.body.data;
+    
 
     // this.coursesService.getAll().subscribe((courses: any[])=>{
     //   console.log(courses);
@@ -56,14 +39,13 @@ search(event){
     });
   }
 
-
 // previousPage
 public previousPage() {
 
-  if (this.courseviewService.prev !== undefined && this.courseviewService.prev !== null) {
+  if (this.categoryviewService.prev !== undefined && this.categoryviewService.prev !== null) {
     this.items = [];
-    this.courseviewService.sendGetRequestToUrl(this.courseviewService.prev).subscribe((res:any) => {
-      console.log(res);
+    this.categoryviewService.sendGetRequestToUrl(this.categoryviewService.prev).subscribe((res:any) => {
+      console.log(res+"sh3;ala fel back");
       this.items = res.body.data;
     })
   }
@@ -73,9 +55,9 @@ public previousPage() {
 
 // nextPage
 public nextPage() {
-  if (this.courseviewService.next !== undefined && this.courseviewService.next !== null) {
+  if (this.categoryviewService.next !== undefined && this.categoryviewService.next !== null) {
     this.items = [];
-    this.courseviewService.sendGetRequestToUrl(this.courseviewService.next).subscribe((res:any) => {
+    this.categoryviewService.sendGetRequestToUrl(this.categoryviewService.next).subscribe((res:any) => {
       console.log(res);
       this.items = res.body.data;
     })
@@ -83,10 +65,11 @@ public nextPage() {
 }
 
 
+
   // Delete Course
   deleteItem(model, id){
     this.modelService.open(model).result.then(result => {
-      this.courseviewService.delete(id).subscribe(res => {
+      this.categoryviewService.delete(id).subscribe(res => {
         this.toastr.success('Course deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         console.log(res);
         
@@ -104,11 +87,6 @@ public nextPage() {
       console.log(reason);
     });
   }
-
-  
-  // to access inputs
-  get f() {return this.searchForm.controls; }
-
 
 
 }

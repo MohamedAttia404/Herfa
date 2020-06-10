@@ -21,7 +21,7 @@ export class CourseviewService {
 
   // search function
   search(data){
-    return this.http.get(`${ environment.apiUrl }/api/search/{data}`);
+    return this.http.get(`${ environment.apiUrl }/api/search/${data}`);
   }
 
 
