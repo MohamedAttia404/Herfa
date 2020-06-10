@@ -16,22 +16,25 @@ use Illuminate\Support\Facades\Input;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-// Route::post('/users', 'API\UserController@store')->name("users.store");
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@store');
 
-// Route::prefix('/users')->group(function(){
-//     Route::prefix('/users')->middleware(['auth:sanctum',])->group(function(){
-//     Route::get('', 'API\UserController@index')->name('users.index');
-//     Route::post('', 'API\UserController@store')->name("users.store");
-//     Route::get('/{user}', 'API\UserController@show')->name("users.show");
-//     Route::put('/{user}', 'API\UserController@update')->name("users.update");
-//     Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
-// });
+
+Route::prefix('/users')->middleware(['auth:api',])->group(function(){
+    Route::get('', 'API\UserController@index')->name('users.index');
+    // Route::post('', 'API\UserController@store')->name("users.store");
+    Route::get('/{user}', 'API\UserController@show')->name("users.show");
+    Route::put('/{user}', 'API\UserController@update')->name("users.update");
+    Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
+    
+    
+});
+
+// to get ALLpLACE IF WE NEED
+Route::prefix('/places')->middleware(['auth:api',])->group(function(){
+    Route::get('', 'API\PlaceController@index')->name('users.index');
+});
 
 Route::prefix('/courses')->group(function(){
     Route::get('', 'API\course\CourseController@index')->name('courses.index');
@@ -58,13 +61,6 @@ Route::prefix('/categories')->group(function(){
     Route::delete('/{id}', 'API\category\CategoryController@destroy')->name("categories.destroy");
 });
    
-Route::prefix('/users')->middleware(['auth:api',])->group(function(){
-    Route::get('', 'API\UserController@index')->name('users.index');
-    // Route::post('', 'API\UserController@store')->name("users.store");
-    Route::get('/{user}', 'API\UserController@show')->name("users.show");
-    Route::put('/{user}', 'API\UserController@update')->name("users.update");
-    Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
-});
 
 Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::get('', 'API\UserController@index')->name('users.index');
@@ -88,6 +84,9 @@ Route::get('/posts/{id}', 'API\PostController@show');
 // Route::post('/posts', 'API\PostController@store');
 // Route::put('/posts/{id}', 'API\PostController@update');
 // Route::delete('posts/{id}', 'API\PostController@destroy');
+
+
+
 Route::prefix('/products')->group(function(){
     Route::get('', 'API\product\ProductController@index')->name('products.index');
     Route::get('/create', 'API\product\ProductController@create')->name("products.create");
@@ -118,6 +117,12 @@ Route::prefix('/events')->group(function(){
         
 //     }
 // });
+
+Route::post('/categories/interests/{id}','API\CategorySubscription@store')->middleware('auth:api');//id of category
+Route::delete('/categories/interests/{id}','API\CategorySubscription@destroy')->middleware('auth:api');//id of interest
+Route::post('{post}/comments', 'API\CommentController@store')->middleware('auth:api');
+Route::put('{post}/comments/{id}', 'API\CommentController@update')->middleware('auth:api');
+Route::delete('{post}/comments/{id}', 'API\CommentController@destroy')->middleware('auth:api');
 
 
 // to Generate Token 
