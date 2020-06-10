@@ -43,4 +43,9 @@ class User extends Authenticatable
     public function comments(){
         return $this->morphMany('App\Comment', 'commentable');
     }
+    
+    public function place()
+    {
+        return $this->morphOne('App\Place', 'placeable');
+    }
 }
