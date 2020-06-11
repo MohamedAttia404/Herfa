@@ -55,6 +55,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    this.submitted = true;
     console.log(form);
     if(form.valid){
       const product = {...this.product};

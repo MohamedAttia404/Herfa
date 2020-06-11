@@ -57,11 +57,24 @@ const routes: Routes = [
     children:[
       {
         path: 'courses',
-        loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule ),
+        loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
+
       },
       {
-        path:'posts',
-        loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule )
+        path: 'courseview',
+        loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
+      },
+      {
+        path: 'categoryview',
+        loadChildren: () => import('./views/categoryview/categoryview.module').then(m => m.CategoryviewModule )
+      },
+      // {
+      //   path: 'posts',
+      //   loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule ),
+      // },
+      {
+        path: 'posts',
+        loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule)
       },
       {
         path:'profile/:id',

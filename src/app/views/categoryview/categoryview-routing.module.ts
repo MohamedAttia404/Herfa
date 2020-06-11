@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CourseViewComponent } from './course-view/course-view.component';
+import { CategoryViewComponent } from './category-view/category-view.component';
+
+
 
 
 const routes: Routes = [
   {
     path: '',
-    component: CourseViewComponent
+    component: CategoryViewComponent
   },
 ];
 
@@ -14,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CourseviewRoutingModule { }
+export class CategoryviewRoutingModule { }

@@ -22,7 +22,9 @@ export class PostsService {
     this.prev=links.prev;
     this.next=links.next;
     this.last=links.last
-  }
+  }        // return CategoryResource::collection(Category::paginate(1));
+
+  
 //=============================================================================
 
   private headers = new HttpHeaders({
@@ -42,7 +44,7 @@ export class PostsService {
   
   }
 
-//=============================================================================
+//============================================================================
 public sendGetRequestToUrl(url: string){
   return this._httpClient.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
     console.log(res);
@@ -50,7 +52,8 @@ public sendGetRequestToUrl(url: string){
 
   }));
 }
-//=============================================================================
+////
+// =============================================================================
 
   public addPost(post){
     return this._httpClient.post(`${ environment.apiUrl }/api/posts`,post, {
@@ -58,13 +61,13 @@ public sendGetRequestToUrl(url: string){
       });
   }
 
-//================================================================================
+// ================================================================================
   deletePost(id){
     return this._httpClient.delete(`${ environment.apiUrl }/api/posts/${id}`, {
       headers: this.headers,
       });
   }
-//================================================================================
+// ================================================================================
   getPostById(id){
     console.log("id: "+ id);
     
@@ -76,7 +79,7 @@ public sendGetRequestToUrl(url: string){
       headers: this.headers,
       });
   }
-//================================================================================
+// ================================================================================
 
   updatePost(data, id){
     return this._httpClient.put(`${ environment.apiUrl }/api/posts/${id}`,data, {
