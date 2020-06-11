@@ -1,0 +1,14 @@
+<!-- <p>add-comment works!</p> -->
+<div class="container">
+    <form #newCommentForm="ngForm" (ngSubmit)="onSubmit(newCommentForm)">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="content">Content</label>
+            <textarea type="text" class="form-control" [(ngModel)]="comment.content" id="content" name="content" required
+              #contentRef="ngModel" ></textarea>
+          </div>
+        </div>
+      
+        <button type="submit" class="btn btn-primary" [disabled]="newCommentForm.invalid">Comment</button>
+      </form>
+      </div>

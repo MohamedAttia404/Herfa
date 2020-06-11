@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { AddCommentComponent } from './add-comment/add-comment.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path:'new',
     component: AddPostComponent
+  },
+  {
+    path:':id/add-comment',
+    component: AddCommentComponent
   }
 
 ];

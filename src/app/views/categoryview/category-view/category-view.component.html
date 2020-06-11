@@ -21,7 +21,9 @@
                         <h5 class="card-title">{{ item.title }} 
                             <!-- <a href="javascript:;" class="d-none"><i class="fa fa-edit"></i></a> -->
                         </h5>
-                        <button class="btn btn-primary" (click)="interest(item.id)">subscribe</button>
+                        <button class="btn btn-primary" (click)="interest(item.id)" [disabled]="disableButton">subscribe</button>
+                        <button class="btn btn-primary" (click)="remove_interest(3)">unsubscribe</button>
+
                     </div>
                 </div>
                 </ng-container>

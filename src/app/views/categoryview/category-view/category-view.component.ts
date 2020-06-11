@@ -13,6 +13,8 @@ import { CategoryviewService } from 'src/app/shared/services/categoryview.servic
 export class CategoryViewComponent implements OnInit {
 
   items: any = [];
+  checked: boolean= false;
+  disableButton: boolean= false;
 
   constructor(
     private categoryviewService: CategoryviewService,
@@ -92,13 +94,39 @@ public nextPage() {
   //================================ interest/ subscribe ======================
   interest(id: number){
     console.log(id);
-    this.categoryviewService.interest(id).subscribe((res: any)=>{
-      console.log(res);
-      
-    });
+    // if (this.checked === false){
+      this.categoryviewService.interest(id).subscribe((res: any)=>{
+        console.log(res);
+        this.checked = true;
+        this.disableButton = true;
+        console.log(this.checked);
+        
+        
+      });
+    // }else{
+    //   this.categoryviewService.remove_interest(id).subscribe((res: any)=>{
+    //     console.log(res);
+    //     this.checked= false;
+    //     console.log(this.checked);
+
+        
+    //   });
+    // }
     
 
   }
+
+    //================================ interest/ subscribe ======================
+    remove_interest(id: number){
+      console.log(id);
+      this.categoryviewService.remove_interest(id).subscribe((res: any)=>{
+        console.log(res);
+        
+      });
+  
+    }
+
+    //=========================================
 
 
 }

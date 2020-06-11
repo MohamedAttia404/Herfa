@@ -71,8 +71,16 @@ export class CategoryviewService {
     headers: this.headers,
   });
 
-
+ }
+  //==============================remove_interest request ======================
+ public remove_interest(id){
+  console.log("dele");
+  return this.http.delete(`${ environment.apiUrl }/api/categories/interests/${id}`,
+  {
+    headers: this.headers,
+  }); 
   
+
 }
 
 }

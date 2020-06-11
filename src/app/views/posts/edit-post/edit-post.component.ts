@@ -18,8 +18,9 @@ export class EditPostComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem("USER_ID")==null){
       console.log("login");
-      // alert("login please");
       this._router.navigate(['/login']);
+    
+    
     }else{
     this._route.params.subscribe(params => {
       console.log("prms: "+ params.id);
