@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shared/services/posts.service';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from  './../../../shared/services/user.service';
 
 
 @Component({
