@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables ; 
 use App\Product;
 use App\User;
 use App\Category;
+use  App\Http\Controllers\API\BaseController ;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+
+
 
 class ProductController extends Controller
 {
@@ -35,10 +42,10 @@ class ProductController extends Controller
 //         ]);
 //         }   
              
-    public function store(Request $request) {
+    public function store(StoreProductRequest $request) {
         $request['user_id']= 1;
         $request['category_id']=1;
-        $request['image']=Storage::disk('public')->put('images',$request->profile);
+        $request['image']=Storage::disk('public')->put('images',$request->image);
         $product=Product::create($request->all());
         return $product ;
 
@@ -53,26 +60,41 @@ public function show($id)
 
 }
 
-public function edit()
-{ 
-  $request=request();
- $product_id=$request->product;
- $product= Product::find($product_id); 
-return $product;
- }
+// public function edit()
+// { 
+//   $request=request();
+//  $product_id=$request->product;
+//  $product= Product::find($product_id); 
+// return $product;
+//  }
 
 
-public function update(Request $request, $id)
+public function update(UpdateProductRequest $request, $id)
 {
+    // if($user) {
+    //     if(array_key_exists('profile',$request->all())){
+    //         Storage::disk('public')->delete($user->avatar);
+    //         $request['image']=Storage::disk('public')->put($this->path,$request['profile']);
+    //     }
+
     if($request->profile){
-        Storage::disk('public')->delete($request->oldimg);
-        $request['image']=Storage::disk('public')->put('images',$request->profile);
-    }else{
-        $request['image']=$request->oldimg;
+        if(array_key_exists('profile',$request->all())){
+        Storage::disk('public')->delete($request->image);
+        $request['image']=Storage::disk('public')->put($this->path,$request['profile']);
+        // $request['image']=Storage::disk('public')->put('images',$request->profile);
     }
- $product= Product::findOrFail($id); 
-  $product->update($request->all());
-   return $product->fresh();
+        $product= Product::findOrFail($id); 
+        $product->update($request->all());
+        return $product->fresh();
+}
+// return json_encode(array("ERROR"=>"NOT EXSIST"));
+return response()->json($course, 200);
+    // else{
+    //     $request['image']=$request->oldimg;
+    // }
+//  $product= Product::findOrFail($id); 
+//   $product->update($request->all());
+//    return $product->fresh();
 }
 
 public function destroy($id)

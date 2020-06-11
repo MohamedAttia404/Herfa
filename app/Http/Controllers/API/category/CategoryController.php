@@ -11,8 +11,10 @@ use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
     public function index(){
-        return Category::all();
+        // return Category::all();
         // return CategoryResource::collection(Category::paginate(1));
+        return CategoryResource::collection(Category::paginate(3));
+
         
     }
 

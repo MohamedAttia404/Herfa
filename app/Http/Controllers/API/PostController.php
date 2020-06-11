@@ -27,11 +27,15 @@ class PostController extends Controller
 
 
     public function index(){
-        return PostResource::collection(Post::orderBy('created_at','desc')->with('user')->paginate(4));
+        return PostResource::collection(Post::orderBy('created_at','desc')->with('comments')->paginate(4));
     }
 
     public function show($id){
-        return new PostResource(Post::find($id));
+        $post=Post::find($id);
+        if($post->comments){
+            return new PostResource($post);
+        }
+        // return new PostResource(Post::find($id));
     }
 
     //only authenticated user

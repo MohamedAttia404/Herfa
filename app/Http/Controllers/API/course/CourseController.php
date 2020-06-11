@@ -6,11 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Course;
 use App\Http\Resources\CourseResource;
+use Illuminate\Support\Facades\Auth; 
 
 class CourseController extends Controller
 {
-    public function index(){
-        return Course::all();
+    public function index(Request $request){
+        // return Course::all();
+        // $params = $request->all();              
+        // dd(Course::all());
+        // $course = Course::where('available', $params['available']);
+        // !empty($params['name'])? $course->where('name', '=', $params['name']): null;
+
+        // if(!empty($request->course)){
+        //     $query->where('name', '=', $request->course);
+        // }
+        // $course = Course::where('available', $params['available']);
+        // if(!empty($params['name'])){
+        //     $query->where('name', 'LIKE', "%{$params['name']}%");
+        // }
+
+        return CourseResource::collection(Course::paginate(3));
+
     }
 
     public function show($id){
@@ -19,7 +35,9 @@ class CourseController extends Controller
     }
 
     public function store (Request $request){
-        $request['user_id']=1;
+        // $request['user_id']=1;
+        $user=Auth::user();
+        $request['user_id']=$user->id;
         $request['category_id']=1;
         $course=Course::create($request->all());
         // $course=Course::create([
@@ -45,6 +63,14 @@ class CourseController extends Controller
         $course->update($request->all());
         $course->fresh();
         return response()->json($course, 200);
+    }
+
+    public function search($data)
+    {
+        // dd($request);
+        // $search = $request->search;
+        $course = Course::where('name', 'like', '%'.$data.'%')->paginate(5);
+        return response()->json($course,200);
     }
 
     public function destroy(Request $request, $id){

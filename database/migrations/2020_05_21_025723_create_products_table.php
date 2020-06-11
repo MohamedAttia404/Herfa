@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('image')->nullable();
+            $table->string('image')->default('http://127.0.0.1:8000/control/media/img/logo/avatar.png');
             $table->string('price');
             $table->unsignedInteger('quantity');
             $table->boolean('is_new');
