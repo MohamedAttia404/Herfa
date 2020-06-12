@@ -11,7 +11,8 @@ export class CommentServiceService {
   //===========================================================
 
   private headers = new HttpHeaders({
-    'Content-Type':'application/json',
+    // 'Content-Type':'application/json',
+    // 'Content-Type': 'application/x-www-form-urlencoded',
     'Authorization':localStorage.getItem("ACCESS_TOKEN"),
     
   });
@@ -29,7 +30,7 @@ export class CommentServiceService {
   public updateComment(post_id, comment_id, comment){
     console.log("service" + comment);
     
-    return this._httpClient.put(`${ environment.apiUrl }/api/${post_id}/comments/${comment_id}`,"2lb mama",
+    return this._httpClient.put(`${ environment.apiUrl }/api/${post_id}/comments/${comment_id}`,comment,
     {
       headers: this.headers,
     });

@@ -49,9 +49,9 @@ export class EditCommentComponent implements OnInit {
     console.log(form);
     if(form.valid){
       const comment = {...this.comment};
-      console.log("edit form "+this.comment);
+      console.log("edit form "+this.comment.content);
       
-      this._commentService.updateComment(this.comment.post_id, this.comment.id,this.comment).subscribe((res: any)=>{
+      this._commentService.updateComment(this.post_id, this.comment_id,this.comment).subscribe((res: any)=>{
         console.log(res);
         
         this._router.navigate(['/user/posts']);
