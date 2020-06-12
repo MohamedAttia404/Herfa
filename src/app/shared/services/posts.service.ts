@@ -70,11 +70,6 @@ public sendGetRequestToUrl(url: string){
 // ================================================================================
   getPostById(id){
     console.log("id: "+ id);
-    
-    console.log('get id service');
-    // return this.http.get(`${this.apiUrl}/users/${id}`,  {
-    //   headers: this.headers,
-    //   });
     return this._httpClient.get(`${ environment.apiUrl }/api/posts/${id}`,  {
       headers: this.headers,
       });

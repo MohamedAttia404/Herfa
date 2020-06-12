@@ -17,9 +17,38 @@ export class CommentServiceService {
   });
 //==========================================================================
 
-public addComment(post_id, comment){
-  return this._httpClient.post(`${ environment.apiUrl }/api/${post_id}/comments`,comment, {
-    headers: this.headers,
+  public addComment(post_id, comment){
+    console.log("add "+comment);
+    
+    return this._httpClient.post(`${ environment.apiUrl }/api/${post_id}/comments`,comment, {
+      headers: this.headers,
+      });
+  }
+  //==========================================================================
+
+  public updateComment(post_id, comment_id, comment){
+    console.log("service" + comment);
+    
+    return this._httpClient.put(`${ environment.apiUrl }/api/${post_id}/comments/${comment_id}`,"2lb mama",
+    {
+      headers: this.headers,
     });
-}
+  }
+
+  //==========================================================================
+
+  getCommentById(post_id, comment_id){
+    return this._httpClient.get(`${ environment.apiUrl }/api/${post_id}/comments/${comment_id}`,  {
+      headers: this.headers,
+      });
+  }
+
+  //=========================================================================
+  deleteComment(post_id, comment_id){
+    return this._httpClient.delete(`${ environment.apiUrl }/api/${post_id}/comments/${comment_id}`,  {
+      headers: this.headers,
+      });
+  }
+  
+
 }

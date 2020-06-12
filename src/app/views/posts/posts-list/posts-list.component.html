@@ -15,15 +15,13 @@
                 
                 <p *ngFor="let comment of post.comments" style="padding: 5px;">
                     {{comment.content}}
+                    <!-- {{comment.id}} -->
+                    <button class="btn btn-success" [routerLink]="[post.id,'edit-comment',comment.id]">Update</button>
+                    <button class="btn btn-danger"(click)="deleteComment(post.id,comment.id)" >Delete</button>
                 </p>
-               
-            <!-- <p>{{post.created_at}}</p> -->
-            <!-- <p><img style="height:100%; width: 100%;" src="{{ post.image }}" /></p> -->
         </div>
         <div class="col-md-6 text-right mt-3">
             <a href="javascript:;"  class="btn btn-success" [routerLink]="[post.id,'add-comment']"><i class="fa fa-plus fa-sm"></i></a>
-            <button class="btn btn-danger" >Delete</button>
-            <button class="btn btn-success" >Update</button>
           </div>
         <div >
             <router-outlet></router-outlet>

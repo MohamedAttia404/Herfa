@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shared/services/posts.service';
 import { ToastrService } from 'ngx-toastr';
+import { CommentServiceService } from 'src/app/shared/services/comment-service.service';
 
 
 @Component({
@@ -13,13 +14,14 @@ export class PostsListComponent implements OnInit {
   posts: any=[];
  
   constructor(private _postsService: PostsService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private _commentService: CommentServiceService) { }
 //===============================================================================
   getPosts(){
     console.log("get posts Component");
    
     this._postsService.getPosts().subscribe((res: any) =>{
-     console.log(res.body.data);
+     console.log(res.body.data[0].comments[0].id);
     this.posts = res.body.data;
     });
   }
@@ -75,6 +77,15 @@ deleteItem(id:number){
       console.log("hello");
       
       this.toastr.success('post deleted successfuly', 'success', {timeOut:1000, closeButton: true, progressBar: true});
+      console.log("delete res: "+res);
+      
+      this.getPosts();
+  });
+}
+
+deleteComment(post_id:number, comment_id:number){
+  this._commentService.deleteComment(post_id,comment_id).subscribe((res:any)=>{
+    this.toastr.success('comment deleted successfuly', 'success', {timeOut:1000, closeButton: true, progressBar: true});
       console.log("delete res: "+res);
       
       this.getPosts();

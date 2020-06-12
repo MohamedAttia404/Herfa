@@ -41,7 +41,7 @@ export class AddCommentComponent implements OnInit {
     if(form.valid){
       const comment = {...this.comment};
       // comment.id=
-      console.log(this.comment);
+      console.log("add form comment "+this.comment);
       
       this._commentService.addComment(this.post_id,comment).subscribe((res: any)=>{
       console.log(res);
