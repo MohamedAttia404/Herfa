@@ -33,8 +33,14 @@ class CommentController extends Controller
         $updated_comment= $post->comments()->where('id',$id)->update($request->all());
         // dd($updated_comment);
         // $updated_comment->fresh(); #fresh return new instance of the model
-        return response()->json($updated_comment);
+        return response()->json($post->comments()->where('id',$id)->first());
 
+    }
+
+    public function show(Request $request, $post, $id){
+        $post=Post::find($post);
+        $comment= $post->comments()->where('id',$id)->first();
+        return response()->json($comment);
     }
 
     public function destroy(Request $request, $post,$id){
