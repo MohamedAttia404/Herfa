@@ -62,13 +62,6 @@ Route::prefix('/categories')->group(function(){
 });
    
 
-Route::prefix('/users')->middleware(['auth:api',])->group(function(){
-    Route::get('', 'API\UserController@index')->name('users.index');
-    // Route::post('', 'API\UserController@store')->name("users.store");
-    Route::get('/{user}', 'API\UserController@show')->name("users.show");
-    Route::put('/{user}', 'API\UserController@update')->name("users.update");
-    Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
-});
 
 
 Route::prefix('/posts')->middleware(['auth:api',])->group(function(){
