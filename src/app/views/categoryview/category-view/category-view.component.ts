@@ -3,6 +3,9 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { CategoryviewService } from 'src/app/shared/services/categoryview.service';
+import { Interest } from 'src/app/models/interest';
+import { tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,17 +16,22 @@ import { CategoryviewService } from 'src/app/shared/services/categoryview.servic
 export class CategoryViewComponent implements OnInit {
 
   items: any = [];
-  checked: boolean= false;
+  interests: Interest =new Interest();
+  interests_arr :any=[];
+
+  // checked: boolean= false;
   disableButton: boolean= false;
 
   constructor(
     private categoryviewService: CategoryviewService,
      private modelService: NgbModal,
      private toastr: ToastrService,
-     private fb: FormBuilder) { }
+     private fb: FormBuilder,
+     private _router: Router) { }
 
      ngOnInit(): void {
       this.getAll();
+      this.getInterest();
     }
 
       //get all courses
@@ -72,7 +80,7 @@ public nextPage() {
   deleteItem(model, id){
     this.modelService.open(model).result.then(result => {
       this.categoryviewService.delete(id).subscribe(res => {
-        this.toastr.success('Course deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
+        this.toastr.success('Category deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         console.log(res);
         
         this.getAll();
@@ -92,41 +100,81 @@ public nextPage() {
 
 
   //================================ interest/ subscribe ======================
-  interest(id: number){
+  interest1(id: number){
     console.log(id);
-    // if (this.checked === false){
-      this.categoryviewService.interest(id).subscribe((res: any)=>{
-        console.log(res);
-        this.checked = true;
-        this.disableButton = true;
-        console.log(this.checked);
-        
-        
-      });
-    // }else{
-    //   this.categoryviewService.remove_interest(id).subscribe((res: any)=>{
-    //     console.log(res);
-    //     this.checked= false;
-    //     console.log(this.checked);
-
-        
-    //   });
-    // }
+    let interests = id;
     
+      console.log("interest array is empty");
+      this.categoryviewService.interest(interests).subscribe((res: any)=>{
+        console.log(res);
+        // this._router.navigate(['/categoryview']);
+      });
+   // }
+   
 
   }
 
     //================================ interest/ subscribe ======================
     remove_interest(id: number){
-      console.log(id);
-      this.categoryviewService.remove_interest(id).subscribe((res: any)=>{
+      let interests;
+      console.log(this.interests_arr);
+      
+      this.interests_arr.map((res)=>{
+        if(res.category_id==id){
+          interests= res.id
+        }
+      });
+    console.log(interests);
+    
+      this.categoryviewService.remove_interest(interests).subscribe((res: any)=>{
         console.log(res);
-        
+        // this._router.navigate(['/categoryview']);
       });
   
     }
 
     //=========================================
+getInterest(){
+  const user_id = localStorage.getItem('USER_ID');
+  this.categoryviewService.getInterest(user_id).subscribe((res:any)=>{
+    console.log(res);
+    this.interests_arr=res;
+    // this._router.navigate(['/user/categoryview']);
+    
+  })
+}
 
+// interest(cat_id){
+//   console.log(cat_id);
+  
+//   if(this.interests_arr != []){
+//     console.log("interests arr not empty");
+//     this.interests_arr.map((res)=>{
+//       console.log(res);
+      
+//       if(res.category_id==cat_id){
+//         console.log("exist");
+        
+//         this.categoryviewService.remove_interest(res.id).subscribe((res:any)=>{
+//           console.log("remove "+res); 
+//         });
+//       }else{
+//         this.categoryviewService.interest(res.category_id).subscribe((res:any)=>{
+//           console.log("interest "+res);
+          
+//         });
+//       }
+//     });
+    
+//   }else{
+//     console.log("interests is empty");
+    
+//     this.categoryviewService.interest(cat_id).subscribe((res:any)=>{
+//       console.log("interest "+res);
+      
+//     });
+//   }
+
+// }
 
 }

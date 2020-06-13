@@ -82,5 +82,12 @@ export class CategoryviewService {
   
 
 }
+//=============================get all interests================
+public getInterest(user_id){
+  return this.http.get(`${ environment.apiUrl }/api/categories/interests/${user_id}`,
+  {
+    headers: this.headers,
+  }); 
+}
 
 }
