@@ -66,6 +66,8 @@ export class CategoryviewService {
 
   //==============================interest request ======================
  public interest(id){
+   console.log('service');
+   
   return this.http.post(`${ environment.apiUrl }/api/categories/interests/${id}`,id,
   {
     headers: this.headers,

@@ -100,7 +100,7 @@ public nextPage() {
 
 
   //================================ interest/ subscribe ======================
-  interest1(id: number){
+  interest(id: number){
     console.log(id);
     let interests = id;
     
