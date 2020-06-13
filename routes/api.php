@@ -127,6 +127,7 @@ Route::prefix('/events')->group(function(){
 
 Route::post('/categories/interests/{id}','API\CategorySubscription@store')->middleware('auth:api');//id of category
 Route::delete('/categories/interests/{id}','API\CategorySubscription@destroy')->middleware('auth:api');//id of interest
+Route::get('/categories/interests/{user_id}','API\CategorySubscription@index')->middleware('auth:api');
 
 
 
