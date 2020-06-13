@@ -9,14 +9,17 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./admin-layout.component.css']
 })
 export class AdminLayoutComponent implements OnInit {
-
+  auth:any;
+  
+  
   constructor(
     private userService:UserService,
     private router:Router
-  ) { }
-
-  ngOnInit(): void {
-  }
+    ) { }
+    
+    ngOnInit(): void {
+      this.auth=this.userService.isAuthenticated();
+    }
 
   logout(){  
         this.userService.signOut();

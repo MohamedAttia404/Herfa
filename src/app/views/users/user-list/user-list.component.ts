@@ -23,6 +23,9 @@ import {
 export class UserListComponent implements OnInit {
  
   users: any[];
+  auth:any;
+ 
+
 
   constructor(
     private userService: UserService,
@@ -32,9 +35,9 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    this.auth=this.userService.isAuthenticated();
     this.Allusers();
-
+    
   }
   Allusers() {
     this.userService.getUsers().subscribe((res: any) => {

@@ -25,7 +25,7 @@ import {
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  user;
+  user:any;
   title: string = 'AGM project';
   latitude: number;
   longitude: number;
@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
         this.user = this.userService.getUsersById(id).subscribe((res: any) => {
           this.user = res.data;
           console.log("**************");
-          console.log(this.user.place);
+          console.log(this.user.place.address);
        
         this.latitude=31.0409872;
         this.longitude=31.386410809375020;
