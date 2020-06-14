@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Post;
 use App\User;
 use App\Http\Resources\PostResource;
@@ -12,18 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    //|TODO                                         |
-    //| #make requests for update and store         |
-    //| # see collection for show                   |
-    //| # add image in update and destroy           |
-    
-    
-
-    //Done
-    //   # full crud
-    //| # ->sortByDesc('created_at') index response | 
-    //| # auth                                      |
-//---------------------------------------------------
 
 
     public function index(){
@@ -35,11 +25,10 @@ class PostController extends Controller
         if($post->comments){
             return new PostResource($post);
         }
-        // return new PostResource(Post::find($id));
     }
 
     //only authenticated user
-    public function store(Request $request){
+    public function store(StorePostRequest $request){
         if ($request->profile){
             $request['image']=Storage::disk('public')->put('img',$request->profile);
         }
@@ -50,9 +39,7 @@ class PostController extends Controller
     }
 
     //only authenticated user
-    public function update(Request $request, $id){
-        // $user=Auth::user();
-        // $request['user_id'] =$user->id; 
+    public function update(UpdatePostRequest $request, $id){
         $updated_post=Post::find($id);
         $updated_post->update($request->all());
         $updated_post->fresh(); #fresh return new instance of the model
@@ -64,14 +51,10 @@ class PostController extends Controller
        if (Auth::user()){
         $deleted_post=Post::find($id);
         $del=$deleted_post->delete();
-        if ($del==1){
-            $success["message"] = "Post Deleted Successfully";
-            return response()->json($success);
-        }
-        // }else{
-        //     $error["message"] =" Cannot Delete This Post";
-        //     return response()->json($error);
-        // }
+            if ($del==1){
+                $success["message"] = "Post Deleted Successfully";
+                return response()->json($success);
+            }
 
        }else{
         $error["message"] =" unautheried";
