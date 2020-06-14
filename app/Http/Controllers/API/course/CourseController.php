@@ -10,7 +10,8 @@ use App\Http\Resources\CourseResource;
 class CourseController extends Controller
 {
     public function index(){
-        return Course::all();
+        // return Course::all();
+        return CourseResource::collection(Course::paginate(3));
     }
 
     public function show($id){

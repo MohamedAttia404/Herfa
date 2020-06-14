@@ -21,7 +21,11 @@ class ProductController extends Controller
         //     Product::all()
           //    Product::paginate(5)
         //  );
-        return Product::all();
+
+
+        // return Product::all();
+          return ProductResource::collection(Product::paginate(5));
+   
 
     }
 
@@ -38,10 +42,36 @@ class ProductController extends Controller
     public function store(Request $request) {
         $request['user_id']= 1;
         $request['category_id']=1;
-        $request['image']=Storage::disk('public')->put('images',$request->profile);
-        $product=Product::create($request->all());
-        return $product ;
+        // if ($request->hasFile('image'))
+        // {
+        // $file      = $request->file('image');
+        // $filename  = $file->getClientOriginalName();
+        // $extension = $file->getClientOriginalExtension();
+        // $picture   = date('His').'-'.$filename;
+        // $file->move(public_path('image'), $picture);
+       
+   
 
+        if($request->hasFile('image'))
+        {$request['image']=Storage::disk('local')->put('images',$request->image);}
+        // {
+            // $file = $request->file('image');
+            // $extension = $file->getClientOriginalExtension();
+            // $filename = time().'.'.$extension;
+            // Storage::disk('public')->put('images/'.$filename, File::get($file));
+            // }
+            // $request->img=$filename; 
+            ////////////////////////////////////////////////////////
+            // $file = $request->file('image');
+            // $filename = $file->getClientOriginalName();
+            // $extension = $file->getClientOriginalExtension();
+            // $picture = date('His').'-'.$filename;
+            // $file->move(public_path('img'), $picture); }
+
+        $product=Product::create($request->all());
+        // return $product ;
+        // return response()->json($product, 201); 
+        return $product;
       
     }     
 
@@ -64,11 +94,11 @@ return $product;
 
 public function update(Request $request, $id)
 {
-    if($request->profile){
-        Storage::disk('public')->delete($request->oldimg);
-        $request['image']=Storage::disk('public')->put('images',$request->profile);
+    if($request->image){
+        Storage::disk('local')->delete($request->image);
+        $request['image']=Storage::disk('local')->put('images',$request->image);
     }else{
-        $request['image']=$request->oldimg;
+        $request['image']=$request->image;
     }
  $product= Product::findOrFail($id); 
   $product->update($request->all());
