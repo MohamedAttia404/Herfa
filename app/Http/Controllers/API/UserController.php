@@ -43,6 +43,7 @@ class UserController extends BaseController
         $user=User::create($request->all());
         $user->place()->create($request->all());
         $success['token']=$user->createToken('MyApp')->accessToken;
+        $success['role']=$user->role;
         $success['id']=$user->id;
         // $user->createToken($request->email)->plainTextToken;
         // return $user;
@@ -86,6 +87,7 @@ class UserController extends BaseController
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
             $success['token'] = $user->createToken('MyApp')->accessToken; 
+            $success['role']=$user->role;
             $success['id']=$user->id;
    
             return $this->sendResponse($success, 'User login successfully.');
