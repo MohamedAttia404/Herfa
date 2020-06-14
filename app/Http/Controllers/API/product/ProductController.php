@@ -28,7 +28,11 @@ class ProductController extends Controller
         //     Product::all()
           //    Product::paginate(5)
         //  );
-        return Product::all();
+
+
+        // return Product::all();
+          return ProductResource::collection(Product::paginate(5));
+   
 
     }
 
@@ -45,10 +49,42 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request) {
         $request['user_id']= 1;
         $request['category_id']=1;
-        $request['image']=Storage::disk('public')->put('images',$request->image);
-        $product=Product::create($request->all());
-        return $product ;
 
+        // $request['image']=Storage::disk('public')->put('images',$request->image);
+        // $product=Product::create($request->all());
+        // return $product ;
+
+        
+        // if ($request->hasFile('image'))
+        // {
+        // $file      = $request->file('image');
+        // $filename  = $file->getClientOriginalName();
+        // $extension = $file->getClientOriginalExtension();
+        // $picture   = date('His').'-'.$filename;
+        // $file->move(public_path('image'), $picture);
+       
+   
+
+        if($request->hasFile('image'))
+        {$request['image']=Storage::disk('local')->put('images',$request->image);}
+        // {
+            // $file = $request->file('image');
+            // $extension = $file->getClientOriginalExtension();
+            // $filename = time().'.'.$extension;
+            // Storage::disk('public')->put('images/'.$filename, File::get($file));
+            // }
+            // $request->img=$filename; 
+            ////////////////////////////////////////////////////////
+            // $file = $request->file('image');
+            // $filename = $file->getClientOriginalName();
+            // $extension = $file->getClientOriginalExtension();
+            // $picture = date('His').'-'.$filename;
+            // $file->move(public_path('img'), $picture); }
+
+        $product=Product::create($request->all());
+        // return $product ;
+        // return response()->json($product, 201); 
+        return $product;
       
     }     
 
@@ -77,25 +113,31 @@ public function update(UpdateProductRequest $request, $id)
     //         $request['image']=Storage::disk('public')->put($this->path,$request['profile']);
     //     }
 
-    if($request->profile){
-        if(array_key_exists('profile',$request->all())){
-        Storage::disk('public')->delete($request->image);
-        $request['image']=Storage::disk('public')->put($this->path,$request['profile']);
+    // if($request->profile){
+    //     if(array_key_exists('profile',$request->all())){
+    //     Storage::disk('public')->delete($request->image);
+    //     $request['image']=Storage::disk('public')->put($this->path,$request['profile']);
         // $request['image']=Storage::disk('public')->put('images',$request->profile);
+    if($request->image){
+        Storage::disk('local')->delete($request->image);
+        $request['image']=Storage::disk('local')->put('images',$request->image);
+    }else{
+        $request['image']=$request->image;
     }
         $product= Product::findOrFail($id); 
         $product->update($request->all());
         return $product->fresh();
 }
+
 // return json_encode(array("ERROR"=>"NOT EXSIST"));
-return response()->json($course, 200);
+// return response()->json($product, 200);
     // else{
     //     $request['image']=$request->oldimg;
     // }
 //  $product= Product::findOrFail($id); 
 //   $product->update($request->all());
 //    return $product->fresh();
-}
+
 
 public function destroy($id)
    { 

@@ -36,5 +36,7 @@ Route::prefix('/admin')->middleware(['auth',])->group(function(){
         Route::delete('/{user}', 'UserController@destroy')->name("users.destroy");
     });
         Route::get('home', 'HomeController@index')->name('home');
-});
+   
+   
+       });
 

@@ -10,23 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
         // return Course::all();
-        // $params = $request->all();              
-        // dd(Course::all());
-        // $course = Course::where('available', $params['available']);
-        // !empty($params['name'])? $course->where('name', '=', $params['name']): null;
-
-        // if(!empty($request->course)){
-        //     $query->where('name', '=', $request->course);
-        // }
-        // $course = Course::where('available', $params['available']);
-        // if(!empty($params['name'])){
-        //     $query->where('name', 'LIKE', "%{$params['name']}%");
-        // }
-
         return CourseResource::collection(Course::paginate(3));
-
     }
 
     public function show($id){
