@@ -78,6 +78,10 @@ export class CourseAddComponent implements OnInit {
     if(localStorage.getItem("ACCESS_TOKEN")==null){
       this.router.navigate(['/login']);
     }
+    // this.buildAddForm();
+    // if(localStorage.getItem("ACCESS_TOKEN")==null){
+    //   this.router.navigate(['/login']);
+    // }
   }
 
   onSubmit(){

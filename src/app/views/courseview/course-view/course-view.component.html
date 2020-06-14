@@ -2,29 +2,70 @@
     <div class="w-100">
         <div class="card-columns">
             <ng-container *ngIf="items">
-              <form [formGroup]="searchForm" >
+              <!-- <form [formGroup]="searchForm" >
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-success" type="button">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
-                    <input class="form-control" type="text" name="search" autocomplete="off">
+                    <input class="form-control" type="text" name="search" autocomplete="off"> -->
                     <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
-                    <div class="input-group-append">
+                    <!-- <div class="input-group-append"> -->
                         <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
-                        <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
+                        <!-- <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
                     </div>
                 </div>
-              </form>
+
+              </form> -->
+
+              <!-- Card -->
+<!-- <div class="card testimonial-card"> -->
+  <div *ngIf="!flag; else flag">
+    <!-- <ng-template #thenBlock> -->
+  <div class="card" *ngFor="let item of items">
+  <div class="card-body">
+
+  <!-- Background color -->
+  <div class="card-up indigo lighten-1"></div>
+
+  <!-- Avatar -->
+  <div class="avatar white text-center m-2">
+    <!-- <img src="assets/img/1.jpg" width="150px" height="150px"
+      alt="course avatar" class = "rounded-circle"> -->
+      <img src="assets/img/course.png" class="img-fluid"
+      alt="course avatar">
+  </div>
+
+  <!-- Content -->
+ 
+    <!-- Name -->
+    <h4 class="card-title"> Course Name : {{ item.name }} </h4>
+    <hr>
+    <div style="background-color: #2AD7D7 ;">
+    <p class="card-text"> Duration : {{ item.duration }}</p>
+    <p class="card-text"> Start Date : {{ item.start_date }}</p>
+    <p class="card-text"> End Date : {{ item.end_date }}</p>
+    <p class="card-text"> Group Limit : {{ item.group_limit }}</p>
+    <p class="card-text"> Description : {{ item.description }}</p>
+    <p class="card-text"> Instructor Name : {{ item.instructor_name }}</p>
+    <p class="card-text"> Course Price : {{ item.price }}</p>
+  </div>
+    <!-- Quotation -->
+  </div>
+</div>
+</div>
+<!-- </div> -->
+<!-- Card -->
               <!-- <ng-template [ngIf]="heroes" [ngIfElse]="loading"> -->
-                <div *ngIf="!flag; else flag">
+                <!-- <div *ngIf="!flag; else flag"> -->
                   <!-- <ng-template #thenBlock> -->
-                <div class="card" *ngFor="let item of items">
+                <!-- <div class="card" *ngFor="let item of items">
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.name }} 
+                      
+                        <h5 class="card-title">{{ item.name }}  -->
                             <!-- <a href="javascript:;" class="d-none"><i class="fa fa-edit"></i></a> -->
-                        </h5>
+                        <!-- </h5>
                         <p class="card-text">{{ item.duration }}</p>
                         <p class="card-text">{{ item.start_date }}</p>
                         <p class="card-text">{{ item.end_date }}</p>
@@ -34,11 +75,11 @@
                         <p class="card-text">{{ item.price }}</p>
                         
                     </div>
-                </div>
-                <ng-template #flag> 
+                </div> -->
+                <!-- <ng-template #flag> 
                   <h1>search</h1>
-              </ng-template> 
-              </div>
+              </ng-template>  -->
+              <!-- </div> -->
                 </ng-container>
         </div>
     </div>
@@ -72,10 +113,11 @@
 
  <div class="container">
     <div class="row justify-content-center" id ="btn">
-        <button type="button" class="btn btn-outline-info"  (click) ="previousPage()"> Previous</button>
-        <button type="button" class="btn btn-outline-info"  (click) ="nextPage()" > Next</button>
+      <button type="button" class="btn btn-outline-info m-2" (click) ="previousPage()"> Previous</button>
+      <button type="button" class="btn btn-outline-info m-2" (click) ="nextPage()" > Next</button>
     </div>
 </div>
+
 
 <!--
 <div class="container text-center">

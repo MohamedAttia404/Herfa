@@ -7,7 +7,7 @@
 <!-- 
 <p>howa daaaaaaaaaaaaaaaaaaa</p>
 <div class="in-pages">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="sideNav">
+    <nav class="navbar navbar-expand-lg navbar-dark " id="sideNav">
         <a class="navbar-band js-scroll-trigger" href="#page-top">
             <img src="" alt="">
         </a>
@@ -17,26 +17,31 @@
         <div class="collapse navbar-cHostResourceResolver: could not resolve fonts/icomoon/style.css in context of /home/attia/attia/final/admin/src/app/shared/components/layouts/user-layout/user-layout.component.ts)ollapse" id="navbarSupportContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/dashboard']" [routerLinkActive]="['active']">Home</a>
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/dashboard']" [routerLinkActive]="['active']" id="navbar-items"> <span><i class="fas fa-home"></i></span> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/courses']" [routerLinkActive]="['active']">Courses</a>
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/courses']" [routerLinkActive]="['active']"id="navbar-items"><span><i class="fas fa-chalkboard-teacher"></i> </span> Courses</a>
+                </li>
+                <!-- <li class="nav-item inline">
+                    <i class="fas fa-shopping-cart"></i>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/products']" [routerLinkActive]="['active']"><span> <i class="fas fa-shopping-cart " ></i> </span>  Products </a>
+                               
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/category']" [routerLinkActive]="['active']"><span> <i class="fas fa-grip-horizontal"></i></span> Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/products']" [routerLinkActive]="['active']">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" [routerLink]="['../user/categoryview']" [routerLinkActive]="['active']">Category</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/user/posts']"  [routerLinkActive]="['active']">Posts</a>
+                        <a class="nav-link" [routerLink]="['/user/posts']"  routerLinkActive="active"> <span><i class="fas fa-mail-bulk"></i></span> Posts</a>
                       </li>
                   
                       <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/admin']"  [routerLinkActive]="['active']">Admin</a>
+                        <a class="nav-link" [routerLink]="['/admin']"  routerLinkActive="active"><span><i class="fas fa-users-cog"></i></span> Admin</a>
                       </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#">logout</a>
+                    <a class="nav-link js-scroll-trigger" href="#"> <span><i class="fas fa-sign-out-alt"></i></span> logout</a>
                 </li>
             </ul>
         </div>
