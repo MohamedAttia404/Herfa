@@ -21,8 +21,6 @@
                         <h5 class="card-title">{{ item.title }} 
                             <!-- <a href="javascript:;" class="d-none"><i class="fa fa-edit"></i></a> -->
                         </h5>
-                        
-                        
                     </div>
                 </div>
                 </ng-container>
@@ -30,11 +28,11 @@
     </div>
 </section>
 
- <div class="container">
-    <div class="row justify-content-center" id ="btn">
-        <button (click) ="previousPage()"> Previous</button>
-        <button (click) ="nextPage()" > Next</button>
-    </div>
+<div class="container">
+  <div class="row justify-content-center" id ="btn">
+      <button type="button" class="btn btn-outline-info" (click) ="previousPage()"> Previous</button>
+      <button type="button" class="btn btn-outline-info" (click) ="nextPage()" > Next</button>
+  </div>
 </div>
 
 <!--

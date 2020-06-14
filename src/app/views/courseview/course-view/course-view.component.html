@@ -2,21 +2,21 @@
     <div class="w-100">
         <div class="card-columns">
             <ng-container *ngIf="items">
-              <form [formGroup]="searchForm" >
+              <!-- <form [formGroup]="searchForm" >
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-success" type="button">
                             <i class="fas fa-plus"></i>
                         </button>
-                    </div>
-                    <input class="form-control" type="text" name="search" autocomplete="off">
-                    <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
-                    <div class="input-group-append">
-                        <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
-                        <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
+                    </div> -->
+                    <!-- <input class="form-control" type="text" name="search" autocomplete="off"> -->
+                                                 <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
+                    <!-- <div class="input-group-append"> -->
+                                                 <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
+                        <!-- <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
                     </div>
                 </div>
-              </form>
+              </form> -->
               <!-- <ng-template [ngIf]="heroes" [ngIfElse]="loading"> -->
                 <div *ngIf="!flag; else flag">
                   <!-- <ng-template #thenBlock> -->
@@ -72,8 +72,8 @@
 
  <div class="container">
     <div class="row justify-content-center" id ="btn">
-        <button type="button" class="btn btn-outline-info"  (click) ="previousPage()"> Previous</button>
-        <button type="button" class="btn btn-outline-info"  (click) ="nextPage()" > Next</button>
+        <button type="button" class="btn btn-outline-info m-2"  (click) ="previousPage()"> Previous</button>
+        <button type="button" class="btn btn-outline-info m-2"  (click) ="nextPage()" > Next</button>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-
+/* 
 .fa-2x {
 font-size: 2em;
 }
@@ -124,4 +124,29 @@ height: 100%;
   font-style: normal;
   font-weight: 300;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+} */
+
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: white;
 }
+
+.navbar .nav-link.active {
+  color: white;
+}
+
+/* .navbar .nav-link:hover{
+  background-color: #a5e7e7; 
+  }  */
+
+.navbar .nav-link:hover .feather,
+.navbar .nav-link.active .feather {
+  /* color: #a5e7e7; */
+  background-color:#a5e7e7 ;
+}
+
+/* .navbar .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #080808;
+} */
