@@ -13,39 +13,73 @@
                 <div class="form-group">
                     <label for="courseName">Name</label>
                     <input formControlName="name" id="courseName" name="courseName" class="form-control" 
-                    placeholder="Name" [ngClass]="{' is-invalid': submitted && f.name.errors}">
-                        
+                     placeholder="Name" [ngClass]="{' is-invalid': submitted && f.name.errors }">  
                         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                             <div *ngIf="f.name.errors.required">Name is required</div>
+                            <div *ngIf="f.name.errors.pattern" class="text-danger">Name contains only letters and spaces</div>
+                            <div *ngIf="f.name.errors.minlength" class="text-danger">Name must contain 3 characters at least</div> 
                         </div>
                 </div>
                 <div class="form-group">
                     <label for="courseDuration">Duration</label>
-                    <input formControlName="duration" id="courseDuration" name="courseDuration" class="form-control" placeholder="duration">
+                    <input formControlName="duration" id="courseDuration" name="courseDuration" class="form-control" 
+                    placeholder="duration" [ngClass]="{' is-invalid': submitted && f.duration.errors }">
+                    <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+                        <div *ngIf="f.duration.errors.required">duration is required</div>
+                        <div *ngIf="f.duration.errors.pattern" class="text-danger">duration contains only numbers</div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="courseStart_date">Start_date</label>
-                    <input formControlName="start_date" type="date" id="courseStart_date" name="courseStart_date" class="form-control" placeholder="start_date">
+                    <input formControlName="start_date" type="date" id="courseStart_date" name="courseStart_date" class="form-control"
+                     placeholder="start_date"  [ngClass]="{' is-invalid': submitted && f.start_date.errors }">
+                     <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
+                        <div *ngIf="f.start_date.errors.required">Start_date is required</div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="courseEnd_date">End_date</label>
-                    <input formControlName="end_date" type="date" id="courseEnd_date" name="courseEnd_date" class="form-control" placeholder="end_date">
+                    <input formControlName="end_date" type="date" id="courseEnd_date" name="courseEnd_date" class="form-control"
+                     placeholder="end_date" [ngClass]="{' is-invalid': submitted && f.end_date.errors }">
+                     <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
+                        <div *ngIf="f.end_date.errors.required">End_date is required</div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="courseGroup_limit">Group_limit</label>
-                    <input formControlName="group_limit" id="courseGroup_limit" name="courseGroup_limit" class="form-control" placeholder="group_limit">
+                    <input formControlName="group_limit" id="courseGroup_limit" name="courseGroup_limit" class="form-control"
+                     placeholder="group_limit"  [ngClass]="{' is-invalid': submitted && f.group_limit.errors }">
+                     <div *ngIf="submitted && f.group_limit.errors" class="invalid-feedback">
+                        <div *ngIf="f.group_limit.errors.required">Group_limit is required</div>
+                        <div *ngIf="f.group_limit.errors.pattern" class="text-danger">Group_limit contains only number</div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="courseDescription">Description</label>
-                    <textarea formControlName="description" rows="6" id="courseDescription" name="courseDescription" class="form-control" placeholder="description"><textarea></textarea>
+                    <textarea formControlName="description" rows="6" id="courseDescription" name="courseDescription" class="form-control" 
+                    placeholder="description" [ngClass]="{' is-invalid': submitted && f.description.errors }"></textarea>
+                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                        <div *ngIf="f.description.errors.required">Description is required</div>
+                        <div *ngIf="f.description.errors.minlength" class="text-danger">Description must contain 5 characters at least</div> 
+                    </div>
                 </div>   
                 <div class="form-group">
                     <label for="courseInstructor_name">Instructor_name</label>
-                    <input formControlName="instructor_name" id="courseInstructor_name" name="courseInstructor_name" class="form-control" placeholder="instructor_name">
+                    <input formControlName="instructor_name" id="courseInstructor_name" name="courseInstructor_name" class="form-control"
+                     placeholder="instructor_name" [ngClass]="{' is-invalid': submitted && f.instructor_name.errors }">
+                     <div *ngIf="submitted && f.instructor_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.instructor_name.errors.required">Instructor_name is required</div>
+                        <div *ngIf="f.instructor_name.errors.minlength" class="text-danger">Instructor_name must contain 5 characters at least</div> 
+                    </div>
                 </div>        
                 <div class="form-group">
                     <label for="coursePrice">Price</label>
-                    <input formControlName="price" id="coursePrice" name="coursePrice" class="form-control" placeholder="price">
+                    <input formControlName="price" id="coursePrice" name="coursePrice" class="form-control"
+                     placeholder="price" [ngClass]="{' is-invalid': submitted && f.price.errors }">
+                     <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                        <div *ngIf="f.price.errors.required">price is required</div>
+                        <div *ngIf="f.price.errors.pattern" class="text-danger">price contains only numbers</div>
+                    </div>
                 </div>    
                 <!-- <div class="form-group">
                     <label for="courseUser_id">User_id</label>

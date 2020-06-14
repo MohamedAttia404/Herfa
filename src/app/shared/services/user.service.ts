@@ -8,7 +8,7 @@ import { retry, catchError } from 'rxjs/operators';
 @Injectable({providedIn:'root'})
 
 export class UserService {
-
+  auth=[];
   private apiUrl=" http://127.0.0.1:8000/api";
   
   private userSubject= new BehaviorSubject(false);
@@ -52,18 +52,37 @@ export class UserService {
  
 
   setToken(res) {
+ 
+    
           localStorage.setItem("ACCESS_TOKEN",'Bearer '+res.token);
           localStorage.setItem("USER_ID", res.id);
+          localStorage.setItem("ROLE", res.role);
   }
     signOut() {
       localStorage.removeItem("ACCESS_TOKEN");
       localStorage.removeItem("USER_ID");
+      localStorage.removeItem("ROLE");
 
     }
 
-  //   isAuthenticated() {
-  //     return  this.authSubject.asObservable();
-  // }
+    isAuthenticated() {
+
+      
+      let x=localStorage.getItem("ROLE");
+    
+
+      if(x == '0'){
+        this.auth[0]='user';
+      }else if(x=='1'){
+        this.auth[0]='inv';
+      
+      }else if(x=='2'){
+        this.auth[0]='admin';
+      }
+      this.auth[1]=localStorage.getItem("USER_ID");
+      return this.auth;
+      
+  }
   singIn(user){
     return this.http.post(`${this.apiUrl}/login`,user);
   }

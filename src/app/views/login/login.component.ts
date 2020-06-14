@@ -28,11 +28,9 @@ export class LoginComponent implements OnInit {
 
 
     this.userService.singIn(user).subscribe((res: any) => {
-     
-      // console.log(res);
       if (res.success) {
         this.userService.setToken(res.data);
-        this.router.navigate(['/']);
+        this.router.navigate(['/user/posts']);
       
       }else{
           console.log("untrusgh user");

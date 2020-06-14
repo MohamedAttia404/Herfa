@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shared/services/posts.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommentServiceService } from 'src/app/shared/services/comment-service.service';
+import { UserService } from  './../../../shared/services/user.service';
 
 
 @Component({
@@ -12,16 +13,22 @@ import { CommentServiceService } from 'src/app/shared/services/comment-service.s
 export class PostsListComponent implements OnInit {
 
   posts: any=[];
- 
+  auth:any;
+  
   constructor(private _postsService: PostsService,
-    private toastr: ToastrService,
-    private _commentService: CommentServiceService) { }
+    // private toastr: ToastrService,
+    private _commentService: CommentServiceService,
+    private userService:UserService,
+    private toastr: ToastrService) { }
+    //===============================================================================
+    // getPosts(){
+    //   console.log("get posts Component");
 //===============================================================================
   getPosts(){
     console.log("get posts Component");
    
     this._postsService.getPosts().subscribe((res: any) =>{
-     console.log(res.body.data[0].comments[0].id);
+    //  console.log(res.body.data[0].comments[0].id);
     this.posts = res.body.data;
     });
   }
@@ -76,11 +83,18 @@ deleteItem(id:number){
     this._postsService.deletePost(id).subscribe((res:any )=> {
       console.log("hello");
       
-      this.toastr.success('post deleted successfuly', 'success', {timeOut:1000, closeButton: true, progressBar: true});
-      console.log("delete res: "+res);
-      
+    //   this._postsService.getPosts().subscribe((res: any) =>{
+    //     console.log(res.body.links);
+    //     this.posts = res.body.data;
+      });
+    }
+    // //===============================================================================
+    
+    //================================================================================
+    ngOnInit(): void {
+      this.auth=this.userService.isAuthenticated();
       this.getPosts();
-  });
+  // });
 }
 
 deleteComment(post_id:number, comment_id:number){
@@ -93,8 +107,9 @@ deleteComment(post_id:number, comment_id:number){
 }
 
 //================================================================================
-  ngOnInit(): void {
-    this.getPosts();
+  // ngOnInit(): void {
+  //   this.getPosts();
+  //   }
+    
   }
-
-}
+  

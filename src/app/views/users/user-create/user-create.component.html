@@ -1,29 +1,7 @@
 <div class="card-header">
   <h3 class="card-title">Create User</h3>
 </div>
-<!--  -->
-<!-- <mat-tab-group>
-  
-  <mat-tab label="Basic Setting"> 
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </mat-tab>
-  
-  <mat-tab label="SMS Setting">
-    <p>This is SMS Setting</p>
-  </mat-tab>
-  
-  <mat-tab label="Email Setting">
-    <p>This is Email Setting</p>
-  </mat-tab>
-      
-</mat-tab-group> -->
-  
-<!--  -->
+
 <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="my-4">
   <div class="card-body">
     <div class="form-group">
@@ -31,84 +9,130 @@
       <input type="file" name="profile" (change)="onFileChange($event)" class="form-control" id="exampleInputarea"
         placeholder="Enter Image">
     </div>
+
+
     <div class="row mb-3">
       <div class="col input-group">
         <input type="text" class="form-control" id="first_name" autofocus placeholder="First Name" name="first_name"
-          formControlName="first_name">
+          formControlName="first_name"
+          [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.first_name.errors }">
+
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-user"></span>
           </div>
         </div>
+
+        <div *ngIf="submitted &amp;&amp; uploadForm.controls.first_name.errors" class="text-danger">
+          <div *ngIf="uploadForm.controls.first_name.errors.required">First Name is required</div>
+          <div *ngIf="uploadForm.controls.first_name.errors.pattern" class="text-danger">First Name contains only
+            letters and spaces</div>
+          <div *ngIf="uploadForm.controls.first_name.errors.minLength" class="text-danger">First Name must contain 3
+            characters at least</div>
+        </div>
+
+
       </div>
       <div class="col input-group">
         <input type="text" class="form-control" id="last_name" type="text" autofocus placeholder="Last Name"
-          name="last_name" formControlName="last_name">
+          name="last_name" formControlName="last_name"
+          [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.last_name.errors }">
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-user"></span>
           </div>
+        </div>
+        <div *ngIf="submitted &amp;&amp; uploadForm.controls.last_name.errors" class="text-danger">
+          <div *ngIf="uploadForm.controls.last_name.errors.required">Last Name is required</div>
+          <div *ngIf="uploadForm.controls.last_name.errors.pattern" class="text-danger">Last Name contains only letters
+            and spaces</div>
+          <div *ngIf="uploadForm.controls.last_name.errors.minLength" class="text-danger">Last Name must contain 3
+            characters at least</div>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label for="exampleInputaddress">Email</label>
       <input type="text" name="email" class="form-control" id="exampleInputemail" formControlName="email"
-        placeholder="Enter email">
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.email.errors }" placeholder="Enter email">
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.email.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.email.errors.required">Email is required</div>
+        <div *ngIf="uploadForm.controls.email.errors.email">Email is not in correct formate </div>
+      </div>
     </div>
     <div class="form-group">
       Role
-      <select class="custom-select" name="role" formControlName="role">
+      <select class="custom-select" name="role" formControlName="role"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.role.errors }">
         <option value="0">user</option>
         <option value="1">investor</option>
       </select>
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.role.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.role.errors.required">Role is required</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="exampleInputaddress">Mobile</label>
       <input type="text" name="mobile" class="form-control" id="exampleInputMobile" formControlName="mobile"
-        placeholder="Enter Mobile">
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.mobile.errors }" placeholder="Enter Mobile">
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.mobile.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.mobile.errors.pattern">Mobile is contains only number</div>
+        <div *ngIf="uploadForm.controls.mobile.errors.maxLength">Mobile is contain only 14 number </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="exampleInputaddress">National ID</label>
       <input type="text" name="national_id" class="form-control" id="exampleInputnational" formControlName="national_id"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.national_id.errors }"
         placeholder="Enter National_ID">
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.national_id.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.mobile.errors.pattern">Mobile is contains only number</div>
+        <div *ngIf="uploadForm.controls.mobile.errors.maxLength">Mobile is contain only 14 number </div>
+      </div>
     </div>
-    <!-- <div class="form-group">
-      <label for="exampleInputaddress">Latitude</label>
-      <input type="text" name="latitude" class="form-control" id="exampleInputLatitude" formControlName="latitude"
-        placeholder="Enter latitude">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputaddress">longitude</label>
-      <input type="text" name="longitude" class="form-control" id="exampleInputlongitude" formControlName="longitude"
-        placeholder="Enter longitude">
-    </div> -->
     <div class="form-group">
       <label for="exampleInputaddress">Address</label>
       <input type="text" name="address" class="form-control" id="exampleInputAddress" formControlName="address"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.address.errors }"
         placeholder="Enter Address">
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.address.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.address.errors.required">Address is required</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="exampleInputaddress">Password</label>
       <input type="password" name="password" class="form-control" id="exampleInputpassword" formControlName="password"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.password.errors }"
         placeholder="Enter password">
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.password.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.password.errors.required">Password is required</div>
+        <div *ngIf="uploadForm.controls.password.errors.minLength">Password more than 6</div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="password_confirmation">Password</label>
+      <label for="password_confirmation">Repeat Password</label>
       <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.password_confirmation.errors }"
         formControlName="password_confirmation" placeholder="Enter password">
+
+      <div *ngIf="submitted &amp;&amp; uploadForm.controls.password_confirmation.errors" class="text-danger">
+        <div *ngIf="uploadForm.controls.password_confirmation.errors.required">Password Confirmation is required</div>
+        <div *ngIf="uploadForm.controls.password.errors.minLength">Password Confirmation more than 6</div>
+      </div>
+
     </div>
   </div>
+
+
   <div class="form-group">
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
       <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
         (dragEnd)="markerDragEnd($event)"></agm-marker>
     </agm-map>
-  
-   
-    <div>Latitude: {{latitude}}</div>
-    <div>Longitude: {{longitude}}</div>
   </div>
+
+
+
   <div class="card-footer">
     <button type="submit" class="btn btn-primary">Create</button>
   </div>
