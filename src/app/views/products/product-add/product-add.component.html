@@ -9,42 +9,64 @@
     <div class="row">
         <div class="col-md-12">
             <form [formGroup]="addForm" (submit)="onSubmit()">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="productName">Name</label>
                     <input formControlName="name" id="productName" name="productName" class="form-control" 
-                    placeholder="Name" >
+                    placeholder="Name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
                         
-                    <!-- [ngClass]="{' is-invalid': submitted && f.name.errors}" -->
-                        <!-- <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                             <div *ngIf="f.name.errors.required">Name is required</div>
+                            <div *ngIf="f.name.errors.pattern" class="text-danger">Name contains only letters and spaces</div>
+                            <div *ngIf="f.name.errors.minlength" class="text-danger">Name must contain 3 characters at least</div>
                         </div> -->
-                </div>
+                        <div class="form-group" >
+                            <label>Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                            <div *ngIf="name.touched && name.invalid">
+                              <small *ngIf="name.errors.required" class="text-danger">name is required<br></small>
+                              <small *ngIf="name.errors.pattern" class="text-danger">name contains only letters and spaces<br></small>
+                              <small *ngIf="name.errors.minlength" class="text-danger">name must contain 3 characters at least</small>
+                            </div>   
+                          </div>
+                       
+                <!-- </div> -->
                 <div class="form-group">
                     <label for="productDescription">Description</label>
-                    <textarea formControlName="description" rows="6" id="productDescription" name="productDescription" class="form-control" placeholder="description"><textarea></textarea>
+                    <textarea formControlName="description" rows="6" id="productDescription" name="productDescription" class="form-control" placeholder="description"></textarea>
+                    <div *ngIf="description.touched && description.invalid">
+                        <small *ngIf="description.errors.required" class="text-danger">description is required<br></small>
+                        <small *ngIf="description.errors.minlength" class="text-danger">description must contain 5 characters at least</small>
+                      </div>
                 </div>  
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label for="productImage">Image</label>
                     <input type="file" id ="image" (change)="onSelectedFile($event)" accept="image/*">
-                </div> -->
-
-                <div class="form-group">
-                    <label for="exampleInputaddress">Image</label>
-                    <input type="file"  name="profile" (change)="onFileChange($event)"  class="form-control" id="exampleInputarea"
-                        placeholder="Enter Image" >
+                    <!-- <input class="myinput" type="file" name="file" (change)="onFileChange($event)"/> -->
                 </div>
 
                 <div class="form-group">
                     <label for="productPrice">Price</label>
                     <input formControlName="price" id="productPrice" name="productPrice" class="form-control" placeholder="price">
+                    <div *ngIf="price.touched && price.invalid">
+                        <small *ngIf="price.errors.required" class="text-danger">price is required<br></small>
+                        <small *ngIf="price.errors.pattern" class="text-danger">Invalid Price<br></small>
+                      </div>
                 </div>  
                 <div class="form-group">
                     <label for="productquantity">quantity</label>
                     <input formControlName="quantity" id="productquantity" name="productquantity" class="form-control" placeholder="quantity">
+                    <div *ngIf="quantity.touched && quantity.invalid">
+                        <small *ngIf="quantity.errors.required" class="text-danger">quantity is required<br></small>
+                        <small *ngIf="quantity.errors.pattern" class="text-danger">Invalid Quantity<br></small>
+                      </div>
                 </div>
                 <div class="form-group">
                     <label for="productIs_new">is_new</label>
                     <input formControlName="is_new" id="productIs_new" name="productIs_new" class="form-control" placeholder="is_new">
+                    <div *ngIf="is_new.touched && is_new.invalid">
+                        <small *ngIf="is_new.errors.required" class="text-danger">is_new is required<br></small>
+                        <small *ngIf="is_new.errors.pattern" class="text-danger">Invalid status<br></small>
+                      </div>
                 </div>
       
                 
@@ -58,7 +80,7 @@
                     <label for="courseCategory_id">Category_id</label>
                     <input formControlName="category_id" id="courseCategory_id" name="courseCategory_id" class="form-control" placeholder="Category_id">
                 </div>    -->
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary"  [disabled]="addForm.invalid">Save</button>
             </form>
 
         </div>

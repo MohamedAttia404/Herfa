@@ -11,33 +11,57 @@
             <form [formGroup]="addForm" (submit)="onSubmit()">
                 <div class="form-group">
                     <label for="eventName">Title</label>
-                    <input formControlName="title" id="eventName" name="eventName" class="form-control" 
+                    <!-- <input formControlName="title" id="eventName" name="eventName" class="form-control" 
                     placeholder="Title" [ngClass]="{' is-invalid': submitted && f.name.errors}">
                         
                         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                            <div *ngIf="f.name.errors.required">Title is required</div>
+                            <div *ngIf="f.name.errors.required">Title is required</div> -->
+                            <input type="text" class="form-control" formControlName="title">
+                            <div *ngIf="title.touched && title.invalid">
+                              <small *ngIf="title.errors.required" class="text-danger">title is required<br></small>
+                              <small *ngIf="title.errors.pattern" class="text-danger">title contains only letters and spaces<br></small>
+                              <small *ngIf="title.errors.minlength" class="text-danger">title must contain 3 characters at least</small>
+                            </div>   
                         </div>
-                </div>
+                <!-- </div> -->
                 <div class="form-group">
                     <label for="eventDescription">Description</label>
-                    <textarea formControlName="description" rows="6" id="eventDescription" name="eventDescription" class="form-control" placeholder="description"><textarea></textarea>
+                    <textarea formControlName="description" rows="6" id="eventDescription" name="eventDescription" class="form-control" placeholder="description"></textarea>
+                    <div *ngIf="description.touched && description.invalid">
+                        <small *ngIf="description.errors.required" class="text-danger">description is required<br></small>
+                        <small *ngIf="description.errors.minlength" class="text-danger">description must contain 5 characters at least</small>
+                      </div>
                 </div>  
 
                 <div class="form-group">
                     <label for="eventAddress">Address</label>
                     <input formControlName="address" id="eventAddress" name="eventAddress" class="form-control" placeholder="address">
+                    <div *ngIf="address.touched && address.invalid">
+                        <small *ngIf="address.errors.required" class="text-danger">address is required<br></small>
+                        <small *ngIf="address.errors.minlength" class="text-danger">address must contain 5 characters at least</small>
+                      </div>
                 </div>  
                 <div class="form-group">
                     <label for="event_time">Event_time</label>
                     <input formControlName="event_time" id="event_time" type="date" name="event_time" class="form-control" placeholder="event_time">
+                    <div *ngIf="event_time.touched && event_time.invalid">
+                        <small *ngIf="event_time.errors.required" class="text-danger">event_time is required<br></small>
+                      </div>
                 </div>
                 <div class="form-group">
                     <label for="eventDuration">Duration</label>
                     <input formControlName="duration" id="eventDuration" name="eventDuration" class="form-control" placeholder="duration">
+                    <div *ngIf="duration.touched && duration.invalid">
+                        <small *ngIf="duration.errors.required" class="text-danger">duration is required<br></small>
+                      </div>
                 </div>
                 <div class="form-group">
                     <label for="eventNum_attendees">num_attendees</label>
                     <input formControlName="num_attendees" id="eventNum_attendees" name="eventNum_attendees" class="form-control" placeholder="num_attendees">
+                    <div *ngIf="num_attendees.touched && num_attendees.invalid">
+                        <small *ngIf="num_attendees.errors.required" class="text-danger"> num_attendees is required<br></small>
+                        <small *ngIf="num_attendees.errors.pattern" class="text-danger">Only Numbers<br></small>
+                      </div>
                 </div> 
       
                 
@@ -51,7 +75,7 @@
                     <label for="courseCategory_id">Category_id</label>
                     <input formControlName="category_id" id="courseCategory_id" name="courseCategory_id" class="form-control" placeholder="Category_id">
                 </div>    -->
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary"[disabled]="addForm.invalid">Save</button>
             </form>
 
         </div>

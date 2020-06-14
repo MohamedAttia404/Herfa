@@ -1,0 +1,13 @@
+#sideNav{
+/*ffff background-color:rgb(75, 173, 243); */
+background-color:#2AD7D7  ;
+}
+
+.navbar .nav-link:hover{
+    background-color: #a5e7e7;    
+}  
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: white;
+  } 

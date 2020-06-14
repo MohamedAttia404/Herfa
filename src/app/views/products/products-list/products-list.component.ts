@@ -22,10 +22,32 @@ export class ProductsListComponent implements OnInit {
     console.log("getAllComponent");
     
     this.productsService.getAll().subscribe(res =>{
-     console.log(res);
-    this.items = res;
+    // console.log(res);
+    this.items = res.body.data;
 
     });
+  }
+
+  public previousPage() {
+  
+    if (this.productsService.prev !== undefined && this.productsService.prev !== null) {
+      this.items = [];
+      this.productsService.sendGetRequestToUrl(this.productsService.prev).subscribe((res:any) => {
+        console.log(res);
+        this.items = res.body.data;
+      })
+    }
+  
+  }
+
+  public nextPage() {
+    if (this.productsService.next !== undefined && this.productsService.next !== null) {
+      this.items = [];
+      this.productsService.sendGetRequestToUrl(this.productsService.next).subscribe((res:any) => {
+        console.log(res);
+        this.items = res.body.data;
+      })
+    }
   }
   deleteItem(model,id){
     this.modelService.open(model).result.then(result => {

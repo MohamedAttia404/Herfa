@@ -65,6 +65,24 @@ const routes: Routes = [
         loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule )
       },
       {
+        path: 'products',
+        loadChildren: () => import('./views/productview/productview.module').then(m => m.ProductviewModule )
+
+      },
+      {
+        path: 'productview',
+        loadChildren: () => import('./views/productview/productview.module').then(m => m.ProductviewModule )
+      },
+      {
+        path: 'events',
+        loadChildren: () => import('./views/eventview/eventview.module').then(m => m.EventviewModule )
+
+      },
+      {
+        path: 'eventview',
+        loadChildren: () => import('./views/eventview/eventview.module').then(m => m.EventviewModule )
+      },
+      {
         path: 'categoryview',
         loadChildren: () => import('./views/categoryview/categoryview.module').then(m => m.CategoryviewModule )
       },

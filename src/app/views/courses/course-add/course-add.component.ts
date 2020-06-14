@@ -25,9 +25,9 @@ export class CourseAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildAddForm();
-    if(localStorage.getItem("ACCESS_TOKEN")==null){
-      this.router.navigate(['/login']);
-    }
+    // if(localStorage.getItem("ACCESS_TOKEN")==null){
+    //   this.router.navigate(['/login']);
+    // }
   }
 
   onSubmit(){

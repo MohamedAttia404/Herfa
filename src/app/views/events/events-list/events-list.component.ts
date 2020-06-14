@@ -23,10 +23,34 @@ export class EventsListComponent implements OnInit {
     
     this.eventsService.getAll().subscribe(res =>{
      console.log(res);
-    this.items = res;
+    this.items = res.body.data;
 
     });
   }
+
+  public previousPage() {
+  
+    if (this.eventsService.prev !== undefined && this.eventsService.prev !== null) {
+      this.items = [];
+      this.eventsService.sendGetRequestToUrl(this.eventsService.prev).subscribe((res:any) => {
+        console.log(res);
+        this.items = res.body.data;
+      })
+    }
+  
+  }
+
+
+  public nextPage() {
+    if (this.eventsService.next !== undefined && this.eventsService.next !== null) {
+      this.items = [];
+      this.eventsService.sendGetRequestToUrl(this.eventsService.next).subscribe((res:any) => {
+        console.log(res);
+        this.items = res.body.data;
+      })
+    }
+  }
+
   deleteItem(model,id){
     this.modelService.open(model).result.then(result => {
       this.eventsService.delete(id).subscribe(res => {
