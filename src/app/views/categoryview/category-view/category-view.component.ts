@@ -16,11 +16,12 @@ import { Router } from '@angular/router';
 export class CategoryViewComponent implements OnInit {
 
   items: any = [];
-  interests: Interest =new Interest();
+  interests;
   interests_arr :any=[];
 
-  // checked: boolean= false;
-  disableButton: boolean= false;
+  checked: boolean= false;
+  sub: boolean= false;
+  // htmlStr: string;
 
   constructor(
     private categoryviewService: CategoryviewService,
@@ -32,6 +33,7 @@ export class CategoryViewComponent implements OnInit {
      ngOnInit(): void {
       this.getAll();
       this.getInterest();
+      this.checked;
     }
 
       //get all courses
@@ -100,19 +102,72 @@ public nextPage() {
 
 
   //================================ interest/ subscribe ======================
-  interest(id: number){
-    console.log(id);
-    let interests = id;
+  // interest(id: number){
+  //   console.log(id);
+  //   // let interests = id;
     
-      console.log("interest array is empty");
-      this.categoryviewService.interest(interests).subscribe((res: any)=>{
-        console.log(res);
-        // this._router.navigate(['/categoryview']);
-      });
-   // }
+  //     this.categoryviewService.interest(id).subscribe((res: any)=>{
+  //       console.log(res);
+  //       // this._router.navigate(['/categoryview']);
+  //       this.ngOnInit();
+  //     });
+  //  // }
    
 
-  }
+  // }
+  // interest(id){
+  //   if (this.interests_arr.length == 0){
+  //     console.log("array is empty");
+      
+  //     return this.categoryviewService.interest(id).subscribe((res: any)=>{
+  //             console.log(res);
+  //             this.ngOnInit();
+  //     });
+  //   }else{
+  //     this.interests_arr.map((res)=>{
+  //       if(res.category_id==id){
+  //        let interests= res.id
+  //        return this.categoryviewService.remove_interest(interests).subscribe((res: any)=>{
+  //         console.log(res);
+  //         this.ngOnInit();
+  //         // this._router.navigate(['/categoryview']);
+  //         });
+  //       }else{
+  //         return this.categoryviewService.interest(id).subscribe((res: any)=>{
+  //           console.log(res);
+  //           this.ngOnInit();
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
+  // let exist= false;
+// let interests;
+interest(id){
+    
+      this.interests_arr.map((res)=>{
+        if(res.category_id==id){
+         this.interests= res.id
+         this.checked= true;
+          }
+      });
+      if(this.checked){
+        this.categoryviewService.remove_interest(this.interests).subscribe((res: any)=>{
+          console.log(res);
+          this.sub=false;
+          // this.htmlStr ="Subscribe";
+          this.ngOnInit();
+        });
+      }else{
+        this.categoryviewService.interest(id).subscribe((res: any)=>{
+            console.log(res);
+          // this.htmlStr ="Unsubscribe";
+
+            this.ngOnInit();
+            this.sub=true;
+          });
+      }
+    }
 
     //================================ interest/ subscribe ======================
     remove_interest(id: number){

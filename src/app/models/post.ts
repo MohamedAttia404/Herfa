@@ -4,6 +4,7 @@ export class Post {
         public title: string='',
         public content: string='',
         public user_id: number=0,
-        public comments: any=[]
+        public comments: any=[],
+        public user_info: any=[]
     ){}
 }
