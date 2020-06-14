@@ -25,7 +25,7 @@ class CourseController extends Controller
         //     $query->where('name', 'LIKE', "%{$params['name']}%");
         // }
 
-        return CourseResource::collection(Course::paginate(6));
+        return CourseResource::collection(Course::paginate(3));
 
     }
 
