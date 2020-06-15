@@ -12,8 +12,17 @@ div.card{
     top: 0;
   }
 
-.hl{
+/* .hl{
     border: 1px solid #2b4880;
     width: 300px;
     
+} */
+
+h2{
+    color:#253e6e;
+}
+
+.he{
+    color:#253e6e;
+    text-shadow: 2px 2px 4px #41414eee;
 }
