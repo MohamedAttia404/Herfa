@@ -31,7 +31,7 @@ export class ProductsService {
       this.parseLinks(res.body.links);
   
     }));
-  }
+  } 
 
   
   delete(id){
@@ -41,7 +41,7 @@ export class ProductsService {
     console.log(data);
     
     return this.http.post(`${ environment.apiUrl }/api/products`,data,{
-      headers: {'Accept':'application/json'}
+      headers: {'Accept':'application/json', 'Authorization':localStorage.getItem("ACCESS_TOKEN"),}
       });
   }
   getProduct(id){

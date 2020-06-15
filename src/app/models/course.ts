@@ -9,7 +9,7 @@ export class Course {
         public description: string='',
         public instructor_name: string='',
         public price: string='',
-        // public user_id: number=0,
-        // public category_id: string=''
+        public user_id: any='',
+        public category_id: any=''
     ){}
 }

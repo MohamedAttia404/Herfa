@@ -27,7 +27,7 @@ export class CoursesListComponent implements OnInit {
     console.log("getAllComponent");
     
     this.coursesService.getAll().subscribe((res: any) =>{
-    //  console.log(res);
+     console.log(res.body.data);
     this.items = res.body.data;
 
     // this.coursesService.getAll().subscribe((courses: any[])=>{

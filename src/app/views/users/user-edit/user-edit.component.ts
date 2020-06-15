@@ -19,11 +19,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserEditComponent implements OnInit {
   
-  user;
-  userInfo= new user();
+  // user;
+  // userInfo= new user();
   // 
   image;
-  // user=new user();
+  user=new user();
   uploadForm: FormGroup; 
   submitted = false; 
   title: string = 'AGM project';
@@ -65,9 +65,11 @@ export class UserEditComponent implements OnInit {
         this.activatedRoute.paramMap.subscribe((paramMap)=>{
               if(paramMap.has('id')){
                 const id=paramMap.get('id');
-                this.user=this.userService.getUsersById(id).subscribe((res:any)=>{
-                      this.user=res.data;
-                      console.log(res.data);
+                this.userService.getUsersById(id).subscribe((res:any)=>{
+                  console.log( res.data);
+                  this.user=res.data;
+                  this.image=res.data.avatar;
+                  this.user.address=res.data.place.address;
 
                                   
                   });
@@ -93,24 +95,26 @@ export class UserEditComponent implements OnInit {
       if (this.uploadForm.invalid) {
         return;
       }
-     var formData: any = new FormData();
-      formData.append("profile", this.uploadForm.get('profile').value);
-      formData.append("first_name", this.uploadForm.get('first_name').value);
-      formData.append("last_name", this.uploadForm.get('last_name').value);
-      formData.append("mobile", this.uploadForm.get('mobile').value);
-      formData.append("national_id", this.uploadForm.get('national_id').value);
-      formData.append("role", this.uploadForm.get('role').value);
-      formData.append("email", this.uploadForm.get('email').value);
-      formData.append("latitude", this.latitude);
-      formData.append("longitude", this.longitude);
-      formData.append("address", this.uploadForm.get('address').value);
-      formData.append("password", this.uploadForm.get('password').value);
-      formData.append("password_confirmation", this.uploadForm.get('password_confirmation').value); 
-      
-    
 
-  this.userService.updateUser(formData).subscribe((res: any)=>{
-   
+      
+  //    var formData: any = new FormData();
+      
+  //     // formData.append("profile", this.uploadForm.get('profile').value);
+  //     formData.append("first_name", this.uploadForm.get('first_name').value);
+  //     formData.append("last_name", this.uploadForm.get('last_name').value);
+  //     formData.append("mobile", this.uploadForm.get('mobile').value);
+  //     formData.append("national_id", this.uploadForm.get('national_id').value);
+  //     formData.append("role", this.uploadForm.get('role').value);
+  //     formData.append("email", this.uploadForm.get('email').value);
+  //     formData.append("latitude", this.latitude);
+  //     formData.append("longitude", this.longitude);
+  //     formData.append("address", this.uploadForm.get('address').value);
+  //     formData.append("password", this.uploadForm.get('password').value);
+  //     formData.append("password_confirmation", this.uploadForm.get('password_confirmation').value); 
+  // this.userService.updateUser(formData,this.user.id).subscribe((res: any)=>{ 
+    const user = {...this.user};
+  this.userService.updateUser(user).subscribe((res: any)=>{ 
+    // console.log(res);
     
     this.toastr.success('User UPdated successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
     this.router.navigate(['../admin/users']);

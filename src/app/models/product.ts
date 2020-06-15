@@ -7,7 +7,7 @@ export class Product {
         public price: string='',
         public quantity: string='',
         public is_new: string='',
-        // public user_id: string='',
-        // public category_id: string=''
+        public user_id: any='',
+        public category_id: any=''
     ){}
 }

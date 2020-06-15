@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit {
   title: string = 'AGM project';
   latitude: number;
   longitude: number;
-  zoom: number=12;
+  zoom: number=10;
   
   private geoCoder;
   // title;lat;lng;
@@ -49,14 +49,11 @@ export class UserProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         const id = paramMap.get('id');
         this.user = this.userService.getUsersById(id).subscribe((res: any) => {
-          this.user = res.data;
-          console.log("**************");
-          console.log(this.user.place.address);
-       
-        this.latitude=31.0409872;
-        this.longitude=31.386410809375020;
-     
-          console.log("**************");
+          const data = res.data;
+          data.place.latitude= +data.place.latitude; 
+          data.place.longitude= +data.place.longitude; 
+          this.user = data;
+
 
 
 

@@ -20,8 +20,8 @@
           <th>description</th>
           <th>instructor_name</th>
           <th>price</th>
-          <th>user_id</th>
-          <th>category_id</th>
+          <th>user</th>
+          <th>category</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -36,8 +36,8 @@
           <td>{{item.description}}</td>
           <td>{{item.instructor_name}}</td>
           <td>{{item.price}}</td>
-          <td>{{item.user_id}}</td>
-          <td>{{item.category_id}}</td>
+          <td>{{item.user.first_name}} {{item.user.last_name}}</td>
+          <td>{{item.category.title}}</td>
           <td style="width: 150px">
             <a href="#" class="btn btn-default text-primary" [routerLink]="['../show',item.id]">
             <i class="fa fa-eye"></i>

@@ -27,7 +27,7 @@ export class UserCreateComponent implements OnInit {
   title: string = 'AGM project';
   latitude: number;
   longitude: number;
-  zoom: number;
+  zoom: number=10;
   // address: string;
   private geoCoder;
   // title;lat;lng;
@@ -49,7 +49,7 @@ export class UserCreateComponent implements OnInit {
 
     this.uploadForm = this.formBuilder.group(
       {
-      profile: [null],
+      profile:new FormControl ('',[Validators.required,]),
       first_name: new FormControl ('',[Validators.required,Validators.pattern("[A-Za-z . '-]+"), Validators.minLength(3)]),
       last_name:  new FormControl ('',[Validators.required,Validators.pattern("[A-Za-z . '-]+"), Validators.minLength(3)]),
      mobile:  new FormControl ('',[Validators.pattern("[0-9]+"),Validators.maxLength(14)]),
@@ -128,7 +128,7 @@ export class UserCreateComponent implements OnInit {
   
   
   markerDragEnd($event: MouseEvent) {
-    console.log($event);
+  
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
     // this.getAddress(this.latitude, this.longitude);

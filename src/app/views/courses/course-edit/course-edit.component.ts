@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
-
+import { CategoriesService } from "./../../../shared/services/categories.service";
 
 
 
@@ -17,6 +17,8 @@ export class CourseEditComponent implements OnInit {
   editForm: FormGroup;
   submitted: boolean;
   courseId;
+  categories:any=[];
+  userid;
   // courseDetails:Array<object> = [];
   courseDetails= {};
   course:Course=new Course() ;
@@ -26,6 +28,7 @@ export class CourseEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private courseService: CoursesService,
+     private categoriesService: CategoriesService,
      private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -39,10 +42,18 @@ export class CourseEditComponent implements OnInit {
         // console.log("res"+res.data.name);
         // this.courseDetails = res;
         this.course = res.data;
+        this.course.user_id= res.data.user.id;
+        this.course.category_id= res.data.category.id;
         // console.log("details"+this.courseDetails);
       });
       
     });
+    this.categoriesService.allCategory().subscribe((res: any) =>{
+      
+      // this.userid=Number(localStorage.getItem("USER_ID"));
+     this.categories = res.data;
+ 
+     });
   }
 
   // to access inputs
@@ -58,6 +69,8 @@ export class CourseEditComponent implements OnInit {
       description: [null, Validators.required],
       instructor_name: [null, Validators.required],
       price: [null, Validators.required],
+      user_id: [''],
+      category_id: [null],
       // user_id: [null, Validators.required],
       // category_id: [null, Validators.required],
     });
@@ -83,7 +96,7 @@ export class CourseEditComponent implements OnInit {
   //       this.toastr.error(err.statusText, 'Error!', {timeOut:3000, closeButton: true, progressBar: true});
   //     }
   //   );
-  // }
+  // } 
 
   onSubmit(form: NgForm){
     console.log(form);

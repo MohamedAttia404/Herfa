@@ -31,18 +31,18 @@
 
                 <div class="profile-info-value">
                   <i class="fa fa-location" aria-hidden="true"></i>
-                  <span>{{user.place.address}}</span>
+                  <span>{{user?.place?.address}}</span>
 
                 </div>
               </div>
               <div class="profile-info-row">
                 <div class="profile-info-name"> latitude:- </div>
                 <div class="profile-info-value">
-                  <span>{{user.place.latitude}}</span>
+                  <span>{{user?.place?.latitude}}</span>
                 </div>
                 <div class="profile-info-name"> longitude:- </div>
                 <div class="profile-info-value">
-                  <span>{{user.place.longitude}}</span>
+                  <span>{{user?.place?.longitude}}</span>
                 </div>
               </div>
               <div class="profile-info-row">
@@ -73,23 +73,19 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
 
-        <div class="space-20">
-          <h1>this</h1>
+        <div *ngIf="user?.place?.latitude" class="space-20">
+       
 
-          <agm-map [latitude]="user.place.latitude" [longitude]="user.place.longitude" [zoom]="zoom">
-            <agm-marker [latitude]="user.place.latitude" [longitude]="user.place.longitude" 
+          <agm-map [latitude]="user?.place?.latitude" [longitude]="user?.place?.longitude" [zoom]="zoom">
+            <agm-marker [latitude]="user?.place?.latitude" [longitude]="user?.place?.longitude" 
               ></agm-marker>
           </agm-map>
-          <h1>this</h1>
-          <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-            <agm-marker [latitude]="latitude" [longitude]="longitude" 
-              ></agm-marker>
-          </agm-map>
+
 
         </div>
 
 <!-- 
-  import {
+  import {   
     UserService
   } from './../../../shared/services/user.service';
 

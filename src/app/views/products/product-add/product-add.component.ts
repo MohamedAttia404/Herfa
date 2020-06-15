@@ -4,7 +4,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup,FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { CategoriesService } from "./../../../shared/services/categories.service";
 
 @Component({
   selector: 'app-product-add', 
@@ -15,9 +15,12 @@ export class ProductAddComponent implements OnInit {
   image;
   addForm: FormGroup;
   submitted: boolean;
+  categories:any=[];
+  userid;
   constructor(private router: Router,
     private fb: FormBuilder,
      private productService: ProductsService,
+     private categoriesService: CategoriesService,
      private toastr: ToastrService) { 
 
       let addFormControls = {
@@ -46,6 +49,8 @@ export class ProductAddComponent implements OnInit {
           Validators.required,
           Validators.pattern("[0-1]"),
         ]),
+        user_id: [''],
+        category_id: [null],
 
       }
       this.addForm = this.fb.group(addFormControls);
@@ -53,6 +58,12 @@ export class ProductAddComponent implements OnInit {
 
   ngOnInit(): void {
     // this.buildAddForm();
+    this.categoriesService.allCategory().subscribe((res: any) =>{
+      
+      this.userid=Number(localStorage.getItem("USER_ID"));
+     this.categories = res.data;
+ 
+     });
   }
    // onFileChange(e){
     onFileChange(event){
@@ -76,6 +87,8 @@ export class ProductAddComponent implements OnInit {
     formData.append("price", this.addForm.get('price').value);
     formData.append("quantity", this.addForm.get('quantity').value);
     formData.append("is_new", this.addForm.get('is_new').value);
+    formData.append("category_id", this.addForm.get('category_id').value);
+    formData.append("user_id", this.addForm.get('user_id').value);
 
 console.log(formData);
 

@@ -35,6 +35,7 @@ export class CategoryviewService {
     // return this.http.get(this._courseApi);
   }
 
+
   public sendGetRequestToUrl(url: string){
     return this.http.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
       console.log(res);

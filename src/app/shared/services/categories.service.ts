@@ -16,7 +16,11 @@ export class CategoriesService {
     return this.http.get(`${ environment.apiUrl }/api/categories`);
     // return this.http.get(this._courseApi);
   }
-
+  public allCategory(){
+    console.log("allCategories");
+    return this.http.get(`${ environment.apiUrl }/api/allCategories`);
+    // return this.http.get(this._courseApi);
+  }
   // Delete Course
   delete(id){
     return this.http.delete(`${ environment.apiUrl }/api/categories/${id}`);

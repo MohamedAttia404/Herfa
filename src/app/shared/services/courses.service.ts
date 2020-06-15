@@ -59,7 +59,9 @@ export class CoursesService {
 
   // Add new course
   add(data){
-    return this.http.post(`${ environment.apiUrl }/api/courses`,data );
+    return this.http.post(`${ environment.apiUrl }/api/courses`,data,{
+      headers: {'Accept':'application/json', 'Authorization':localStorage.getItem("ACCESS_TOKEN"),}
+      } );
   }
 
   //Get course
