@@ -31,7 +31,7 @@ class ProductController extends Controller
 
 
         // return Product::all();
-          return ProductResource::collection(Product::paginate(5));
+          return ProductResource::collection(Product::paginate(3));
    
 
     }
