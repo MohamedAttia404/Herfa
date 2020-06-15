@@ -2,6 +2,7 @@
 <!-- <views-header></views-header> -->
 <!-- <posts-header></posts-header> -->
 <!-- <router-outlet></router-outlet> -->
+<header >
 <div class="in-pages">
     <nav class="navbar navbar-expand-lg navbar-dark " id="sideNav">
         <a class="navbar-band js-scroll-trigger" href="#page-top">
@@ -32,9 +33,19 @@
                 <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/user/posts']"  routerLinkActive="active"> <span><i class="fas fa-mail-bulk"></i></span> Posts</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" [routerLink]="['../user/events']" [routerLinkActive]="['active']"><span> <i class="fas fa-calendar-week"></i> </span>  Events </a>
+                                   
+                    </li>
                   
                       <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/admin']"  routerLinkActive="active"><span><i class="fas fa-users-cog"></i></span> Admin</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/admin']"  routerLinkActive="active"><span><i class="fas fa-user"></i></span> Profile</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['../user/aboutus']"  routerLinkActive="active"><span><i class="fas fa-users"></i></span> About us</a>
                       </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#"> <span><i class="fas fa-sign-out-alt"></i></span> logout</a>
@@ -47,4 +58,127 @@
     </div>
 
 </div>
+</header>
+<footer class="page-footer font-small mt-4 " style="background-color: #2b4880 ;">
+
+    <!-- <div style="background-color: #6351ce;"> -->
+        <div style="background-color: #7189b5 ;">
+      <div class="container">
+  
+        <!-- Grid row-->
+        <div class="row py-4 d-flex align-items-center">
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-12 text-center ">
+            <h3 class="mb-0 text-center">Get more information about Herfa !</h3>
+          </div>
+          <!-- Grid column -->
+  
+     
+  
+        </div>
+        <!-- Grid row-->
+  
+      </div>
+    </div>
+  
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+  
+      <!-- Grid row -->
+      <div class="row mt-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+  
+          <!-- Content -->
+          <h4 class="text-uppercase font-weight-bold text-white">Herfa</h4>
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 60px ;">
+          <p class="text-white">Herfa is a website connecting people all over the world who has the same passion for learing new and different skills , and buying rare materials and products.
+          </p>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+  
+          <!-- Links -->
+          <h4 class="text-uppercase font-weight-bold text-white">Our Team Member</h4>
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 150px;">
+          <p class="text-white">
+           Hager Mohamed Abdou
+          </p>
+          <p class="text-white">
+            Mohamed Ahmed Attia
+          </p>
+          <p class="text-white">
+           Amira Abdelhalim
+          </p>
+          <p class="text-white">
+           Tarek Hassan 
+          </p>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+  
+          <!-- Links -->
+          <h4 class="text-uppercase font-weight-bold text-white">Useful links</h4>
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 110px;">
+          <p>
+            <a  class="text-white"[routerLink]="['../user/courses']" [routerLinkActive]="['active']">Our Courses</a>
+          </p>
+          <p>
+            <a  class="text-white"[routerLink]="['../user/products']" [routerLinkActive]="['active']"> Our Products </a>
+          </p>
+          <p>
+            <a  class="text-white"[routerLink]="['../user/aboutus']" [routerLinkActive]="['active']">About us</a>
+          </p>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+  
+          <!-- Links -->
+          <h4 class="text-uppercase font-weight-bold text-white">Contact</h4>
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 70px;">
+          <p class="text-white"><span><i class="fas fa-suitcase"></i></span>
+             New York, NY 10012, US
+          </p>
+          <p class="text-white">
+            <span><i class="fas fa-envelope"></i></span>
+             info@example.com
+          </p>
+          <p class="text-white">
+            <span><i class="fas fa-phone-alt"></i></span>
+             + 01 234 567 88
+          </p>
+          <p class="text-white"><span><i class="fas fa-fax"></i></span> 
+                     + 01 234 567 88
+          </p>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <!-- Copyright -->
+    <div style="background-color:#253e6e  ;">
+    <div class="footer-copyright text-center py-3 text-white">© 2020 Copyright:
+      <a href="#" class='text-white'> Herfa.com</a>
+    </div>
+</div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
 <!-- <router-outlet></router-outlet> -->

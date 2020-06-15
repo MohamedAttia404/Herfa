@@ -19,6 +19,7 @@ import { httpInterceptorProviders } from './shared/interceptors';
 import { from } from 'rxjs';
 import { AgmCoreModule } from '@agm/core';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { AgmCoreModule } from '@agm/core';
     RegisterComponent,
     LoginComponent,
     UserProfileComponent,
+    
     
   ],
   imports: [
