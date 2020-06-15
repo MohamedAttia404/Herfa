@@ -27,13 +27,38 @@ export class CategoriesListComponent implements OnInit {
     
     this.categoriesService.getAll().subscribe((res:any) =>{
     //  console.log(res);
-    this.items = res;
+    this.items = res.body.data;;
 
     // this.coursesService.getAll().subscribe((courses: any[])=>{
     //   console.log(courses);
     //   this.courses_arr = courses;
     });
   }
+
+  // previousPage
+public previousPage() {
+
+  if (this.categoriesService.prev !== undefined && this.categoriesService.prev !== null) {
+    this.items = [];
+    this.categoriesService.sendGetRequestToUrl(this.categoriesService.prev).subscribe((res:any) => {
+      console.log(res+"sh3;ala fel back");
+      this.items = res.body.data;
+    })
+  }
+
+}
+// //=============================================================================
+
+// nextPage
+public nextPage() {
+  if (this.categoriesService.next !== undefined && this.categoriesService.next !== null) {
+    this.items = [];
+    this.categoriesService.sendGetRequestToUrl(this.categoriesService.next).subscribe((res:any) => {
+      console.log(res);
+      this.items = res.body.data;
+    })
+  }
+}
 
   // Delete Course
   deleteItem(model, id){

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from "./../../../shared/services/courses.service";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 
@@ -21,13 +21,63 @@ export class CourseAddComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private courseService: CoursesService,
-     private toastr: ToastrService) { }
+     private toastr: ToastrService) {
+
+      let addFormControls = {
+        name : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[A-Za-z . '-]+"),
+          Validators.minLength(3)
+        ]),
+
+        duration : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+
+        start_date : new FormControl('',[
+          Validators.required,
+        ]),
+
+        end_date : new FormControl('',[
+          Validators.required,
+        ]),
+
+        group_limit : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+
+        description : new FormControl('',[
+          Validators.required,
+          Validators.maxLength(255),
+          Validators.minLength(5),
+        ]),
+
+        instructor_name : new FormControl('',[
+          Validators.required,
+          Validators.maxLength(255),
+          Validators.minLength(5),
+        ]),
+
+        price : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+   
+      }
+
+      this.addForm = this.fb.group(addFormControls);
+
+      }
+
+
 
   ngOnInit(): void {
-    this.buildAddForm();
-    // if(localStorage.getItem("ACCESS_TOKEN")==null){
-    //   this.router.navigate(['/login']);
-    // }
+    // this.buildAddForm();
+    if(localStorage.getItem("ACCESS_TOKEN")==null){
+      this.router.navigate(['/login']);
+    }
   }
 
   onSubmit(){
@@ -54,19 +104,22 @@ export class CourseAddComponent implements OnInit {
   // to access inputs
   get f() {return this.addForm.controls;}
 
-  buildAddForm(){
-    this.addForm = this.fb.group({
-      name: [null, Validators.required],
-      duration: [null, Validators.required],
-      start_date: [null, Validators.required],
-      end_date: [null, Validators.required],
-      group_limit: [null, Validators.required],
-      description: [null, Validators.required],
-      instructor_name: [null, Validators.required],
-      price: [null, Validators.required],
-      // user_id: [null, Validators.required],
-      // category_id: [null, Validators.required],
-    })
-  }
+  // buildAddForm(){
+  //   this.addForm = this.fb.group({
+  //     name: [null, Validators.required,Validators.pattern("[A-Za-z .'-]+"),
+  //     Validators.minLength(3)],
+  //     duration: [null, Validators.required],
+  //     start_date: [null, Validators.required],
+  //     end_date: [null, Validators.required],
+  //     group_limit: [null, Validators.required],
+  //     description: [null, Validators.required],
+  //     instructor_name: [null, Validators.required],
+  //     price: [null, Validators.required],
+  //     // user_id: [null, Validators.required],
+  //     // category_id: [null, Validators.required],
+  //   })
+  // }
+
+ 
 
 }

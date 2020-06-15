@@ -16,7 +16,7 @@ export class CourseViewComponent implements OnInit {
   items: any = [];
   flag: boolean = false;
  
-
+  
   constructor(
     private courseviewService: CourseviewService,
      private modelService: NgbModal,

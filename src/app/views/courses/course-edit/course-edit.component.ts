@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from "./../../../shared/services/courses.service";
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 
@@ -26,10 +26,65 @@ export class CourseEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private courseService: CoursesService,
-     private toastr: ToastrService) { }
+     private toastr: ToastrService) { 
+       
+      let editFormControls = {
+        name : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[A-Za-z . '-]+"),
+          Validators.minLength(3)
+        ]),
+
+        duration : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+
+        start_date : new FormControl('',[
+          Validators.required,
+        ]),
+
+        end_date : new FormControl('',[
+          Validators.required,
+        ]),
+
+        group_limit : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+
+        description : new FormControl('',[
+          Validators.required,
+          Validators.maxLength(255),
+          Validators.minLength(5),
+        ]),
+
+        instructor_name : new FormControl('',[
+          Validators.required,
+          Validators.maxLength(255),
+          Validators.minLength(5),
+        ]),
+
+        price : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+   
+      }
+
+      this.editForm = this.fb.group(editFormControls);
+
+      }
+
+     
 
   ngOnInit() {
-    this.buildEditForm();
+    // this.buildEditForm();
+    this.submitted = true;
+
+    if(this.editForm.invalid){
+      return;
+    }
 
     // GEt course data id
     this.route.params.subscribe(params => {
@@ -48,20 +103,20 @@ export class CourseEditComponent implements OnInit {
   // to access inputs
   get f() {return this.editForm.controls; }
 
-  buildEditForm(){
-    this.editForm = this.fb.group({
-      name: [null, Validators.required],
-      duration: [null, Validators.required],
-      start_date: [null, Validators.required],
-      end_date: [null, Validators.required],
-      group_limit: [null, Validators.required],
-      description: [null, Validators.required],
-      instructor_name: [null, Validators.required],
-      price: [null, Validators.required],
+  // buildEditForm(){
+  //   this.editForm = this.fb.group({
+  //     name: [null, Validators.required],
+  //     duration: [null, Validators.required],
+  //     start_date: [null, Validators.required],
+  //     end_date: [null, Validators.required],
+  //     group_limit: [null, Validators.required],
+  //     description: [null, Validators.required],
+  //     instructor_name: [null, Validators.required],
+  //     price: [null, Validators.required],
       // user_id: [null, Validators.required],
       // category_id: [null, Validators.required],
-    });
-  }
+  //   });
+  // }
 
   // onSubmit(){
   //   this.submitted = true;

@@ -86,6 +86,10 @@ const routes: Routes = [
         path: 'categoryview',
         loadChildren: () => import('./views/categoryview/categoryview.module').then(m => m.CategoryviewModule )
       },
+      {
+        path: 'search',
+        loadChildren: () => import('./views/search/search.module').then(m => m.SearchModule )
+      },
       // {
       //   path: 'posts',
       //   loadChildren: () => import('./views/courseview/courseview.module').then(m => m.CourseviewModule ),

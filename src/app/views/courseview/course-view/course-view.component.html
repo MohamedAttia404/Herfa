@@ -27,6 +27,33 @@
         <div class="card-columns">
           
             <ng-container *ngIf="items">
+              <!-- <form [formGroup]="searchForm" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-success" type="button">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div> -->
+                    <!-- <input class="form-control" type="text" name="search" autocomplete="off"> -->
+                                                 <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
+                    <!-- <div class="input-group-append"> -->
+                                                 <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
+                        <!-- <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
+                    </div>
+                </div>
+              </form> -->
+                    <!-- </div> -->
+                    <!-- <input class="form-control" type="text" name="search" autocomplete="off"> --> 
+                    <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
+                    <!-- <div class="input-group-append"> -->
+                        <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
+                        <!-- <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
+                    </div>
+                </div>
+
+              </form> -->
+
+              <!-- Card -->
                 <!-- Card -->
 <!-- <div class="card testimonial-card"> -->
   <div *ngIf="!flag; else flag">
@@ -69,10 +96,36 @@
     </div>
 </section>
 
+
+<!-- <div class="pricetable text-center">
+  <div class="container">
+      <h2 class="h1">Our Amazing Price</h2>
+          <div class="row>">
+              <div class="col-md-3 col-sm-6 col-xs-12" *ngFor="let item of items">
+                  <div class="pricebox wow fadeInDown" data-wow-duration="2s" data-wow-offset="200">
+                      <h2 class="text-primary">{{ item.name }}</h2>
+                      <p class="center-block">{{ item.price }}</p>
+                      <ul class="list-unstyled">
+                          <li>{{ item.duration }}</li>
+                          <li>{{ item.start_date }}</li>
+                          <li>{{ item.end_date }}</li>
+                          <li>{{ item.group_limit }}</li>
+                          <li>{{ item.description }}</li>
+                          <li>{{ item.instructor_name }}</li>
+                          <a href="#" class="btn btn-primary">Buy</a>
+                        </ul>
+                  </div>
+              </div>
+                                            
+          </div>
+          
+  </div>
+</div> -->
+
  <div class="container">
     <div class="row justify-content-center" id ="btn">
-      <button type="button" class="btn btn-outline-info m-2" (click) ="previousPage()"> Previous</button>
-      <button type="button" class="btn btn-outline-info m-2" (click) ="nextPage()" > Next</button>
+        <button type="button" class="btn btn-outline-info m-2"  (click) ="previousPage()"> Previous</button>
+        <button type="button" class="btn btn-outline-info m-2"  (click) ="nextPage()" > Next</button>
     </div>
 </div>
 

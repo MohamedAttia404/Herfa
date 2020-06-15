@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="list col-md-6">
       <h3>list of Courses</h3>
   </div>
   <div class="col-md-6 text-right mt-3">
@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of items; let i = index">
+        <tr class="loop" *ngFor="let item of items; let i = index">
           <td>{{i+1}}</td>
           <td>{{item.name}}</td>
           <td>{{item.duration}}</td>
@@ -76,8 +76,8 @@
 
     <div class="container">
         <div class="row justify-content-center" id ="btn">
-            <button (click) ="previousPage()"> Previous</button>
-            <button (click) ="nextPage()" > Next</button>
+            <button type="button" class="btn btn-outline-info" (click) ="previousPage()"> Previous</button>
+            <button type="button" class="btn btn-outline-info" (click) ="nextPage()" > Next</button>
         </div>
     </div>
   <!-- <router-outlet></router-outlet> -->

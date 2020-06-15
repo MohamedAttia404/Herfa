@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from "./../../../shared/services/categories.service";
 import { ToastrService } from 'ngx-toastr';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators , FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,10 +19,25 @@ export class CategoryAddComponent implements OnInit {
     private categoriesService: CategoriesService,
      private toastr: ToastrService,
      private router: Router,
-     private fb: FormBuilder, ) { }
+     private fb: FormBuilder, ) {
+
+
+      let addFormControls = {
+        title : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[A-Za-z . '-]+"),
+          Validators.minLength(3)
+        ]),
+    }
+
+    this.addForm = this.fb.group(addFormControls);
+
+    }
+
+      
 
   ngOnInit(): void {
-    this.buildAddForm();
+    // this.buildAddForm();
   }
 
 
@@ -46,11 +61,11 @@ export class CategoryAddComponent implements OnInit {
     // to access inputs
     get f() {return this.addForm.controls;}
 
-    buildAddForm(){
-      this.addForm = this.fb.group({
-        title: [null, Validators.required],
+    // buildAddForm(){
+    //   this.addForm = this.fb.group({
+    //     title: [null, Validators.required],
 
-      })
-    }
+    //   })
+    // }
 
 }
