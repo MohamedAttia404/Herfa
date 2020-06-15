@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
-
+ 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -14,6 +14,7 @@ export class ProductEditComponent implements OnInit {
   editForm: FormGroup;
   submitted: boolean;
   productId;
+  image;
   // courseDetails:Array<object> = [];
   productDetails= {};
   product:Product=new Product() ;
@@ -31,8 +32,9 @@ export class ProductEditComponent implements OnInit {
       // this.courseId = params.id;
       this.product.id =  params.id;
       this.productService.getProduct(params.id).subscribe((res:any) => {
-        // console.log("res"+res.data.name);
+        console.log(res.data);
         // this.courseDetails = res;
+        this.image=res.data.image;
         this.product = res.data;
         // console.log("details"+this.courseDetails);
       });
