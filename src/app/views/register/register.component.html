@@ -1,73 +1,106 @@
+<section>
+<div class="container">
+<div class='col-sm-12'>
+
 <div class="login-wrap">
   <div class="login-html">
+    <div class="text-center ">  
+      <img src = "assets/img/features-12.png"class="img-fluid mb-5" height="550px"
+     width="350px">
+     </div>
     <input id="tab-1" type="radio" name="tab" class="sign-in">
-    <label for="tab-1" class="tab"><a [routerLink]="['/login']">Sign In</a></label>
-    <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign Up</label>
+    <label for="tab-1" class="tab"><a [routerLink]="['/login']"><span> <i class="fas fa-sign-in-alt"></i></span> Sign In</a></label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab"><span> <i class="fas fa-user-plus"></i></span> Sign Up</label>
     <div class="login-form">
+      <!-- <div class="container">
+        <div class="col-s-12"> -->
       <div class="sign-up-htm">
         <form (ngSubmit)="onSubmit()">
             
             <div class="row">
-                <div class="col-md-6  group">
-                    <label for="user" class="label">First Name</label>
-                    <input type="text" class=" input" id="first_name"  autofocus
+                <div class="col-md-6  form-group">
+                    <label for="user" class=" font-weight-bold h6"><span><i class="fas fa-user"></i></span> First Name</label>
+                    <input type="text" class="form-control" id="first_name"  autofocus
                         placeholder="First Name" [(ngModel)]="user.first_name" name="first_name">
                 </div>
-                <div class="col-md-6  group">
-                    <label for="user" class="label">Last Name</label>
-                    <input type="text" class="input" [(ngModel)]="user.last_name" id="last_name" type="text" 
+                <div class="col-md-6  form-group">
+                    <label for="user" class=" font-weight-bold h6"><span><i class="fas fa-user"></i></span> Last Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.last_name" id="last_name" type="text" 
                         autofocus placeholder="Last Name" name="last_name">
                 </div>
             </div>
-          <div class="group">
-            <label for="user" class="label">Email</label>
-            <input type="text" name="email" [(ngModel)]="user.email" class="input" id="exampleInputemail"
+          <div class="form-group">
+            <label for="user" class=" font-weight-bold h6"><span ><i class="fas fa-envelope"></i></span> Email</label>
+            <input type="text" name="email" [(ngModel)]="user.email" class="form-control" id="exampleInputemail"
             placeholder="Enter email">
           </div>
           
-          <div class="group">
-            <label for="pass" class="label">Role</label>
-                <select class="input" [(ngModel)]="user.role" name="role">
-                    <option value="0" class="input" >user</option>
-                    <option value="1" class="input" >investor</option>
+          <div class="form-group">
+            <label for="pass" class=" font-weight-bold h6"><span><i class="fas fa-user-cog"></i></span> Role</label>
+                <select class=" form-control" [(ngModel)]="user.role" name="role">
+                    <option value="0" class="form-control" >user</option>
+                    <option value="1" class="form-control" >investor</option>
                 </select>
           </div>
 
-          <div class="group">
-            <label for="pass" class="label">Mobile</label>
-            <input type="text" name="mobile" [(ngModel)]="user.mobile" class="input" id="exampleInputMobile"
+          
+
+          <div class="form-group">
+            <label for="pass" class=" font-weight-bold h6"><span><i class="fas fa-phone-alt"></i></span> Mobile</label>
+            <input type="text" name="mobile" [(ngModel)]="user.mobile" class="form-control" id="exampleInputMobile"
             placeholder="Enter Mobile">
           </div>
-          <div class="group">
-            <label for="pass" class="label">National ID</label>
-            <input type="text" name="national_id" [(ngModel)]="user.national_id" class="input" id="exampleInputnational"
+          <div class="dis form-group">
+            <label for="pass" class=" font-weight-bold h6">National ID</label>
+            <input type="text" name="national_id" [(ngModel)]="user.national_id" class="form-control" id="exampleInputnational"
             placeholder="Enter National_ID">
           </div>
-
-          <div class="group">
-            <label for="pass" class="label">Password</label>
+          <div class="dis form-group">
+            <label for="pass" class=" font-weight-bold h6">Password</label>
           
-            <input type="password" name="password"  [(ngModel)]="user.password" class="input" data-type="password" id="exampleInputpassword"
+            <input type="password" name="password"  [(ngModel)]="user.password" class="form-control" data-type="password" id="exampleInputpassword"
             placeholder="Enter password">
 
           </div>
-          <div class="group">
-            <label for="pass" class="label">Repeat Password</label>
-            <input type="password" name="password_confirmation"  [(ngModel)]="user.password_confirmation" class="input" data-type="password" id="exampleInputpassword"
+          <div class="form-group">
+            <label for="pass" class=" font-weight-bold h6"><span><i class="far fa-id-card"></i></span> National ID</label>
+            <input type="text" name="national_id" [(ngModel)]="user.national_id" class="form-control" id="exampleInputnational"
+            placeholder="Enter National_ID">
+          </div>
+     
+
+          <div class="form-group">
+            <label for="pass" class=" font-weight-bold h6"><span><i class="fas fa-lock"></i></span> Password</label>
+          
+            <input type="password" name="password"  [(ngModel)]="user.password" class="form-control" data-type="password" id="exampleInputpassword"
+            placeholder="Enter password">
+
+          </div>
+          <div class="form-group">
+            <label for="pass" class=" font-weight-bold h6"><span><i class="fas fa-lock"></i></span> Repeat Password</label>
+            <input type="password" name="password_confirmation"  [(ngModel)]="user.password_confirmation" class="form-control" data-type="password" id="exampleInputpassword"
             placeholder="Enter password">
           </div>
          
 
-          <div class="group">
-            <input type="submit" class="button" value="Sign Up">
+          <div class="form-group text-center pt-3">
+            <input type="submit" class="btn  btn-lg btn-block text-white" id="btn-bootstrap" value="Sign Up">
           </div>
           <div class="hr">
             <div class="foot-lnk">
-              <label for="tab-1">Already Member?</label>
+              <label for="tab-1" class="font-weight-bold h6"><a href="/login"> Already Member?</a></label>
+              <!-- <a href="/login"> Already</a> -->
             </div>
           </div>
-        </form>
-      </div>
+       </form>
+       </div>
+      <!-- </div>
+    </div> -->
     </div>
   </div>
 </div>
+
+
+</div>
+</div>
+</section>
