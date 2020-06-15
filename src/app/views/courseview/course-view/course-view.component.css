@@ -13,3 +13,8 @@ div.card{
 h2{
     color:#253e6e;
 }
+
+h1{
+    color:#253e6e;
+    text-shadow: 2px 2px 4px #41414eee;
+}

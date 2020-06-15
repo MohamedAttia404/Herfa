@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from "./../../../shared/services/events.service";
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormControl,FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
 
@@ -20,24 +20,16 @@ export class EventEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private eventService: EventsService,
-     private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    this.buildEditForm();
-  
-  this.route.params.subscribe(params => {
-    // this.eventId = params.id;
-    this.event.id =  params.id;
-    this.eventService.getProduct(params.id).subscribe((res:any) => {
-      // console.log("res"+res.data.name);
-      // this.eventDetails = res;
-      this.event = res.data;
-      // console.log("details"+this.eventDetails);
-    });
-    
-  });
+     private toastr: ToastrService) { 
+     
 }
+
+ngOnInit(): void {
+  this.buildEditForm();
+ }
+
 get f() {return this.editForm.controls; }
+
 
 buildEditForm(){
   this.editForm = this.fb.group({
@@ -56,6 +48,7 @@ onSubmit(form: NgForm){
   console.log(form);
   if(form.valid){
     const event = {...this.event};
+  
     this.eventService.update(event,this.event.id).subscribe((res: any)=>{
       console.log(res);
       
