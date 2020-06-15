@@ -53,12 +53,13 @@ Route::prefix('/courses')->middleware(['auth:api',])->group(function(){
 Route::get('/search/{data}','API\course\CourseController@search')->name("courses.search");
 
 
-Route::prefix('/categories')->group(function(){
-    Route::get('', 'API\category\CategoryController@index')->name('categories.index');
-    Route::post('', 'API\category\CategoryController@store')->name("categories.store");
-    Route::get('/{category}', 'API\category\CategoryController@show')->name("categories.show");
-    Route::put('/{id}', 'API\category\CategoryController@update')->name("categories.update");
-    Route::delete('/{id}', 'API\category\CategoryController@destroy')->name("categories.destroy");
+Route::prefix('/')->group(function(){
+    Route::get('categories', 'API\category\CategoryController@index')->name('categories.index');
+    Route::get('allCategories', 'API\category\CategoryController@all')->name('categories.all');
+    Route::post('categories', 'API\category\CategoryController@store')->name("categories.store");
+    Route::get('categories/{category}', 'API\category\CategoryController@show')->name("categories.show");
+    Route::put('categories/{id}', 'API\category\CategoryController@update')->name("categories.update");
+    Route::delete('categories/{id}', 'API\category\CategoryController@destroy')->name("categories.destroy");
 });
    
 

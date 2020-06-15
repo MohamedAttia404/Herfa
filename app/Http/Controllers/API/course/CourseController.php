@@ -22,9 +22,9 @@ class CourseController extends Controller
 
     public function store (Request $request){
         // $request['user_id']=1;
-        $user=Auth::user();
-        $request['user_id']=$user->id;
-        $request['category_id']=1;
+        // $user=Auth::user();
+        // $request['user_id']=$user->id;
+        // $request['category_id']=1;
         $course=Course::create($request->all());
         // $course=Course::create([
         //     'name' => $request->name,
@@ -43,8 +43,8 @@ class CourseController extends Controller
 
 
     public function update(Request $request, $id){
-        $request['user_id'] = 1;
-        $request['category_id']=1;
+        // $request['user_id'] = 1;
+        // $request['category_id']=1;
         $course = Course::find($id);
         $course->update($request->all());
         $course->fresh();
@@ -60,8 +60,8 @@ class CourseController extends Controller
     }
 
     public function destroy(Request $request, $id){
-        $request['user_id'] = 1;
-        $request['category_id']=1;
+        // $request['user_id'] = 1;
+        // $request['category_id']=1;
         $course = Course::find($id);
         $del=$course->delete();
         if ($del==1){

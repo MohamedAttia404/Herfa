@@ -48,8 +48,8 @@ class ProductController extends Controller
 
 public function store(StoreProductRequest $request) {
     // return response()->json($request->all()); 
-        $request['user_id']= 1;
-        $request['category_id']=1;
+        // $request['user_id']= 1;
+        // $request['category_id']=1;
 
         if($request->profile){
             $request['image']=Storage::disk('public')->put('images',$request->profile);
