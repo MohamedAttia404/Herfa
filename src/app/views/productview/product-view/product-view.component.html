@@ -1,30 +1,30 @@
-<section class="resume-section p-3 p-lg-5 d-flex" id="about">
+<!-- <section class="resume-section p-3 p-lg-5 d-flex" id="about">
     <div class="w-100">
         <div class="card-columns">
-            <ng-container *ngIf="items">
-              <form [formGroup]="searchForm" >
+            <ng-container *ngIf="items"> -->
+              <!-- <form [formGroup]="searchForm" >
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-success" type="button">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
-                    <input class="form-control" type="text" name="search" autocomplete="off">
-                    <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
-                    <div class="input-group-append">
-                        <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
-                        <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
+                    <input class="form-control" type="text" name="search" autocomplete="off"> -->
+                                        <!-- <input formControlName="name" class="form-control" type="text" name="search" autocomplete="off"> -->
+                    <!-- <div class="input-group-append"> -->
+                                            <!-- <button class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">search</button> -->
+                        <!-- <input type="button" class="btn btn-warning" type="button" id="button-addon2" (click)="search($event)">
                     </div>
                 </div>
-              </form>
+              </form> -->
               <!-- <ng-template [ngIf]="heroes" [ngIfElse]="loading"> -->
-                <div *ngIf="!flag; else flag">
+                <!-- <div *ngIf="!flag; else flag"> -->
                   <!-- <ng-template #thenBlock> -->
-                <div class="card" *ngFor="let item of items">
+                <!-- <div class="card" *ngFor="let item of items">
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.name }} 
+                        <h5 class="card-title">{{ item.name }}  -->
                             <!-- <a href="javascript:;" class="d-none"><i class="fa fa-edit"></i></a> -->
-                        </h5>
+                        <!-- </h5>
                         <p class="card-text">{{ item.description }}</p>
                         <p class="card-text">{{ item.image }}</p>
                         <p class="card-text">{{ item.price }}</p>
@@ -32,11 +32,11 @@
                         <p class="card-text">{{ item.is_new }}</p>
                         
                     </div>
-                </div>
-                <ng-template #flag> 
+                </div> -->
+                <!-- <ng-template #flag> 
                   <h1>search</h1>
-              </ng-template> 
-              </div>
+              </ng-template>  -->
+              <!-- </div>
                 </ng-container>
         </div>
     </div>
@@ -44,10 +44,10 @@
 
  <div class="container">
     <div class="row justify-content-center" id ="btn">
-        <button (click) ="previousPage()"> Previous</button>
-        <button (click) ="nextPage()" > Next</button>
+      <button type="button" class="btn btn-outline-info m-2" (click) ="previousPage()"> Previous</button>
+      <button type="button" class="btn btn-outline-info m-2" (click) ="nextPage()" > Next</button>
     </div>
-</div>
+</div> -->
 
 <!--
 <div class="container text-center">
@@ -75,5 +75,150 @@
     </div>
   </div> -->
 
-<div class="left" style="float:left">fssssssssshgggggggggggggggsf</div>
-<div class="right" style="float:right">fssssssssshgggggggggggggggsf</div>
+<!-- <section class="productview">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+              <ng-container *ngIf="items">
+                  <div class="card" *ngFor="let item of items">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ item.name }}</h5>
+                          <p class="card-text">{{ item.description }}</p>
+                          <p class="card-text">{{ item.image }}</p>
+                          <p class="card-text">{{ item.price }}</p>
+                          <p class="card-text">{{ item.quantity }}</p>
+                          <p class="card-text">{{ item.is_new }}</p>
+                          <ng-container *ngIf="items">
+                              <div class="card" *ngFor="let item of items">
+                                  <div class="card-body">
+                                      <h5 class="card-title">{{ item.name }}</h5>
+                                      <p class="card-text">{{ item.description }}</p>
+                                      <p class="card-text">{{ item.image }}</p>
+                                      <p class="card-text">{{ item.price }}</p>
+                                      <p class="card-text">{{ item.quantity }}</p>
+                                      <p class="card-text">{{ item.is_new }}</p>
+                                      
+                                  </div>
+                              </div>
+                          </ng-container>
+                      </div>
+                  </div>
+              </ng-container>
+          </div>
+          <div class="col-sm-8">
+              <ng-container *ngIf="items">
+                  <div class="card" *ngFor="let item of items">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ item.name }} 
+                          </h5>
+                          <p class="card-text">{{ item.description }}</p>
+                          <p class="card-text">{{ item.image }}</p>
+                          <p class="card-text">{{ item.price }}</p>
+                          <p class="card-text">{{ item.quantity }}</p>
+                          <p class="card-text">{{ item.is_new }}</p>
+                          
+                      </div>
+                  </div>
+              </ng-container>
+
+          </div>
+        </div>
+      </div>
+</section> -->
+
+<!-- <section class="productview">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"> -->
+            
+            <!-- <ng-container *ngIf="items">
+                <div class="card" *ngFor="let item of items">
+                          
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                        </div>
+                  </div>
+              </ng-container>  -->
+              <!-- <div class="avatar white text-center m-2"> -->
+                  <!-- <img src="assets/img/1.jpg" width="150px" height="150px"
+                    alt="course avatar" class = "rounded-circle"> -->
+                    <!-- <img src="assets/img/course.png" class="img-fluid"
+                    alt="course avatar">
+                </div>
+
+            </div>
+
+
+                                <div class="k col-sm-8 ">
+                                    <ng-container *ngIf="items"> -->
+
+                                 <!-- <div class="card" *ngFor="let item of items">
+                                  <div class="card-body">
+                                      <p class="card-text">{{ item.description }}</p>
+                                      <p class="card-text">{{ item.image }}</p>
+                                      <p class="card-text">{{ item.price }}</p>
+                                      <p class="card-text">{{ item.quantity }}</p>
+                                      <p class="card-text">{{ item.is_new }}</p>
+                                  </div>
+                                  </div>
+                                </ng-container> 
+
+                                  </div> -->
+
+                              <!-- </div> -->
+          <!-- </div>
+          
+              <ng-container *ngIf="items">
+                  <div class="card" *ngFor="let item of items">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ item.name }} 
+                          </h5>
+                          <p class="card-text">{{ item.description }}</p>
+                          <p class="card-text">{{ item.image }}</p>
+                          <p class="card-text">{{ item.price }}</p>
+                          <p class="card-text">{{ item.quantity }}</p>
+                          <p class="card-text">{{ item.is_new }}</p>
+                          
+                      </div>
+                  </div>
+              </ng-container>
+
+          </div>  -->
+        <!-- </div>
+      
+      </div>
+</section> -->
+
+
+<section class="" id="about">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <ng-container *ngIf="items">
+            <div class="card m-2" *ngFor="let item of items">
+                <div class="col-md-12">
+                  <img src="assets/img/course.png" class="float-right col-md-5 m-2" alt="course avatar">
+                  <div class="text-center">
+                      <div class="vl"></div>
+                  <h3 class="card-title text-center m-3 pt-3 font-weight-bold" style="color: #2b4880 ;">Name : {{ item.name }}</h3>
+                  <hr class="hl">
+                    <p class="text-center m-3 pt-3">Description :  {{ item.description }}</p>
+                    <p class="text-center m-3 pt-3">Image : {{ item.image }}</p>
+                    <p class="text-center m-3 pt-3">Price : {{ item.price }}</p>
+                    <p class="text-center m-3 pt-3">Quantity : {{ item.quantity }}</p>
+                    <p class="text-center m-3 pt-3">Is New : {{ item.is_new }}</p>
+                  </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center" id ="btn">
+      <button type="button" class="btn btn-outline-info m-2" (click) ="previousPage()"> Previous</button>
+      <button type="button" class="btn btn-outline-info m-2" (click) ="nextPage()" > Next</button>
+    </div>
+</div>
+</section>

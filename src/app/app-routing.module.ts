@@ -99,6 +99,10 @@ const routes: Routes = [
         loadChildren: () => import('./views/posts/posts.module').then(m => m.PostsModule)
       },
       {
+        path: 'aboutus',
+        loadChildren: () => import('./views/aboutus/aboutus.module').then(m => m.AboutusModule)
+      },
+      {
         path:'profile/:id',
         component: UserProfileComponent,
       }
