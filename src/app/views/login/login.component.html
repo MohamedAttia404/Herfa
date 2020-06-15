@@ -1,33 +1,54 @@
+<div class="container">
 <div class="login-wrap">
   <div class="login-html">
-    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-    <input id="tab-2" type="radio" name="tab" class="sign-up" ><label for="tab-2" class="tab"><a [routerLink]="['/register']">Sign Up</a></label>
+    <div class="text-center ">  
+      <img src = "assets/img/features-11.png"class="img-fluid mb-5" height="500px"
+     width="300px">
+     
+     </div>
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab"><span> <i class="fas fa-sign-in-alt"></i></span> Sign In  </label> 
+
+    <input id="tab-2" type="radio" name="tab" class="sign-up" ><label for="tab-2" class="tab"><a [routerLink]="['/register']"><span> <i class="fas fa-user-plus"></i></span> Sign Up</a></label>
     <div class="login-form">
       <div class="sign-in-htm">
         <form (ngSubmit)="onSubmit()">
-          <div class="group">
-            <label for="user" class="label">Email</label>
-            <input type="text" name="email" [(ngModel)]="user.email" class="input" id="exampleInputemail"
+          <div class="dis form-group">
+            <label for="user" class=" font-weight-bold h6"><span ><i class="fas fa-envelope"></i></span> Email</label>
+            <input type="text" name="email" class="form-control"[(ngModel)]="user.email"  id="exampleInputemail"
             placeholder="Enter email">
           </div>
-          <div class="group">
-            <label for="pass" class="label">Password</label>
+          <div class="dis form-group">
+            <label for="pass" class="font-weight-bold h6"><span><i class="fas fa-lock"></i></span> Password</label>
             
-            <input type="password" name="password" [(ngModel)]="user.password" class="input"
+            <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
+            id="exampleInputpassword" placeholder="Enter password">
+          </div>
+            <div class="form-group">
+            <label for="user" class=" font-weight-bold h6"><span ><i class="fas fa-envelope"></i></span> Email</label>
+            <input type="text" name="email" class="form-control"[(ngModel)]="user.email"  id="exampleInputemail"
+            placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="pass" class="font-weight-bold h6"><span><i class="fas fa-lock"></i></span> Password</label>
+            
+            <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
             id="exampleInputpassword" placeholder="Enter password">
           </div>
 
-          <div class="group">
-            <input type="submit" class="button" value="Sign In">
+          
+
+          <div class="form-group text-center pt-3">
+            <input type="submit" class="btn  btn-lg btn-block text-white" value="Sign In" id="btn-bootstrap">
           </div>
           <div class="hr">
-            <div class="foot-lnk">
+            <!-- <div class="foot-lnk">
               <a href="#forgot">Forgot Password?</a>
-            </div>
+            </div> -->
           </div>
 
         </form>
         </div>
       </div>
   </div>
+</div>
 </div>
