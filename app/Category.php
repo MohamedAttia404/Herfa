@@ -22,11 +22,11 @@ class Category extends Model
     public function subscribe($category_id=null, $user_id=null)
     {
         # code...
-        Interest::create([
+        $create=Interest::create([
             'user_id'=>$user_id,
             'category_id'=>$category_id
         ]);
-        return $this;
+        return $create;
     }
 
     public function unsubscribe($id=null)
@@ -35,7 +35,9 @@ class Category extends Model
         // $this->subscriptions()
         // ->where('user_id', $userId?: auth()->id())
         // ->delete();
-        Interest::find($id)->delete();
+        $delete=Interest::find($id);
+        $delete->delete();
+        return $delete;
         // Interest::whereUser_idAndCategory_id('$user_id', 'category_id')->first()->delete();
     }
 }
