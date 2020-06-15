@@ -102,6 +102,10 @@ const routes: Routes = [
         path: 'aboutus',
         loadChildren: () => import('./views/aboutus/aboutus.module').then(m => m.AboutusModule)
       },
+      // {
+      //   path: 'profile',
+      //   loadChildren: () => import('./views/user-profile/user-profile.module').then(m => m.UserprofileModule)
+      // },
       {
         path:'profile/:id',
         component: UserProfileComponent,
