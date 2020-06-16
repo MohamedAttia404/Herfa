@@ -51,6 +51,7 @@ class UserController extends BaseController
     }
  
     public function update(Request $request, $id) {
+      
         // User Info Before Update
             $user=User::where('id',$id)->first();
             if($user) {

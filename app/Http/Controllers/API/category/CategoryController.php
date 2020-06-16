@@ -15,6 +15,12 @@ class CategoryController extends Controller
         // return CategoryResource::collection(Category::paginate(1));
         return CategoryResource::collection(Category::paginate(3));
     }
+    
+    public function all(){
+        // return Category::all();
+        // return CategoryResource::collection(Category::paginate(1));
+        return CategoryResource::collection(Category::all());
+    }
 
     public function show($id){
         // return Course::find($id);
