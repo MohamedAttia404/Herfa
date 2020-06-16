@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from "./../../../shared/services/categories.service";
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 
@@ -24,10 +24,22 @@ export class CategoryEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private categoriesService: CategoriesService,
-     private toastr: ToastrService) { }
+     private toastr: ToastrService) {
+
+      let editFormControls = {
+        title : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[A-Za-z . '-]+"),
+          Validators.minLength(3)
+        ]),
+    }
+
+    this.editForm = this.fb.group(editFormControls);
+
+      }
 
   ngOnInit(): void {
-    this.buildEditForm();
+    // this.buildEditForm();
 
     // GEt course data id
     this.route.params.subscribe(params => {
@@ -46,16 +58,21 @@ export class CategoryEditComponent implements OnInit {
   // to access inputs
   get f() {return this.editForm.controls; }
 
-  buildEditForm(){
-    this.editForm = this.fb.group({
-      title: [null, Validators.required],
-    });
-  }
+  // buildEditForm(){
+  //   this.editForm = this.fb.group({
+  //     title: [null, Validators.required],
+  //   });
+  // }
 
 
-  onSubmit(form: NgForm){
-    console.log(form);
-    if(form.valid){
+  onSubmit(){
+    // console.log(form);
+    this.submitted = true;
+    //stop here if form not valid
+    if(this.editForm.invalid){
+      return;
+    }
+    // if(form.valid){
       const category = {...this.category};
       this.categoriesService.update(category,this.category.id).subscribe((res: any)=>{
         console.log(res);
@@ -63,7 +80,7 @@ export class CategoryEditComponent implements OnInit {
         this.router.navigate(['../admin/categories']);
   
       });
-    }
+    // }
   }
 
 }

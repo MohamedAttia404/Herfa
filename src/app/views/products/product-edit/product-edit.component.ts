@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from "./../../../shared/services/products.service";
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { CategoriesService } from "./../../../shared/services/categories.service";
@@ -25,10 +25,44 @@ export class ProductEditComponent implements OnInit {
     private fb: FormBuilder,
      private productService: ProductsService,
      private categoriesService: CategoriesService,
-     private toastr: ToastrService) { }
+     private toastr: ToastrService) {
+
+
+      let editFormControls = {
+        profile: [null],
+        name : new FormControl('',[
+          Validators.required,
+          Validators.pattern("[A-Za-z .'-]+"),
+          Validators.minLength(3)
+        ]),
+  
+        description : new FormControl('',[
+          Validators.required,
+          Validators.maxLength(255),
+          Validators.minLength(5),
+        ]),
+  
+        price: new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+        quantity: new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-9]+"),
+        ]),
+        is_new: new FormControl('',[
+          Validators.required,
+          Validators.pattern("[0-1]"),
+        ]),
+        user_id: [''],
+        category_id: [null],
+
+      }
+      this.editForm = this.fb.group(editFormControls);
+      }
 
   ngOnInit(): void {
-    this.buildEditForm();
+    // this.buildEditForm();
 
     // GEt course data id
     this.route.params.subscribe(params => {
@@ -57,25 +91,30 @@ export class ProductEditComponent implements OnInit {
   }
   get f() {return this.editForm.controls; }
 
-  buildEditForm(){
-    this.editForm = this.fb.group({
-      name: [null, Validators.required],
-      description: [null, Validators.required],
-      //image: [null, Validators.required],
-      price: [null, Validators.required],
-      quantity: [null, Validators.required],
-      is_new: [null, Validators.required],
-            user_id: [''],
-      category_id: [null],
-      // user_id: [null, Validators.required],
-      // category_id: [null, Validators.required],
-    });
-  }
+  // buildEditForm(){
+  //   this.editForm = this.fb.group({
+  //     name: [null, Validators.required],
+  //     description: [null, Validators.required],
+  //     //image: [null, Validators.required],
+  //     price: [null, Validators.required],
+  //     quantity: [null, Validators.required],
+  //     is_new: [null, Validators.required],
+  //           user_id: [''],
+  //     category_id: [null],
+  //     // user_id: [null, Validators.required],
+  //     // category_id: [null, Validators.required],
+  //   });
+  // }
 
-  onSubmit(form: NgForm){
+  onSubmit(){
     this.submitted = true;
-    console.log("update");
-    if(form.valid){
+    //stop here if form not valid
+    if(this.editForm.invalid){
+      return;
+    }
+    // this.submitted = true;
+    // console.log("update");
+    // if(form.valid){
       const product = {...this.product};
       // this.product['user_id']=Number(localStorage.getItem("USER_ID"));
       // console.log(product);
@@ -85,7 +124,7 @@ export class ProductEditComponent implements OnInit {
         this.router.navigate(['../admin/products']);
   
       });
-    }
+    // }
   }
 
 }

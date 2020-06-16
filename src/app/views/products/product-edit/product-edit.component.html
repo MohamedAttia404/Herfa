@@ -10,8 +10,8 @@
     <div class="row">
         <div class="col-md-12">
             <!-- <form [formGroup]="editForm" (submit)="onSubmit()">
-                 -->
-                 <form #editProductForm="ngForm" (ngSubmit)="onSubmit(editProductForm)">
+#editProductForm="ngForm"-->
+                 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleInputaddress">Image</label>
@@ -20,45 +20,69 @@
                         </div>
                          
                       </div>
+
+                      <!-- <div class="form-group">
+                        <label for="exampleInputaddress">Image</label>
+                        <img width="50" height="50" src="{{image}}"/>
+                        <input type="file" name="profile" (change)="onFileChange($event)" class="form-control" id="exampleInputarea"
+                          placeholder="Enter Image">
+                      </div> -->
                   
                 <div class="form-group">
                     <label for="productName">Name</label>
                     
                     <input id="productName" name="productName" class="form-control" 
-                    placeholder="Name" 
-                    [(ngModel)]="product.name"
-                    [ngClass]="{' is-invalid': submitted && f.name.errors}">
-                        
-                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                            <div *ngIf="f.name.errors.required">Name is required</div>
-                        </div>
+                    placeholder="Name" [ngClass]="{' is-invalid': submitted && f.name.errors}"
+                    [(ngModel)]="product.name"  formControlName="name"
+                    >
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <small *ngIf="f.name.errors.required" class="text-danger">name is required<br></small>
+                        <small *ngIf="f.name.errors.pattern" class="text-danger">name contains only letters and spaces<br></small>
+                        <small *ngIf="f.name.errors.minlength" class="text-danger">name must contain 3 characters at least</small>
+                      </div> 
                 </div>
                 <div class="form-group">
                     <label for="productDescription">Description</label>
                     <textarea  rows="6" id="productDescription" name="productDescription" class="form-control" placeholder="description" 
-                    [(ngModel)]="product.description"
-                    >
+                    [(ngModel)]="product.description" [ngClass]="{' is-invalid': submitted && f.description.errors}"
+                    formControlName="description">
+                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                        <small *ngIf="f.description.errors.required" class="text-danger">description is required<br></small>
+                        <small *ngIf="f.description.errors.minlength" class="text-danger">description must contain 5 characters at least</small>
+                      </div>
                         
                     </textarea>
                 </div> 
                 <div class="form-group">
                     <label for="productPrice">Price</label>
                     <input id="productPrice" name="productPrice" class="form-control" placeholder="price" 
-                    [(ngModel)]="product.price"
-                    >
+                    [(ngModel)]="product.price" [ngClass]="{' is-invalid': submitted && f.price.errors}"
+                    formControlName="price">
+                    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                        <small *ngIf="f.price.errors.required" class="text-danger">price is required<br></small>
+                        <small *ngIf="f.price.errors.pattern" class="text-danger">Invalid Price<br></small>
+                      </div>
                 </div> 
                 <div class="form-group">
                     <label for="productQuantity">Quantity</label>
                     <input type="" id="productQuantity" name="productQuantity" class="form-control" placeholder="quantity" 
-                    [(ngModel)]="product.quantity"
-                    >
+                    [(ngModel)]="product.quantity" [ngClass]="{' is-invalid': submitted && f.quantity.errors}"
+                    formControlName="quantity" >
+                    <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                        <small *ngIf="f.quantity.errors.required" class="text-danger">quantity is required<br></small>
+                        <small *ngIf="f.quantity.errors.pattern" class="text-danger">Invalid Quantity<br></small>
+                      </div>
                 </div>
         
                 <div class="form-group">
                     <label for="productIs_new">is_new</label>
                     <input type="" id="productIs_new" name="productIs_new" class="form-control" placeholder="is_new" 
-                    [(ngModel)]="product.is_new"
-                    >
+                    [(ngModel)]="product.is_new" [ngClass]="{' is-invalid': submitted && f.is_new.errors}"
+                    formControlName="is_new" >
+                    <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                        <small *ngIf="f.is_new.errors.required" class="text-danger">is_new is required<br></small>
+                        <small *ngIf="f.is_new.errors.pattern" class="text-danger">Invalid status<br></small>
+                      </div>
                 </div>
                
                        
@@ -66,7 +90,7 @@
               
                 <div class="form-group">
                     Categories
-                    <select class="custom-select" name="category_id" [(ngModel)]="product.category_id">
+                    <select class="custom-select" name="category_id"  formControlName="category_id" [(ngModel)]="product.category_id" [ngClass]="{' is-invalid': submitted && f.category_id.errors}">
                         
                       <option  *ngFor="let category of categories" [value]="category.id" >{{category.title}}</option>
                     </select>

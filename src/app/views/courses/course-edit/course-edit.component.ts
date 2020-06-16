@@ -32,6 +32,7 @@ export class CourseEditComponent implements OnInit {
      private categoriesService: CategoriesService) { 
        
       let editFormControls = {
+        
         name : new FormControl('',[
           Validators.required,
           Validators.pattern("[A-Za-z . '-]+"),
@@ -88,11 +89,11 @@ export class CourseEditComponent implements OnInit {
 
   ngOnInit() {
     // this.buildEditForm();
-    this.submitted = true;
+    // this.submitted = true;
 
-    if(this.editForm.invalid){
-      return;
-    }
+    // if(this.editForm.invalid){
+    //   return;
+    // }
 
     // GEt course data id
     this.route.params.subscribe(params => {
@@ -101,9 +102,11 @@ export class CourseEditComponent implements OnInit {
       this.courseService.getCourse(params.id).subscribe((res:any) => {
         // console.log("res"+res.data.name);
         // this.courseDetails = res;
+        console.log(res.data);
         this.course = res.data;
         this.course.user_id= res.data.user.id;
         this.course.category_id= res.data.category.id;
+        console.log(this.course);
         // console.log("details"+this.courseDetails);
       });
       
@@ -168,17 +171,19 @@ export class CourseEditComponent implements OnInit {
   //   );
   // } 
 
-  onSubmit(form: NgForm){
-    console.log(form);
-    if(form.valid){
+  onSubmit(){
+    // console.log(form);
+    this.submitted = true;
+    if(this.editForm.invalid){
+    return ;    
+  
+    }
       const course = {...this.course};
       this.courseService.update(course,this.course.id).subscribe((res: any)=>{
         console.log(res);
         
         this.router.navigate(['../admin/courses']);
-  
-      });
-    }
+    })
   }
 
 }
