@@ -31,7 +31,7 @@ class ProductController extends Controller
 
 
         // return Product::all();
-          return ProductResource::collection(Product::paginate(5));
+          return ProductResource::collection(Product::paginate(3));
    
 
     }
@@ -115,7 +115,7 @@ return json_encode(array("ERROR"=>"PRODUCT $id NOT EXSIST"));
 //  $product= Product::findOrFail($id); 
 //   $product->update($request->all());
 //    return $product->fresh();
-// }
+// 
 
 public function destroy($id)
    { 
@@ -132,6 +132,4 @@ if(!$product){
    
     }
 
-
 }
-
