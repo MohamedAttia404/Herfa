@@ -40,12 +40,12 @@
                             <!-- <a href="javascript:;" class="d-none"><i class="fa fa-edit"></i></a> -->
                         </h2>
                         
-                        
-                        <!-- </h5> -->
-                        <button class="btn btn-primary" (click)="interest(item.id)" >{{ sub ? 'Unsubscribe' : 'Subscribe' }}</button> 
-                        <!-- <button class="btn btn-primary" (click)="interest(item.id)" [innerHTML]="htmlStr" ></button>  -->
 
-                        <!-- <button class="btn btn-primary" (click)="remove_interest(item.id)">unsubscribe</button>  -->
+                        <!-- </h5> -->
+                        
+                    
+                          <button class="btn btn-primary" (click)="interest(item.id)" >{{ (arr.includes(item.id)) ? 'Unsubscribe' : 'Subscribe' }}</button>
+                      
 
                     </div>
                 </div>

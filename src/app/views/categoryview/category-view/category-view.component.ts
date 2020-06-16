@@ -18,9 +18,10 @@ export class CategoryViewComponent implements OnInit {
   items: any = [];
   interests;
   interests_arr :any=[];
+  arr :any=[];
 
   checked: boolean= false;
-  sub: boolean= false;
+  sub;
   // htmlStr: string;
 
   constructor(
@@ -32,22 +33,16 @@ export class CategoryViewComponent implements OnInit {
 
      ngOnInit(): void {
       this.getAll();
-      this.getInterest();
-      this.checked;
+      this.getInterest(); 
     }
 
       //get all courses
   getAll(){
     console.log("getAllComponent");
     
-    this.categoryviewService.getAll().subscribe((res:any) =>{
-     console.log(res.body.data);
-    this.items = res.body.data;
-    
-
-    // this.coursesService.getAll().subscribe((courses: any[])=>{
-    //   console.log(courses);
-    //   this.courses_arr = courses;
+    this.categoryviewService.getAll().subscribe((res:any) =>{   
+      this.items = res.body.data;    
+      console.log(this.items);
     });
   }
 
@@ -99,7 +94,21 @@ public nextPage() {
       console.log(reason);
     });
   }
+    //=========================================
+    getInterest(){
+      this.arr=[];
+      const user_id = localStorage.getItem('USER_ID');
+      this.categoryviewService.getInterest(user_id).subscribe((res:any)=>{
+        this.interests_arr=res;
+     
+        this.interests_arr.map((res)=>{
+           this.arr.push(res.category_id);
+        });
 
+        // this._router.navigate(['/user/categoryview']);
+        
+      })
+    }
 
   //================================ interest/ subscribe ======================
   // interest(id: number){
@@ -144,27 +153,26 @@ public nextPage() {
   // let exist= false;
 // let interests;
 interest(id){
-    
       this.interests_arr.map((res)=>{
         if(res.category_id==id){
          this.interests= res.id
          this.checked= true;
+         return;
+         
           }
       });
-      if(this.checked){
+      
+      if(this.checked && this.interests_arr.length > 0){
         this.categoryviewService.remove_interest(this.interests).subscribe((res: any)=>{
-          console.log(res);
-          this.sub=false;
-          // this.htmlStr ="Subscribe";
+          console.log("REMOVE");
+          
           this.ngOnInit();
         });
       }else{
         this.categoryviewService.interest(id).subscribe((res: any)=>{
-            console.log(res);
-          // this.htmlStr ="Unsubscribe";
-
+          console.log("INSERT");
+          
             this.ngOnInit();
-            this.sub=true;
           });
       }
     }
@@ -188,16 +196,7 @@ interest(id){
   
     }
 
-    //=========================================
-getInterest(){
-  const user_id = localStorage.getItem('USER_ID');
-  this.categoryviewService.getInterest(user_id).subscribe((res:any)=>{
-    console.log(res);
-    this.interests_arr=res;
-    // this._router.navigate(['/user/categoryview']);
-    
-  })
-}
+
 
 // interest(cat_id){
 //   console.log(cat_id);
