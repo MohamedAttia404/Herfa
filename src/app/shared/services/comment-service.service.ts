@@ -19,7 +19,6 @@ export class CommentServiceService {
 //==========================================================================
 
   public addComment(post_id, comment){
-    console.log("add "+comment);
     
     return this._httpClient.post(`${ environment.apiUrl }/api/${post_id}/comments`,comment, {
       headers: this.headers,

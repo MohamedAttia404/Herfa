@@ -27,9 +27,11 @@ export class AddCommentComponent implements OnInit {
       this._router.navigate(['/login']);
     }else{
       this.routeSub = this.route.params.subscribe(params => {
-        console.log(params) //log the entire params object
-        console.log(params['id']) //log the value of id
+        // console.log(params) //log the entire params object
+        // console.log(params['id']) //log the value of id
         this.post_id=params['id'];
+       
+        
       
       });
     }
@@ -37,13 +39,14 @@ export class AddCommentComponent implements OnInit {
 
   //=============================================================
   onSubmit(form: NgForm){
-    console.log(form);
+
     if(form.valid){
       const comment = {...this.comment};
-      // comment.id=
-      console.log("add form comment "+this.comment);
+      this.comment['user_id']=localStorage.getItem("USER_ID");
+      // // comment.id=
       
-      this._commentService.addComment(this.post_id,comment).subscribe((res: any)=>{
+      
+      this._commentService.addComment(this.post_id,this.comment).subscribe((res: any)=>{
       console.log(res);
         this._router.navigate(['/user/posts']);
   

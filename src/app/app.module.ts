@@ -5,9 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import {SharedModule} from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
@@ -35,6 +33,7 @@ import { AgmCoreModule } from '@agm/core';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     SharedModule,
