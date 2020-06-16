@@ -15,12 +15,14 @@ class CommentController extends Controller
 {
     //
     public function store(StoreCommentRequest $request, $post){
-        return response()->json($request->all());
+
+       
+        // return response()->json($request->all());
         
         $post= Post::find($post);
-        $user= Auth::id();
+        // $comment=$post->comments()->create($request->all());
         $comment= $post->comments()->create([
-            'user_id'=>$user,
+            'user_id'=>$request->user_id,
             'post_id'=>$post->id,
             'content'=>$request->content
         ]);

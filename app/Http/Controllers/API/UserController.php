@@ -32,7 +32,7 @@ class UserController extends BaseController
 
     
  
-    // public function store(StoreUserRequest $request) {                    
+    // public function store(StoreUserRequest $request) {                    p
     public function store(StoreUserRequest $request) { 
         if($request->profile){
 
