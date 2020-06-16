@@ -21,6 +21,8 @@ Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@store');
 
 
+################################### USER  ################################################
+
 Route::prefix('/users')->middleware(['auth:api',])->group(function(){
     Route::get('', 'API\UserController@index')->name('users.index');
     // Route::post('', 'API\UserController@store')->name("users.store");
@@ -36,6 +38,9 @@ Route::prefix('/places')->middleware(['auth:api',])->group(function(){
     Route::get('', 'API\PlaceController@index')->name('users.index');
 });
 
+
+############################################# COURSE ####################################################
+
 Route::prefix('/courses')->group(function(){
     Route::get('', 'API\course\CourseController@index')->name('courses.index');
     // Route::post('', 'API\course\CourseController@store')->name("courses.store");
@@ -49,10 +54,10 @@ Route::prefix('/courses')->middleware(['auth:api',])->group(function(){
 
 });
 
-// search functionn
+###################################// search functionn ####################################
 Route::get('/search/{data}','API\course\CourseController@search')->name("courses.search");
 
-
+#################################### CATEGORY ####################################
 Route::prefix('/categories')->group(function(){
     Route::get('', 'API\category\CategoryController@index')->name('categories.index');
     Route::post('', 'API\category\CategoryController@store')->name("categories.store");
@@ -62,14 +67,8 @@ Route::prefix('/categories')->group(function(){
 });
    
 
-Route::prefix('/users')->middleware(['auth:api',])->group(function(){
-    Route::get('', 'API\UserController@index')->name('users.index');
-    // Route::post('', 'API\UserController@store')->name("users.store");
-    Route::get('/{user}', 'API\UserController@show')->name("users.show");
-    Route::put('/{user}', 'API\UserController@update')->name("users.update");
-    Route::delete('/{user}', 'API\UserController@destroy')->name("users.destroy");
-});
 
+#################################### POST ###########################################
 
 Route::prefix('/posts')->middleware(['auth:api',])->group(function(){
 //     Route::get('', 'API\PostController@index');
@@ -87,6 +86,8 @@ Route::get('/posts/{id}', 'API\PostController@show');
 
 
 
+################################# PRODUCT #################################################
+
 Route::prefix('/products')->group(function(){
     Route::get('', 'API\product\ProductController@index')->name('products.index');
     Route::get('/create', 'API\product\ProductController@create')->name("products.create");
@@ -97,6 +98,10 @@ Route::prefix('/products')->group(function(){
     Route::delete('/{prdouct}', 'API\product\ProductController@destroy')->name("products.destroy");
 
 });
+
+
+################################ EVENT ###############################################################
+
 Route::prefix('/events')->group(function(){
     Route::get('', 'API\event\EventController@index')->name('events.index');
     Route::get('/create', 'API\event\EventController@create')->name("events.create");
@@ -108,19 +113,21 @@ Route::prefix('/events')->group(function(){
 
 });
 
-// Route::post('/search', function(){
-//     $q = Input::get('q');
-//     if($q != ""){
-//         $course = Course::where('name', 'LIKE', '%', $q , '%')
-//                             ->orwhere('duration' , 'LIKE' , '%' , $q , '%')
-//                             ->get();
-        
-//     }
-// });
+
+
+######################### SUBSCRIBE / INTEREST #######################################
 
 Route::post('/categories/interests/{id}','API\CategorySubscription@store')->middleware('auth:api');//id of category
 Route::delete('/categories/interests/{id}','API\CategorySubscription@destroy')->middleware('auth:api');//id of interest
+Route::get('/categories/interests/{user_id}','API\CategorySubscription@index')->middleware('auth:api');
+
+
+
+
+################################## COMMENT #########################################
+
 Route::post('{post}/comments', 'API\CommentController@store')->middleware('auth:api');
+Route::get('{post}/comments/{id}', 'API\CommentController@show')->middleware('auth:api');
 Route::put('{post}/comments/{id}', 'API\CommentController@update')->middleware('auth:api');
 Route::delete('{post}/comments/{id}', 'API\CommentController@destroy')->middleware('auth:api');
 

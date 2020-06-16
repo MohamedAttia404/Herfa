@@ -37,6 +37,8 @@ class UserResource extends JsonResource
             "national_id"=>$this->national_id,
             "role"=>$this->role,
             "place"=> new PlaceResource($this->place),
+            "password"=>$this->password,
+            "password_confirmation"=>$this->password,
         ];
         
     }

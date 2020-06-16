@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\CategoryResource;
 
 class ProductResource extends JsonResource
 {
@@ -32,8 +34,8 @@ class ProductResource extends JsonResource
             "price"=>$this->price,
             "quantity"=>$this->quantity,
             "is_new"=>$this->is_new,
-            // "user_id"=>$this->user_id,
-            // "category_id"=> $this->category_id
+            'user' => new UserResource($this->user),
+            'category' => new CategoryResource($this->category),
         ];
     }
 }
