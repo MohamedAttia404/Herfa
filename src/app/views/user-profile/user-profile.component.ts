@@ -45,9 +45,9 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (paramMap.has('id')) {
-        const id = paramMap.get('id');
+    // this.activatedRoute.paramMap.subscribe((paramMap) => {
+      // if (paramMap.has('id')) {
+        const id = localStorage.getItem("USER_ID");
         this.user = this.userService.getUsersById(id).subscribe((res: any) => {
           const data = res.data;
           data.place.latitude= +data.place.latitude; 
@@ -58,8 +58,8 @@ export class UserProfileComponent implements OnInit {
 
 
         });
-      }
-    });
+      // }
+    // });
 
    
 

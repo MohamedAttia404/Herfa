@@ -107,7 +107,7 @@ const routes: Routes = [
       //   loadChildren: () => import('./views/user-profile/user-profile.module').then(m => m.UserprofileModule)
       // },
       {
-        path:'profile/:id',
+        path:'profile',
         component: UserProfileComponent,
       }
     ]
