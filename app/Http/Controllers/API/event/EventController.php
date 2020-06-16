@@ -19,7 +19,8 @@ class EventController extends Controller
         //    Event::all()
           //    Event::paginate(5)
         //  );
-        return Event::all();
+        // return Event::all();
+        return EventResource::collection(Event::paginate(3));
     }
 
     public function store(Request $request) {

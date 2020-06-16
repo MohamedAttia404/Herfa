@@ -24,13 +24,13 @@ class CategorySubscription extends Controller
     public function store($id, Request $request)
     {
         # code...
-        return response()->json($request->id);
+        // return response()->json($request->id);
         $category=new Category();
         $user=Auth::user();
         $user_id=$user->id;
         // $cat=Category::find($request['category_id']);
         $cat=Category::find($id);
-        return response()->json($cat);
+        // return response()->json($cat);
         if (!$cat==null){
             // $category->subscribe($request['category_id'],$user_id );
             $sub=$category->subscribe($id,$user_id );
