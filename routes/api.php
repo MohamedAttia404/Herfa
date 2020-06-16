@@ -66,6 +66,7 @@ Route::prefix('/categories')->group(function(){
     Route::delete('/{id}', 'API\category\CategoryController@destroy')->name("categories.destroy");
 });
    
+Route::get('allCategories', 'API\category\CategoryController@all')->name('categories.all'); 
 
 
 #################################### POST ###########################################
