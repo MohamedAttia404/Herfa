@@ -37,7 +37,7 @@ export class AddPostComponent implements OnInit {
       
       this._postsService.addPost(post).subscribe((res: any)=>{
       console.log(res);
-        console.log("hell " +res.user_id);
+        // console.log("hell " +res.user_id);
         this.emptyValue1 = '';
         this.emptyValue2 = '';
         this._router.navigate(['/user/posts']);

@@ -65,5 +65,7 @@ export class CourseviewService {
     return this.http.put(`${ environment.apiUrl }/api/courses/${id}`,data);
   }
 
+
+
 }
 

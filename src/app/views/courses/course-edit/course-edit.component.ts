@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
-
+import { CategoriesService } from "./../../../shared/services/categories.service";
 
 
 
@@ -17,6 +17,8 @@ export class CourseEditComponent implements OnInit {
   editForm: FormGroup;
   submitted: boolean;
   courseId;
+  categories:any=[];
+  userid;
   // courseDetails:Array<object> = [];
   courseDetails= {};
   course:Course=new Course() ;
@@ -26,7 +28,8 @@ export class CourseEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private courseService: CoursesService,
-     private toastr: ToastrService) { 
+     private toastr: ToastrService,
+     private categoriesService: CategoriesService) { 
        
       let editFormControls = {
         name : new FormControl('',[
@@ -69,6 +72,10 @@ export class CourseEditComponent implements OnInit {
           Validators.required,
           Validators.pattern("[0-9]+"),
         ]),
+
+        user_id : new FormControl(''),
+
+        category_id : new FormControl(''),
    
       }
 
@@ -76,6 +83,7 @@ export class CourseEditComponent implements OnInit {
 
       }
 
+     
      
 
   ngOnInit() {
@@ -94,10 +102,18 @@ export class CourseEditComponent implements OnInit {
         // console.log("res"+res.data.name);
         // this.courseDetails = res;
         this.course = res.data;
+        this.course.user_id= res.data.user.id;
+        this.course.category_id= res.data.category.id;
         // console.log("details"+this.courseDetails);
       });
       
     });
+    this.categoriesService.allCategory().subscribe((res: any) =>{
+      
+      // this.userid=Number(localStorage.getItem("USER_ID"));
+     this.categories = res.data;
+ 
+     });
   }
 
   // to access inputs
@@ -113,6 +129,18 @@ export class CourseEditComponent implements OnInit {
   //     description: [null, Validators.required],
   //     instructor_name: [null, Validators.required],
   //     price: [null, Validators.required],
+  // buildEditForm(){
+  //   this.editForm = this.fb.group({
+  //     name: [null, Validators.required],
+  //     duration: [null, Validators.required],
+  //     start_date: [null, Validators.required],
+  //     end_date: [null, Validators.required],
+  //     group_limit: [null, Validators.required],
+  //     description: [null, Validators.required],
+  //     instructor_name: [null, Validators.required],
+  //     price: [null, Validators.required],
+  //     user_id: [''],
+  //     category_id: [null],
       // user_id: [null, Validators.required],
       // category_id: [null, Validators.required],
   //   });
@@ -138,7 +166,7 @@ export class CourseEditComponent implements OnInit {
   //       this.toastr.error(err.statusText, 'Error!', {timeOut:3000, closeButton: true, progressBar: true});
   //     }
   //   );
-  // }
+  // } 
 
   onSubmit(form: NgForm){
     console.log(form);

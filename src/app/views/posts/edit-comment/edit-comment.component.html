@@ -1,0 +1,14 @@
+<!-- <p>edit-comment works!</p> -->
+<div class="container">
+    <form #editCommentForm="ngForm" (ngSubmit)="onSubmit(editCommentForm)">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="content">Content</label>
+            <textarea type="text" class="form-control" [(ngModel)]="comment.content" id="content" name="content" required
+              #contentRef="ngModel" ></textarea>
+          </div>
+        </div>
+      
+        <button type="submit" class="btn btn-primary" [disabled]="editCommentForm.invalid">Comment</button>
+      </form>
+      </div>

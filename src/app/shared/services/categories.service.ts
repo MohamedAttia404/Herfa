@@ -47,6 +47,11 @@ export class CategoriesService {
 
 
 
+  public allCategory(){
+    console.log("allCategories");
+    return this.http.get(`${ environment.apiUrl }/api/allCategories`);
+    // return this.http.get(this._courseApi);
+  }
   // Delete Course
   delete(id){
     return this.http.delete(`${ environment.apiUrl }/api/categories/${id}`);
@@ -66,5 +71,7 @@ export class CategoriesService {
   update(data, id){
     return this.http.put(`${ environment.apiUrl }/api/categories/${id}`,data);
   }
+
+  
 
 }

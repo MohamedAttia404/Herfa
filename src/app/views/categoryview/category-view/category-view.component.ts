@@ -3,6 +3,9 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { CategoryviewService } from 'src/app/shared/services/categoryview.service';
+import { Interest } from 'src/app/models/interest';
+import { tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,15 +16,24 @@ import { CategoryviewService } from 'src/app/shared/services/categoryview.servic
 export class CategoryViewComponent implements OnInit {
 
   items: any = [];
+  interests;
+  interests_arr :any=[];
+
+  checked: boolean= false;
+  sub: boolean= false;
+  // htmlStr: string;
 
   constructor(
     private categoryviewService: CategoryviewService,
      private modelService: NgbModal,
      private toastr: ToastrService,
-     private fb: FormBuilder) { }
+     private fb: FormBuilder,
+     private _router: Router) { }
 
      ngOnInit(): void {
       this.getAll();
+      this.getInterest();
+      this.checked;
     }
 
       //get all courses
@@ -70,7 +82,7 @@ public nextPage() {
   deleteItem(model, id){
     this.modelService.open(model).result.then(result => {
       this.categoryviewService.delete(id).subscribe(res => {
-        this.toastr.success('Course deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
+        this.toastr.success('Category deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         console.log(res);
         
         this.getAll();
@@ -88,5 +100,136 @@ public nextPage() {
     });
   }
 
+
+  //================================ interest/ subscribe ======================
+  // interest(id: number){
+  //   console.log(id);
+  //   // let interests = id;
+    
+  //     this.categoryviewService.interest(id).subscribe((res: any)=>{
+  //       console.log(res);
+  //       // this._router.navigate(['/categoryview']);
+  //       this.ngOnInit();
+  //     });
+  //  // }
+   
+
+  // }
+  // interest(id){
+  //   if (this.interests_arr.length == 0){
+  //     console.log("array is empty");
+      
+  //     return this.categoryviewService.interest(id).subscribe((res: any)=>{
+  //             console.log(res);
+  //             this.ngOnInit();
+  //     });
+  //   }else{
+  //     this.interests_arr.map((res)=>{
+  //       if(res.category_id==id){
+  //        let interests= res.id
+  //        return this.categoryviewService.remove_interest(interests).subscribe((res: any)=>{
+  //         console.log(res);
+  //         this.ngOnInit();
+  //         // this._router.navigate(['/categoryview']);
+  //         });
+  //       }else{
+  //         return this.categoryviewService.interest(id).subscribe((res: any)=>{
+  //           console.log(res);
+  //           this.ngOnInit();
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
+  // let exist= false;
+// let interests;
+interest(id){
+    
+      this.interests_arr.map((res)=>{
+        if(res.category_id==id){
+         this.interests= res.id
+         this.checked= true;
+          }
+      });
+      if(this.checked){
+        this.categoryviewService.remove_interest(this.interests).subscribe((res: any)=>{
+          console.log(res);
+          this.sub=false;
+          // this.htmlStr ="Subscribe";
+          this.ngOnInit();
+        });
+      }else{
+        this.categoryviewService.interest(id).subscribe((res: any)=>{
+            console.log(res);
+          // this.htmlStr ="Unsubscribe";
+
+            this.ngOnInit();
+            this.sub=true;
+          });
+      }
+    }
+
+    //================================ interest/ subscribe ======================
+    remove_interest(id: number){
+      let interests;
+      console.log(this.interests_arr);
+      
+      this.interests_arr.map((res)=>{
+        if(res.category_id==id){
+          interests= res.id
+        }
+      });
+    console.log(interests);
+    
+      this.categoryviewService.remove_interest(interests).subscribe((res: any)=>{
+        console.log(res);
+        // this._router.navigate(['/categoryview']);
+      });
+  
+    }
+
+    //=========================================
+getInterest(){
+  const user_id = localStorage.getItem('USER_ID');
+  this.categoryviewService.getInterest(user_id).subscribe((res:any)=>{
+    console.log(res);
+    this.interests_arr=res;
+    // this._router.navigate(['/user/categoryview']);
+    
+  })
+}
+
+// interest(cat_id){
+//   console.log(cat_id);
+  
+//   if(this.interests_arr != []){
+//     console.log("interests arr not empty");
+//     this.interests_arr.map((res)=>{
+//       console.log(res);
+      
+//       if(res.category_id==cat_id){
+//         console.log("exist");
+        
+//         this.categoryviewService.remove_interest(res.id).subscribe((res:any)=>{
+//           console.log("remove "+res); 
+//         });
+//       }else{
+//         this.categoryviewService.interest(res.category_id).subscribe((res:any)=>{
+//           console.log("interest "+res);
+          
+//         });
+//       }
+//     });
+    
+//   }else{
+//     console.log("interests is empty");
+    
+//     this.categoryviewService.interest(cat_id).subscribe((res:any)=>{
+//       console.log("interest "+res);
+      
+//     });
+//   }
+
+// }
 
 }

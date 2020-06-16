@@ -1,4 +1,5 @@
 /* 
+
 .fa-2x {
 font-size: 2em;
 }
@@ -126,6 +127,7 @@ height: 100%;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 } */
 
+
 #sideNav{
 /*ffff background-color:rgb(75, 173, 243); */
 background-color:#2AD7D7  ;
@@ -164,3 +166,4 @@ background-color:#2AD7D7  ;
   hr{
     background-color: #7189b5 ;
   }
+  

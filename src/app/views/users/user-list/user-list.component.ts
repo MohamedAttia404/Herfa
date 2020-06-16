@@ -14,6 +14,7 @@ import {
 import {
   ToastrService
 } from 'ngx-toastr';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-list',
@@ -30,6 +31,7 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
+    private modelService: NgbModal,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -56,29 +58,51 @@ export class UserListComponent implements OnInit {
 
   // }
 
-  deleteUsers(id) {
-    this.userService.deleteUser(id).subscribe((res: any) => {
-        this.toastr.success('user deleted successfuly', 'success', {
-          timeOut: 3000,
-          closeButton: true,
-          progressBar: true
-        });
+  // deleteUsers(id) {
+  //   this.userService.deleteUser(id).subscribe((res: any) => {
+  //       this.toastr.success('user deleted successfuly', 'success', {
+  //         timeOut: 3000,
+  //         closeButton: true,
+  //         progressBar: true
+  //       });
+  //       console.log(res);
+
+  //       this.Allusers();
+  //     },
+  //     err => {
+  //       this.toastr.error(err.statusText, 'Error!', {
+  //         timeOut: 3000,
+  //         closeButton: true,
+  //         progressBar: true
+  //       });
+  //       console.log(err);
+
+
+  //     }
+  //   );
+  // }
+  // 
+  deleteUsers(model, id){
+    this.modelService.open(model).result.then(result => {
+      this.userService.deleteUser(id).subscribe((res: any) => {
+        this.toastr.success('user deleted successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
         console.log(res);
-
+        
         this.Allusers();
-      },
-      err => {
-        this.toastr.error(err.statusText, 'Error!', {
-          timeOut: 3000,
-          closeButton: true,
-          progressBar: true
-        });
-        console.log(err);
-
-
+    },
+    err => {
+      this.toastr.error(err.statusText, 'Error!', {timeOut:3000, closeButton: true, progressBar: true});
+      console.log(err);
+      
+      
       }
-    );
+     );
+    },
+    reason => {
+      console.log(reason);
+    });
   }
+  // 
 
   onClickUpdate(id) {
     this.router.navigate(['/users', id, 'edit']);

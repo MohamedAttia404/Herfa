@@ -18,7 +18,7 @@
             <th>Last Name</th>
             <th>Role</th>
             <th>Mobile</th>
-            <th>National Id</th>
+            <th>National Id</th> 
             <th>Email</th>
             <th width="100px">Action</th>
           </tr>
@@ -42,9 +42,10 @@
               <a href="#" class="btn btn-default text-success" [routerLink]="['../',user.id,'edit']">
                 <i class="fa fa-edit"></i>
                 </a>
-                <a href="javascript:;" class="btn btn-default text-danger" (click)="deleteUsers(user.id)">
+                <a href="javascript:;" class="btn btn-default text-danger" (click)="deleteUsers(deleteModel,user.id)">
                   <i class="fa fa-trash"></i>
                   </a>
+
             </td>
           </tr>
         </tbody>
@@ -52,21 +53,21 @@
     </div>
   
     <ng-template #deleteModel let-model>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Corse Deletion</h4>
-          <button type="button" class="close" aria-label="model-title" (click)="model.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p><strong>Are you sure ou want to delete <span class="text-primary">this item</span>?</strong></p>
-          <p>All information associated to this course will be permanently deleted.
-            <span class="text-danger">This operation can not be undone.</span> 
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="model.dismiss('Cancel click')">Cancel</button>
-          <button type="button" class="btn btn-danger" (click)="model.close('Ok click')">Ok</button>
-        </div>
-      </ng-template>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">user Delete</h4>
+        <button type="button" class="close" aria-label="model-title" (click)="model.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Are you sure ou want to delete <span class="text-primary">this user</span>?</strong></p>
+        <p>All information associated to this user will be permanently deleted.
+          <span class="text-danger">This operation can not be undone.</span> 
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="model.dismiss('Cancel click')">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="model.close('Ok click')">Ok</button>
+      </div>
+    </ng-template>
     <!-- <router-outlet></router-outlet> -->

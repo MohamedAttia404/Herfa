@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
-import { HttpClient  , HttpParams} from '@angular/common/http';
+import { HttpClient  , HttpParams, HttpHeaders} from '@angular/common/http';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,11 @@ export class CategoryviewService {
 
   constructor(private http: HttpClient) { }
 
+  private headers = new HttpHeaders({
+    'Content-Type':'application/json',
+    'Authorization':localStorage.getItem("ACCESS_TOKEN"),
+    
+  });
 
   parseLinks(links){
     this.prev=links.prev;
@@ -29,6 +34,7 @@ export class CategoryviewService {
     }));
     // return this.http.get(this._courseApi);
   }
+
 
   public sendGetRequestToUrl(url: string){
     return this.http.get(url, { observe: "response"}).pipe(retry(3), tap((res:any) => {
@@ -59,5 +65,32 @@ export class CategoryviewService {
   }
 
 
+  //==============================interest request ======================
+ public interest(id){
+   console.log('service');
+   
+  return this.http.post(`${ environment.apiUrl }/api/categories/interests/${id}`,id,
+  {
+    headers: this.headers,
+  });
+
+ }
+  //==============================remove_interest request ======================
+ public remove_interest(id){
+  console.log("dele");
+  return this.http.delete(`${ environment.apiUrl }/api/categories/interests/${id}`,
+  {
+    headers: this.headers,
+  }); 
+  
+
+}
+//=============================get all interests================
+public getInterest(user_id){
+  return this.http.get(`${ environment.apiUrl }/api/categories/interests/${user_id}`,
+  {
+    headers: this.headers,
+  }); 
+}
 
 }

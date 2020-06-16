@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
-
+import { CategoriesService } from "./../../../shared/services/categories.service";
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -14,6 +14,9 @@ export class ProductEditComponent implements OnInit {
   editForm: FormGroup;
   submitted: boolean;
   productId;
+  image;
+  categories:any=[];
+  userid;
   // courseDetails:Array<object> = [];
   productDetails= {};
   product:Product=new Product() ;
@@ -21,6 +24,7 @@ export class ProductEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
      private productService: ProductsService,
+     private categoriesService: CategoriesService,
      private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -31,13 +35,25 @@ export class ProductEditComponent implements OnInit {
       // this.courseId = params.id;
       this.product.id =  params.id;
       this.productService.getProduct(params.id).subscribe((res:any) => {
-        // console.log("res"+res.data.name);
+        // console.log(res.data);
         // this.courseDetails = res;
+        this.image=res.data.image;
         this.product = res.data;
+        this.product.user_id= res.data.user.id;
+        this.product.category_id= res.data.category.id;
+
+        console.log(this.product);
+        
         // console.log("details"+this.courseDetails);
       });
       
     });
+    this.categoriesService.allCategory().subscribe((res: any) =>{
+      
+      // this.userid=Number(localStorage.getItem("USER_ID"));
+     this.categories = res.data;
+ 
+     });
   }
   get f() {return this.editForm.controls; }
 
@@ -49,6 +65,8 @@ export class ProductEditComponent implements OnInit {
       price: [null, Validators.required],
       quantity: [null, Validators.required],
       is_new: [null, Validators.required],
+            user_id: [''],
+      category_id: [null],
       // user_id: [null, Validators.required],
       // category_id: [null, Validators.required],
     });
@@ -56,9 +74,11 @@ export class ProductEditComponent implements OnInit {
 
   onSubmit(form: NgForm){
     this.submitted = true;
-    console.log(form);
+    console.log("update");
     if(form.valid){
       const product = {...this.product};
+      // this.product['user_id']=Number(localStorage.getItem("USER_ID"));
+      // console.log(product);
       this.productService.update(product,this.product.id).subscribe((res: any)=>{
         console.log(res);
         
