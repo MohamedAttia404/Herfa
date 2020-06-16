@@ -4,35 +4,32 @@
     <div class="text-center ">  
       <img src = "assets/img/features-11.png"class="img-fluid mb-5" height="500px"
      width="300px">
-     
+      
      </div>
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab"><span> <i class="fas fa-sign-in-alt"></i></span> Sign In  </label> 
 
     <input id="tab-2" type="radio" name="tab" class="sign-up" ><label for="tab-2" class="tab"><a [routerLink]="['/register']"><span> <i class="fas fa-user-plus"></i></span> Sign Up</a></label>
     <div class="login-form">
       <div class="sign-in-htm">
-        <form (ngSubmit)="onSubmit()">
-          <div class="dis form-group">
-            <label for="user" class=" font-weight-bold h6"><span ><i class="fas fa-envelope"></i></span> Email</label>
-            <input type="text" name="email" class="form-control"[(ngModel)]="user.email"  id="exampleInputemail"
-            placeholder="Enter email">
-          </div>
-          <div class="dis form-group">
-            <label for="pass" class="font-weight-bold h6"><span><i class="fas fa-lock"></i></span> Password</label>
-            
-            <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
-            id="exampleInputpassword" placeholder="Enter password">
-          </div>
+        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
             <label for="user" class=" font-weight-bold h6"><span ><i class="fas fa-envelope"></i></span> Email</label>
-            <input type="text" name="email" class="form-control"[(ngModel)]="user.email"  id="exampleInputemail"
+            <input type="text" name="email" class="form-control" formControlName="email"  id="exampleInputemail"  [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.email.errors }"
             placeholder="Enter email">
+            <div *ngIf="submitted &amp;&amp; uploadForm.controls.email.errors" class="text-danger">
+              <div *ngIf="uploadForm.controls.email.errors.required">Email is required</div>
+              <div *ngIf="uploadForm.controls.email.errors.email">Email is not in correct formate </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="pass" class="font-weight-bold h6"><span><i class="fas fa-lock"></i></span> Password</label>
             
-            <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
-            id="exampleInputpassword" placeholder="Enter password">
+            <input type="password" name="password" formControlName="password" class="form-control"
+            id="exampleInputpassword" placeholder="Enter password" [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.password.errors }">
+            <div *ngIf="submitted &amp;&amp; uploadForm.controls.password.errors" class="text-danger">
+              <div *ngIf="uploadForm.controls.password.errors.required">Password is required</div>
+              <div *ngIf="uploadForm.controls.password?.errors.minLength">Password more than 6</div>
+            </div>
           </div>
 
           
