@@ -115,7 +115,6 @@ export class UserEditComponent implements OnInit {
     const user = {...this.user};
   this.userService.updateUser(user).subscribe((res: any)=>{ 
     // console.log(res);
-    
     this.toastr.success('User UPdated successfuly', 'success', {timeOut:3000, closeButton: true, progressBar: true});
     this.router.navigate(['../admin/users']);
       });

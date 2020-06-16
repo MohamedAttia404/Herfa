@@ -25,11 +25,12 @@ export class PostsListComponent implements OnInit {
     //   console.log("get posts Component");
 //===============================================================================
   getPosts(){
-    console.log("get posts Component");
    
     this._postsService.getPosts().subscribe((res: any) =>{
     //  console.log(res.body.data[0].comments[0].id);
     this.posts = res.body.data;
+    // console.log(this.posts);
+    
     });
   }
 //===============================================================================
