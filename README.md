@@ -1,3 +1,10 @@
+# How to install HerfaUI ?
+    1-git clone -b design https://github.com/MohamedAttia404/Herfa
+    2-change folderName to HerfaUI
+    3-cd /HerfaUI
+    4-npm install
+    5-ng s -o
+
 # Admin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
