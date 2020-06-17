@@ -18,10 +18,14 @@
                 <div *ngFor="let comment of post.comments" style="padding: 5px;">
                     <p>
 
+                      {{comment.user.first_name}} {{comment.user.last_name}}
+                    </p>
+                    <p>
+
                       {{comment.content}}
                     </p>
                     <!-- {{comment.id}} -->
-                    <div *ngIf="auth[0] =='admin' || auth[1] == comment.user_id ">
+                    <div *ngIf="auth[0] =='admin' || auth[1] == comment.user.id ">
                       <button class="btn btn-success" [routerLink]="[post.id,'edit-comment',comment.id]">Update</button>
                       <button class="btn btn-danger"(click)="deleteComment(post.id,comment.id)" >Delete</button>
                     </div>
